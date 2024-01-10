@@ -14,11 +14,11 @@ docker-compose up -d
 # Docker-migrate
 
 #### 立ち上げ
-Dockerコンテナを立ち上げる場合:
+Dockerコンテナを立ち上げる:
 
 ```bash
 docker-compose build --no-cache
-docker-compose up -d
+docker-compose up 
 ```
 
 立ち上がったらIPアドレスを設定します。
@@ -35,20 +35,20 @@ docker network inspect flask_sqlalchemy_default
 
 Network内のコンテナ情報:
 
-linebot-db:  
-Name: linebot-db  
+mysql-db:  
+Name: mysql-db  
 IPv4Address: 172.18.0.2/16
 
-linebot-python:  
-Name: linebot-python  
+flask-python:  
+Name: flask-python  
 IPv4Address: 172.18.0.3/16  
 
-linebot-pythonのIPv4Address（この場合は172.18.0.3）をconfig.pyへ添付
+mysql-dbのIPv4Address（この場合は172.18.0.2）をconfig.pyへ添付
 
 別のコマンドプロンプト立ち上げてコンテナへ入る  
 
 ```bash
-docker exec -it linebot-python bash
+docker exec -it flask-python bash
 ```
 
 ```bash
@@ -61,7 +61,7 @@ MYSQL入る
 
 ```bash
 docker exec -it linebot-db bin/bash
-root@[コンテナID]:/#   mysql -u hoge -phuga peter
+root@[コンテナID]:/#   mysql -u hoge -phuga templete
 mysql>show tables;
 
 ```

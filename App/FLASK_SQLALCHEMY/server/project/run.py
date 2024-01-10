@@ -1,4 +1,4 @@
-from Peter.app import app
+from templete.app import app
 import os
 
 if __name__ == '__main__':

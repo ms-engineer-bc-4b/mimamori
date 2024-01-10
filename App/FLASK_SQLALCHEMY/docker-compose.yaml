@@ -2,7 +2,7 @@ version: '3'
 
 services:
   flask:
-    container_name: linebot-python
+    container_name: flask-python
     build: ./docker
     ports:
       - 5000:5000
@@ -19,11 +19,11 @@ services:
     command: flask run -h 0.0.0.0
 
   mysql:
-    container_name: linebot-db
+    container_name: mysql-db
     image: mysql:5.5
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: peter
+      MYSQL_DATABASE: templete
       MYSQL_USER: hoge
       MYSQL_PASSWORD: huga
       TZ: 'Asia/Tokyo'
