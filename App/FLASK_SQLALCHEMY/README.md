@@ -64,6 +64,9 @@ DESCRIBE テーブル名;
 テーブルSeniorUserへサンプル値入れる  
 ```bash
 INSERT INTO SeniorUser (senior_last_name, senior_first_name, gender, birth_date, senior_email, senior_tel, health_status, medication, medication_frequency, senior_user_uid, family_id, senior_password, created_at, updated_at) VALUES ('Smith', 'John', 'Male', '1990-01-01', 'john.smith@example.com', '123-456-7890', 'Good', true, 'Once a day', 'uid123', 1, 'password123', NOW(), NOW());
+
+#テスト用※外部キーなし
+INSERT INTO SeniorUser (senior_last_name, senior_first_name, gender, birth_date, senior_email, senior_tel, health_status, medication, medication_frequency, senior_user_uid, senior_password, created_at, updated_at) VALUES ('Smith', 'John', 'Male', '1990-01-01', 'john.smith@example.com', '123-456-7890', 'Good', true, 'Once a day', 'uid123', 'password123', NOW(), NOW());
 ```
 
 テーブルSeniorUserへ入れたサンプル値をコマンド上で確認する  
@@ -81,4 +84,24 @@ INSERT INTO FamilyUser (family_last_name, family_first_name, relationship_with_s
 ```bash
 SELECT * FROM FamilyUser;
 ```
+```bash
+INSERT INTO HealthInformation (senior_user_id, `condition`, symptom, medicine, dinner_photo,degree ,voice_text, registered_at, updated_at)  VALUES (7, 'good', 'head', 1, '', 'Hello, I am feeling good.', NOW(), NOW());
 
+#テスト用※外部キーなし
+INSERT INTO HealthInformation (`condition`, symptom, medicine, dinner_photo, degree, voice_text, created_at, updated_at)
+VALUES ('good', 'head', true, '/path/to/photo.jpg', 'half', 'Hello, I am feeling good.', NOW(), NOW());
+
+
+SELECT * FROM HealthInformation ;
+
+```
+
+テーブルMessageへサンプル値入れる  
+
+```bash
+#テスト用※外部キーなし
+INSERT INTO messages (message, created_at, updated_at)
+VALUES ('This is a sample message.', NOW(), NOW());
+
+SELECT * FROM messages;
+```
