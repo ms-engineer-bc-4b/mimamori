@@ -10,7 +10,7 @@ services:
       - mysql
     privileged: true
     volumes:
-      - ./server:/server
+      - ./api_server:/api_server
     tty: true
     environment:
         TZ: Asia/Tokyo

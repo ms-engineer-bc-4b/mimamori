@@ -1,6 +1,6 @@
 FROM python:3.6
 
-ARG project_dir=/server/
+ARG project_dir=/api_server/
 
 ADD ./requirements.txt $project_dir
 
@@ -10,5 +10,5 @@ RUN pip install -r requirements.txt
 
 
 # PYTHONPATH の設定
-ENV PYTHONPATH=/server
+ENV PYTHONPATH=/api_server
 
