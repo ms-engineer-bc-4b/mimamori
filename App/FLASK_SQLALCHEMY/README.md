@@ -105,3 +105,16 @@ VALUES ('This is a sample message.', NOW(), NOW());
 
 SELECT * FROM messages;
 ```
+
+project-root/  
+├── api_server/  
+│   ├── app.py  
+│   └── ...  
+└── docker/   
+        ├── db/  
+        │   ├── data/  
+        │   └── sql/  
+        ├── Dockerfile  
+        ├── docker-compose.yml  
+        └── requirements.txt  
+
