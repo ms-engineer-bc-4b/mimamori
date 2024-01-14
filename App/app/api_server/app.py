@@ -1,15 +1,21 @@
 from flask import Flask
-from flask import request, make_response, jsonify
-from flask_cors import CORS
+from database import init_db, db
+from models import SeniorUser
+from datetime import datetime
 
-app = Flask(__name__)
-CORS(app)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object('config.Config')
 
-@app.route('/', methods=['GET'])
-def index():
-    return "hello"
+    init_db(app)
+    @app.route('/')
+    def index():
+        return 'Hello'
 
-if __name__ == "__main__":
-    app.debug = True
-#    app.run(host='flask', port=5000)
-    app.run(host='0.0.0.0', port=5000)
+  
+
+    return app
+app = create_app()
+
+if __name__ == '__main__':
+    app.run()
