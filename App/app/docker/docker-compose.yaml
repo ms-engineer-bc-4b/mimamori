@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  api_server:
+    build:
+      context: ../
+      dockerfile:  docker/Dockerfile.api_server
+    env_file:
+      - ../.env
+    volumes:
+      - ../api_server:/app/api_server
+    ports:
+      - "5000:5000"
+ #  depends_on:
+  #     - db
+#
+  frontend:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.next
+    env_file:
+      - ../.env
+    volumes:
+      - ../next:/app/next
+    ports:
+      - "3000:3000"
+    
+  mysql:
+    container_name: mysql-db
+    image: mysql:5.5
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: templete
+      MYSQL_USER: hoge
+      MYSQL_PASSWORD: huga
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
