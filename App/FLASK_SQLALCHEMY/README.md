@@ -9,7 +9,7 @@ Dockerコンテナを立ち上げる:
 ```bash
 docker-compose build --no-cache
 docker-compose up 
-```
+```      
 
 立ち上がったら、下記にてflask_sqlalchemy_default のような名称が存在することを確認します。
 
