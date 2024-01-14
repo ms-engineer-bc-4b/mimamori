@@ -1,9 +1,16 @@
 import Link from 'next/link';
 
 // シンプルなヘッダーコンポーネント
-import Header from './components/Header';
+const Header = () => {
+  return (
+    <header className="text-center py-4 bg-gray-200">
+      {/* ここにヘッダーのコンテンツを追加 */}
+      みまもり
+    </header>
+  );
+};
 
-const Home: React.FC = () => {
+export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* ヘッダーの呼び出し */}
@@ -22,6 +29,4 @@ const Home: React.FC = () => {
       {/* フッターの呼び出し */}
     </div>
   );
-};
-
-export default Home;
+}
