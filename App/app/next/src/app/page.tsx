@@ -6,6 +6,20 @@ const Header = () => {
     <header className="text-center py-4 bg-gray-200">
       {/* ここにヘッダーのコンテンツを追加 */}
       みまもり
+
+      <Link href="/register" passHref>
+      新規登録
+      </Link>
+
+      <Link href="/senior-login" passHref>
+      シニア用ログイン
+      </Link>
+
+      <Link href="/login" passHref>
+      ご家族用ログイン
+      </Link>
+
+      
     </header>
   );
 };
