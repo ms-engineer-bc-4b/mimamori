@@ -9,18 +9,18 @@
   }
 }
 
-/* ユーティリティをまとめたコンポーネントスタイル作成 */
+/* ユーティリティをまとめたコンポーネントスタイル作成
 @layer components {
   .btn-blue {
     @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
   }
-}
+} */
 
 /* 独自のユーティリティ追加 */
 @layer utilities {
-  .bg-custom-black {
+  .bg-custom-yellow {
 
-    background: linear-gradient(to right, yellow-200, yellow-300);
+    background:yellow;
 
   }
 }
