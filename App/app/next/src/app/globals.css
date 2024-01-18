@@ -2,3 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ベーススタイル設定 */
+@layer base {
+  html,body {
+    @apply h-full;
+  }
+}
+
+/* ユーティリティをまとめたコンポーネントスタイル作成 */
+@layer components {
+  .btn-blue {
+    @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+  }
+}
+
+/* 独自のユーティリティ追加 */
+@layer utilities {
+  .bg-custom-black {
+
+    background: linear-gradient(to right, yellow-200, yellow-300);
+
+  }
+}
