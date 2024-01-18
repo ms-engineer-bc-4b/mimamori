@@ -31,6 +31,7 @@ def create_app():
 
 
     #TEST-seniorlogin
+    # /api/senior/login
                     with open("firebaseConfig.json") as f:
                         firebaseConfig = json.loads(f.read())
                     firebase = pyrebase.initialize_app(firebaseConfig)
@@ -39,36 +40,6 @@ def create_app():
                     app = Flask(__name__)
                     app.config['SECRET_KEY'] = os.urandom(24)
 
-                    @app.route('/login', methods=['GET', 'POST'])
-                    def login():
-                        if request.method == 'GET':
-                            return render_template("login.html",msg="")
-
-                        email = request.form['email']
-                        password = request.form['password']
-                        try:
-                            user = auth.sign_in_with_email_and_password(email, password)
-                            session['usr'] = email
-                            return redirect(url_for('index'))
-                        except:
-                            return render_template("login.html", msg="メールアドレスまたはパスワードが間違っています。")
-
-                    @app.route("/", methods=['GET'])
-                    def index():
-                        usr = session.get('usr')
-                        if usr == None:
-                            return redirect(url_for('login'))
-                        return render_template("index.html", usr=usr)
-
-                    @app.route('/logout')
-                    def logout():
-                        del session['usr']
-                        return redirect(url_for('login'))
-
-                    # run the app.
-                    if __name__ == "__main__":
-                        app.debug = True
-                        app.run(port=5000)
 
                     # ログイン時の認証トークンをnext.js側で保持する必要があり。その場合は以下のようなコードで実装
 
@@ -112,38 +83,7 @@ def create_app():
     #@app.route('/api/register/{family_id}', methods=['PUT','GET'])
     #@app.route('/api/register/{family_id}', methods=['PUT'])
 
-     #TEST-seniorlogin
-    # @app.route('/api/allUser/<int:senior_user_id>', methods=['POST'])
-    # def select_by_id(senior_user_id):
-    #     user = SeniorUser.query.get(senior_user_id)
-    #     if user:
-    #         result = {"senior_user_id": user.senior_user_id,"senior_last_name":user.senior_last_name}
-    #         return jsonify(result)
-    #         # ログイン情報を返す
-    #     else:
-    #         return jsonify({"error": "User not found"}), 404
 
-# /api/senior/login
-            #リクエストサンプル:
-            # {
-            #     "senior_email": "senior@example.com",
-            #     "senior_password": "senior123"
-            # }  
-            # 成功時:
-            # ステータスコード: 200 OK
-            # レスポンスサンプル:
-            # {
-            #     "message": "Senior logged in successfully",
-            #     "user_id": "12345",
-            #     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikpha2UgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-            # }
-            # 失敗時:
-            # ステータスコード:401 Unauthorized
-            # レスポンスサンプル:
-            # {
-            #    "error": "Login failed",
-            #    "reason": "Invalid email or password"
-            # } 
 
     return app
 
