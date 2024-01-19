@@ -1,0 +1,13 @@
+FROM node:18
+
+WORKDIR /app
+
+# package.jsonとpackage-lock.jsonをコピーして依存関係をインストール
+COPY ./next/package*.json /app/
+RUN npm install
+
+# 残りのファイルをコピー
+COPY ./next /app/
+
+# 開発サーバーを起動
+CMD ["npm", "run", "dev"]
