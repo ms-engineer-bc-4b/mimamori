@@ -36,7 +36,7 @@ export default function Home() {
       {/* メインコンテンツ */}
       <main className="flex-grow flex flex-col items-center p-24">
         {/* <h1 className='text-2xl font-bold'>本日●月●日の健康の記録をお願いします</h1> */}
-        <div class="w-[327px] h-[27px] text-black text-[17px] font-normal font-['Inter']">本日●月●日の健康の記録をお願いします</div>
+        <div className="w-[327px] h-[27px] text-black text-[17px] font-normal font-['Inter']">本日●月●日の健康の記録をお願いします</div>
 
         {/* // 本日●月●日の健康の記録をお願いします
           text-black
