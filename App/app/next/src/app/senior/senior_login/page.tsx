@@ -3,7 +3,7 @@ import Link from 'next/link';
 // シンプルなヘッダーコンポーネント
 const Header = () => {
             return (
-            <header className="text-center py-4 bg-gray-200">
+            <header className="text-center p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
             {/* ここにヘッダーのコンテンツを追加 */}
             <div className="left-[96px] top-[8px] absolute text-green-950 text-[64px] font-bold font-['Zen Maru Gothic']">
              みまもり
