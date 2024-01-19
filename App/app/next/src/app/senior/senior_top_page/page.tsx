@@ -3,7 +3,7 @@ import Link from 'next/link';
 // シンプルなヘッダーコンポーネント
 const Header = () => {
   return (
-  <header className="text-center p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
+  <header className="text-center h-[160px] p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
     {/* ここにヘッダーのコンテンツを追加 */}
 
     <div className="w-[1188px] h-[703px] relative">
@@ -34,11 +34,11 @@ export default function Home() {
       <Header />
 
       {/* メインコンテンツ */}
-      <main className="flex-grow flex flex-col items-center p-24">
+      <main>
         {/* シニア用トップページ*/}        
         <div className="w-[1188px] h-[703px] relative">
           {/* 背景CSS */}
-            <div className="w-[1200px] h-[2000px] p-2 left-0 top-0 absolute bg-gradient-to-b from-yellow-200 to-yellow-300 border border-black">
+            <div className="w-[2600px] h-[2000px] p-2 left-0 top-0 absolute bg-gradient-to-b from-yellow-200 to-yellow-300">
             </div>
             {/* 文章 */}
             <div className="w-[327px] h-[27px] left-[96px] top-[133px] absolute text-black text-[17px] font-normal font-['Inter']">
