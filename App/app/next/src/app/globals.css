@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* ベーススタイル設定 */
 @layer base {
   html,body {
@@ -24,3 +25,12 @@
 
   }
 }
+.input is-large {
+  width: 381.82px;
+  height: 52.48px;
+  left: 117.18px;
+  top: 0;
+  position: absolute;
+  border: 1px solid black;
+}
+
