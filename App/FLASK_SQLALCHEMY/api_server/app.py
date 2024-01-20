@@ -28,15 +28,13 @@ def create_app():
             return jsonify(result)
         else:
             return jsonify({"error": "User not found"}), 404
-
-    return app 
-    
-
+    return app
 #必要なもの
     #@app.route('/api/register', methods=['POST'])
     #@app.route('/api/register/{family_id}', methods=['PUT','GET'])
     #@app.route('/api/register/{family_id}', methods=['PUT'])
 
+   
 app = create_app()
 
 if __name__ == '__main__':

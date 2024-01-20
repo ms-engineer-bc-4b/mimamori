@@ -2,17 +2,16 @@
 FROM python:3.8
 
 # 作業ディレクトリを設定
-WORKDIR /app
+ARG project_dir=/api_server/
 
-#ENV FLASK_APP=api
-#ENV FLASK_ENV=development
+ADD ./requirements.txt $project_dir
 
-COPY api_server/requirements.txt ./api_server/
+WORKDIR $project_dir
 
-RUN pip install --no-cache-dir -r api_server/requirements.txt
+RUN pip install -r requirements.txt
 
-# ポート5000を公開（Flaskのデフォルトポート）
-EXPOSE 5000
 
-# コンテナ起動時に実行されるコマンド
-CMD ["python", "/app/api_server/app.py"]
+# PYTHONPATH の設定
+ENV PYTHONPATH=/api_server
+
+CMD ["python", "app.py"]

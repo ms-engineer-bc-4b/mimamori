@@ -1,26 +1,14 @@
-<<<<<<< HEAD
-from flask import Flask
-=======
 from flask import Flask, request, jsonify
->>>>>>> 98056458d57bc9ff1a712db431b324d0d6f90f4c
-from database import init_db, db
-from models import SeniorUser
+from database import init_db, db#api_server.database 
+from models import SeniorUser#api_server.models
 from datetime import datetime
+#from config import Config#api_server.config
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object('config.Config')
 
     init_db(app)
-<<<<<<< HEAD
-    @app.route('/')
-    def index():
-        return 'Hello'
-
-  
-
-    return app
-=======
 
     @app.route('/')
     def index():
@@ -42,18 +30,16 @@ def create_app():
         else:
             return jsonify({"error": "User not found"}), 404
 
+    return app 
+    
+
 #必要なもの
     #@app.route('/api/register', methods=['POST'])
     #@app.route('/api/register/{family_id}', methods=['PUT','GET'])
     #@app.route('/api/register/{family_id}', methods=['PUT'])
 
-
->>>>>>> 98056458d57bc9ff1a712db431b324d0d6f90f4c
 app = create_app()
 
 if __name__ == '__main__':
     app.run()
-<<<<<<< HEAD
-=======
    
->>>>>>> 98056458d57bc9ff1a712db431b324d0d6f90f4c

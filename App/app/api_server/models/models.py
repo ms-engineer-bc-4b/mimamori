@@ -1,5 +1,5 @@
 from datetime import datetime
-from database import db
+from database import db#api_server.
 
 class SeniorUser(db.Model):
     __tablename__ = 'SeniorUser'

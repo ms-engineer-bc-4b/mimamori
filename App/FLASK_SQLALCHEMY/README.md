@@ -2,8 +2,6 @@
 
 
 # Docker-migrate
-
-=======
 まず、ディレクトリ直下に.envを作成する
 
 ```bash
@@ -12,7 +10,6 @@ DB_USER=db_user
 DB_PASSWORD=db_password
 DB_NAME=templete
 ```
-
 
 #### 立ち上げ
 Dockerコンテナを立ち上げる:
@@ -54,12 +51,9 @@ DBの初期化、マイグレ等をする
 ```bash
 root@[コンテナID]:/project#   flask db init
 root@[コンテナID]:/project#   flask db migrate
-
-#エラーになったらmigrationsフォルダを削除して、db initからやり直し
-
 root@[コンテナID]:/project#   flask db upgrade
 ```
-別ウィンドウをたちあげる  
+
 上記が終わったらMYSQL入って出来上がったテーブルを確認する  
 
 ```bash
