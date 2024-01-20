@@ -75,7 +75,7 @@ export default function SeniorLogin() {
                     <div className="w-28 h-[18px] left-[10px] top-[16px] absolute text-green-950 text-xl font-normal font-['Inter']">
                       パスワード
                     </div>
-
+                    {/* 入力 */}
                     <input className="input is-large w-[381.82px] h-[52.48px] left-[117.18px] top-0 absolute bg-white border border-black">
                     </input>
                 </div>
