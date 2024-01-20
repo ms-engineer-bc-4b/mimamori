@@ -20,7 +20,8 @@ services:
 
   mysql:
     container_name: mysql-db
-    image: mysql:5.5
+    image: mysql:5.7    #Mac対応の為変更
+    platform: linux/x86_64 #Mac対応の為変更
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: templete

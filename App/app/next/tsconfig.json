@@ -21,9 +21,14 @@
     "paths": {
       "@/*": ["./src/*"]
     }
+<<<<<<< HEAD
 
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", 
   "src/**/*"],
+=======
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+>>>>>>> 98056458d57bc9ff1a712db431b324d0d6f90f4c
   "exclude": ["node_modules"]
 }
