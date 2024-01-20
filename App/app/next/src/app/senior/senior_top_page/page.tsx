@@ -27,7 +27,7 @@ const Header = () => {
   );
 };
 
-export default function Home() {
+export default function SeniorTop() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* ヘッダーの呼び出し */}
