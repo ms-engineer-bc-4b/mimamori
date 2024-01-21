@@ -3,7 +3,9 @@ from database import init_db, db
 from models import SeniorUser
 from datetime import datetime
 import pyrebase
+import json
 
+#ユーザー情報取得のための整理
 with open("firebaseConfig.json") as f:
     firebaseConfig = json.loads(f.read())
 firebase = pyrebase.initialize_app(firebaseConfig)
@@ -44,10 +46,11 @@ def create_app():
     # ログイン時の認証トークンをnext.js側で保持する必要があり。その場合は以下のようなコードで実装
 
     # ユーザーログインエンドポイント
-    @app.route('/login', methods=['POST'])
+    @app.route('/login', methods=['POST','GET'])
     def login():
         data = request.json
         try:
+
             user = auth.sign_in_with_email_and_password(data['email'], data['password'])
             # IDトークンもレスポンスに含める
             id_token = user['idToken']
