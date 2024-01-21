@@ -2,6 +2,14 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for, s
 from database import init_db, db
 from models import SeniorUser
 from datetime import datetime
+import pyrebase
+
+with open("firebaseConfig.json") as f:
+    firebaseConfig = json.loads(f.read())
+firebase = pyrebase.initialize_app(firebaseConfig)
+auth = firebase.auth()
+
+
 
 def create_app():
     app = Flask(__name__)
@@ -32,49 +40,38 @@ def create_app():
 
     #TEST-seniorlogin
     # /api/senior/login
-                    with open("firebaseConfig.json") as f:
-                        firebaseConfig = json.loads(f.read())
-                    firebase = pyrebase.initialize_app(firebaseConfig)
-                    auth = firebase.auth()
 
-                    app = Flask(__name__)
-                    app.config['SECRET_KEY'] = os.urandom(24)
+    # ログイン時の認証トークンをnext.js側で保持する必要があり。その場合は以下のようなコードで実装
 
+    # ユーザーログインエンドポイント
+    @app.route('/login', methods=['POST'])
+    def login():
+        data = request.json
+        try:
+            user = auth.sign_in_with_email_and_password(data['email'], data['password'])
+            # IDトークンもレスポンスに含める
+            id_token = user['idToken']
+            return jsonify({"message": "Login successful", "userId": user['localId'], "token": id_token}), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 400
 
-                    # ログイン時の認証トークンをnext.js側で保持する必要があり。その場合は以下のようなコードで実装
+    # ログイン認証tokenを利用したユーザー情報取得エンドポイント
+    @app.route('/user', methods=['GET'])
+    def get_user():
+        token = request.headers.get('Authorization')
+        if not token:
+            return jsonify({"error": "Authorization token not provided"}), 401
 
-                        # ユーザーログインエンドポイント
-                    @app.route('/login', methods=['POST'])
-                    def login():
-                        data = request.json
-                        try:
-                            user = auth.sign_in_with_email_and_password(data['email'], data['password'])
-                            # IDトークンもレスポンスに含める
-                            id_token = user['idToken']
-                            return jsonify({"message": "Login successful", "userId": user['localId'], "token": id_token}), 200
-                        except Exception as e:
-                            return jsonify({"error": str(e)}), 400
+        try:
+            # トークンを検証
+            user = auth.get_account_info(token)
+            user_id = user['users'][0]['localId']
 
-                    # ログイン認証tokenを利用したユーザー情報取得エンドポイント
-                    @app.route('/user', methods=['GET'])
-                    def get_user():
-                        token = request.headers.get('Authorization')
-                        if not token:
-                            return jsonify({"error": "Authorization token not provided"}), 401
-
-                        try:
-                            # トークンを検証
-                            user = auth.get_account_info(token)
-                            user_id = user['users'][0]['localId']
-
-                            # ユーザー情報を取得
-                            user_data = auth.get_user(user_id)
-                            return jsonify({"email": user_data.email, "uid": user_data.uid}), 200
-                        except Exception as e:
-                            return jsonify({"error": str(e)}), 401
-
-
-
+            # ユーザー情報を取得
+            user_data = auth.get_user(user_id)
+            return jsonify({"email": user_data.email, "uid": user_data.uid}), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 401
 
 
 
