@@ -47,15 +47,20 @@ def create_app():
 
     # ユーザーログインエンドポイント
     @app.route('/login', methods=['POST'])
+    
     def login():
         data = request.json
+        app.logger.debug(data['email'])
         try:
-
             user = auth.sign_in_with_email_and_password(data['email'], data['password'])
+            # app.logger.debug(user)
             # IDトークンもレスポンスに含める
             id_token = user['idToken']
+            
             return jsonify({"message": "Login successful", "userId": user['localId'], "token": id_token}), 200
+        
         except Exception as e:
+            
             return jsonify({"error": str(e)}), 400
 
     # ログイン認証tokenを利用したユーザー情報取得エンドポイント
@@ -89,6 +94,8 @@ def create_app():
 
 app = create_app()
 
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+#     app.run()
    
+if __name__ == '__main__':
+    app.run(debug=True)
