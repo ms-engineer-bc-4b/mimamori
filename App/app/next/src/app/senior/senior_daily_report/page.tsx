@@ -48,7 +48,7 @@ export default function SeniorReport() {
                 {/* className="flex-grow flex flex-col items-center p-24" */}
                   <div className="w-[91px] h-[27px] left-[566px] top-[115px] 
                     absolute text-black text-[17px] font-normal font-['Inter']">
-                    確認画面
+                    登録画面
                   </div>
                   <div className="w-[1000px] h-[1156px] left-0 top-[154px] 
                     absolute bg-white rounded-[10px] 
@@ -68,10 +68,10 @@ export default function SeniorReport() {
               </div>
                 <div className="w-[294px] h-9 left-[575px] top-[254px] absolute">
                 {/* いい */}
-                <div className="w-[98px] h-9 left-0 top-0 absolute bg-black border border-black">
+                <div className="w-[98px] h-9 left-0 top-0 absolute  bg-white border border-black">
                   </div>
                   <div className="left-[32px] top-[8px] 
-                    absolute text-white text-[17px] font-normal font-['Inter']">
+                    absolute text-black text-[17px] font-normal font-['Inter']">
                     良い
                   </div>
                   {/* 普通 */}
@@ -98,9 +98,9 @@ export default function SeniorReport() {
                   <img className="w-[170px] h-[521px] left-[656px] top-[334px] 
                     absolute shadow border border-black" src="https://via.placeholder.com/170x521" />
                   {/* タップしたimage */}
-                  <div className="w-10 h-[29px] left-[698px] top-[334px] absolute bg-red-600 
+                  {/* <div className="w-10 h-[29px] left-[698px] top-[334px] absolute bg-red-600 
                   rounded-full border border-red-600">
-                  </div>
+                  </div> */}
               
               {/* 3 */}
               <div className="w-[152px] h-[17px] left-[228px] top-[906px] 
@@ -109,10 +109,10 @@ export default function SeniorReport() {
               </div>
               <div className="w-[195px] h-9 left-[627px] top-[899px] absolute">
                   <div className="w-[98px] h-9 left-0 top-0 absolute bg-white border border-black"></div>
-                  <div className="w-[98px] h-9 left-[97px] top-0 absolute bg-black border border-black"></div>
+                  <div className="w-[98px] h-9 left-[97px] top-0 absolute bg-white border border-black"></div>
                   <div className="left-[19px] top-[8px] absolute text-black text-[17px] font-normal font-['Inter']">
                     飲んだ</div>
-                  <div className="left-[103px] top-[8px] absolute text-white text-[17px] font-normal font-['Inter']">
+                  <div className="left-[103px] top-[8px] absolute text-black text-[17px] font-normal font-['Inter']">
                     飲んでない</div>
               </div>
               
@@ -163,15 +163,14 @@ export default function SeniorReport() {
                 absolute bg-zinc-300 rounded-[5px]">
               </div>
               <div className="w-[294px] h-[89px] left-[634px] top-[1166px] absolute">
-                  <div className="w-[294px] h-[89px] left-0 top-0 
+                  {/* <div className="w-[294px] h-[89px] left-0 top-0 
                     absolute bg-white border border-black">
-                  </div>
+                  </div> */}
                   {/* Wisperの反映どうすればいいか確認 Yet */}
                   <div className="w-[294px] h-[89px] left-0 top-0 
                     absolute text-black text-[17px] font-normal font-['Inter']">
-                      元気です。<br/>
-                      ご飯は胃もたれして食べれませんでし<br/>
-                      た。
+                      音声登録する<br/>
+                      
                   </div>
               </div>
 
@@ -181,7 +180,7 @@ export default function SeniorReport() {
               </div>
               <div className="left-[401px] top-[1362px] 
                 absolute text-black text-[25px] font-normal font-['Inter']">
-                <Link href="/senior/senior_daily_report">
+                <Link href="/senior/senior_top_page">
                 戻る
                 </Link>
               </div>
@@ -192,7 +191,7 @@ export default function SeniorReport() {
               </div>
               <div className="left-[780px] top-[1362px] 
                 absolute text-black text-[25px] font-normal font-['Inter']">
-                <Link href="/senior/senior_daily_report_done">
+                <Link href="/senior/senior_daily_report_cfm">
                 送信
                 </Link>
               </div>
