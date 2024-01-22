@@ -46,7 +46,7 @@ def create_app():
     # ログイン時の認証トークンをnext.js側で保持する必要があり。その場合は以下のようなコードで実装
 
     # ユーザーログインエンドポイント
-    @app.route('/login', methods=['POST','GET'])
+    @app.route('/login', methods=['POST'])
     def login():
         data = request.json
         try:
