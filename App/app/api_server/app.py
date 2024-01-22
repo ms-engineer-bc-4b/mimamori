@@ -1,45 +1,63 @@
 from flask import Flask, request, jsonify
-from database import init_db, db#api_server.database 
-from models import SeniorUser#api_server.models
+from database import init_db, db
+from models import SeniorUser, FamilyUser
 from datetime import datetime
-#from config import Config#api_server.config
+from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object('config.Config')
 
     init_db(app)
-
+    CORS(app)
     @app.route('/')
     def index():
         return 'HELLO'
-    
-    #TEST 
-    @app.route('/api/allUser', methods=['GET'])
-    def select_all():
-        senior_users = SeniorUser.query.all()
-        result = [{"senior_user_id": user.senior_user_id,"senior_last_name":user.senior_last_name} for user in senior_users]
-        return jsonify(result)
-    #TEST
-    @app.route('/api/allUser/<int:senior_user_id>', methods=['GET'])
-    def select_by_id(senior_user_id):
-        user = SeniorUser.query.get(senior_user_id)
-        if user:
-            result = {"senior_user_id": user.senior_user_id,"senior_last_name":user.senior_last_name}
-            return jsonify(result)
-        else:
-            return jsonify({"error": "User not found"}), 404
+    # test(start)
+    @app.route('/api/register', methods=['POST'])
+    def index2():
+        try:
+            # POSTリクエストからJSONデータを取得
+            data = request.get_json()
 
-    return app 
-    
+            # 受け取ったデータを表示（データが存在する場合）
+            if data:
+                print(f"Received data: {data}")
 
-#必要なもの
-    #@app.route('/api/register', methods=['POST'])
-    #@app.route('/api/register/{family_id}', methods=['PUT','GET'])
-    #@app.route('/api/register/{family_id}', methods=['PUT'])
+            # レスポンスとして"HELLO"を返す
+            return {data}
+
+        except Exception as e:
+            print(f"Error processing request: {e}")
+            return 'Error processing request', 500
+    # test(end)
+    # 必要なもの
+    # 以下に必要なエンドポイントを追加
+
+    # 例：ユーザー登録
+    @app.route('/api/register', methods=['POST'])
+    def register_user():
+        try:
+            # リクエストからJSONデータを取得
+            data = request.get_json()
+
+            # データベースにユーザーを登録する処理（例）
+            new_user = SeniorUser(name=data.get('name'), age=data.get('age'))
+            db.session.add(new_user)
+            db.session.commit()
+
+            # レスポンスとして成功メッセージを返す
+            return jsonify({'message': 'User registered successfully'})
+
+        except Exception as e:
+            print(f"Error processing registration request: {e}")
+            return 'Error processing registration request', 500
+
+    # 他のエンドポイントも同様に追加
+
+    return app
 
 app = create_app()
 
 if __name__ == '__main__':
     app.run()
-   

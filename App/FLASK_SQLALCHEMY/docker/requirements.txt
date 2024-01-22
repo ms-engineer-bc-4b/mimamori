@@ -1,3 +1,4 @@
+Faker
 Flask
 sqlalchemy
 flask-sqlalchemy

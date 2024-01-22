@@ -8,14 +8,14 @@ COPY ./next/package*.json /app/
 RUN npm install
 
 # 追加のパッケージをインストール
-RUN npm install react-hook-form@^7.49.3 react-router-dom@^6.21.2
+RUN npm install react-hook-form@7.49.3 react-router-dom@6.21.2
 
 
 
 # 残りのファイルをコピー
 COPY ./next /app/
 
-RUN npm install
+
 # 開発サーバーを起動
 CMD ["npm", "run", "dev"]
 

@@ -3,15 +3,15 @@ services:
   flask:
     container_name: flask-python
     build: 
-      context: ../
+      context: ../ # 修正した行./
       dockerfile: docker/Dockerfile.api_server
     ports:
       - 5000:5000
     links:
-      - mysql
+     - mysql
     privileged: true
     volumes:
-      - ../api_server:/api_server
+      - ../api_server:/api_server #./
     tty: true
     environment:
         TZ: Asia/Tokyo
@@ -34,8 +34,8 @@ services:
   
   mysql:
     container_name: mysql-db
-    image: mysql:5.7    #Mac対応の為変更
-    platform: linux/x86_64 #Mac対応の為変更
+    image: mysql:5.7
+    platform: linux/x86_64
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: templete
