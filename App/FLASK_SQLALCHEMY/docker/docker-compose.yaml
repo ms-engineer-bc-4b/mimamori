@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  flask:
+    container_name: flask-python
+    build: ./
+    ports:
+      - 5000:5000
+    links:
+      - mysql
+    privileged: true
+    volumes:
+      - ../api_server:/api_server
+    tty: true
+    environment:
+        TZ: Asia/Tokyo
+        FLASK_ENV: 'development'    #デバッグモードON
+        FLASK_APP: 'app.py'         #起動用アプリの設定
+    command: flask run -h 0.0.0.0
+
+  mysql:
+    container_name: mysql-db
+    image: mysql:5.5
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: templete
+      MYSQL_USER: hoge
+      MYSQL_PASSWORD: huga
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
