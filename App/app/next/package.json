@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier-format":"prettier --config .prettierrc'src/**/*.ts'--write"
   },
   "dependencies": {
     "firebase": "^10.7.1",

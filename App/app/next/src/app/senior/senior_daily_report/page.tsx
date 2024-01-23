@@ -122,8 +122,9 @@ export default function SeniorReport() {
                 absolute text-black text-[17px] font-normal font-['Inter']">
                 4.昨日の夕飯の写真を登録してください
               </div>
-              {/* イメージ取得のコーディング必要 Yet*/}
-              <img className="w-[129px] h-[72px] left-[693px] top-[988px] absolute" src="https://via.placeholder.com/129x72" />
+              {/* イメージアップロードのコーディング必要 Yet*/}
+              <div className="left-[103px] top-[8px] absolute text-black text-[17px] font-normal font-['Inter']">
+                    画像をアップロードする</div>
 
 
               {/* 5 */}
