@@ -49,18 +49,18 @@ def create_app():
     @app.route('/login', methods=['POST'])
     
     def login():
-        data = request.json
-        app.logger.debug(data['email'])
+        data = request.form
+
         try:
             user = auth.sign_in_with_email_and_password(data['email'], data['password'])
             # app.logger.debug(user)
             # IDトークンもレスポンスに含める
             id_token = user['idToken']
-            
+
             return jsonify({"message": "Login successful", "userId": user['localId'], "token": id_token}), 200
         
         except Exception as e:
-            
+                        app.logger.debug( user['idToken'])
             return jsonify({"error": str(e)}), 400
 
     # ログイン認証tokenを利用したユーザー情報取得エンドポイント
