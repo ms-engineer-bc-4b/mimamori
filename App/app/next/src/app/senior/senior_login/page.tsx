@@ -31,8 +31,10 @@ const Header = () => {
             );
   };
 
+
 export default function SeniorLogin() {
   return (
+
     <div className="flex flex-col min-h-screen">
       {/* ヘッダーの呼び出し */}
       <Header />
@@ -64,6 +66,15 @@ export default function SeniorLogin() {
                             {/* ID入力フォーム */}
                             <input className="input is-large w-[381.82px] h-[52.48px] left-[117.18px] top-0 absolute bg-white border border-black">
                             </input>
+                            <input
+                              type="text"
+                              name="email"
+                              id="email"
+                              placeholder="email"
+                              // value={email}
+                              // onChange={(event) => setEmail(event.target.value)}
+                            />
+
                 </div>
               {/* パスワード */}
                 <div className="w-[499px] h-[51px] left-[367px] top-[348px] absolute">
@@ -76,7 +87,15 @@ export default function SeniorLogin() {
                       パスワード
                     </div>
                     {/* 入力 */}
-                    <input className="input is-large w-[381.82px] h-[52.48px] left-[117.18px] top-0 absolute bg-white border border-black">
+                    {/* <input className="input is-large w-[381.82px] h-[52.48px] left-[117.18px] top-0 absolute bg-white border border-black">
+                    </input> */}
+                    <input className="input is-large w-[381.82px] h-[52.48px] left-[117.18px] top-0 absolute bg-white border border-black"
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="password"
+                      // value={password}
+                      // onChange={(event) => setPassword(event.target.value)}
                     </input>
                 </div>
                 <div className="w-[261px] h-[65px] left-[516px] top-[424px] absolute">

@@ -56,18 +56,26 @@ def create_app():
             # IDトークンもレスポンスに含める
             id_token = user['idToken']
             return jsonify({"message": "Login successful", "userId": user['localId'], "token": id_token}), 200
-        
         except Exception as e:
             return jsonify({"error": str(e)}), 400
 
     # ログイン認証tokenを利用したユーザー情報取得エンドポイント
+        # get_user() 関数で Authorization ヘッダーをチェックしています。
+        # しかし、POST リクエストでは、Authorization ヘッダーが自動的に設定されません。
+        # そのため、POST リクエストで Authorization ヘッダーを指定するには、
+        # 以下のように request.headers オブジェクトに Authorization キーを追加します。
+
     @app.route('/senior_user', methods=['GET', 'POST'])
     def get_user():
-        token = request.headers.get('Authorization')
-        # app.logger.debug(token)
+
+        token = request.headers.get("Authorization")   
+            # トークンをとってくる
+                # キーに対してバリューが入ってない
         if not token:
             return jsonify({"error": "Authorization token not provided"}), 401
         try:
+        # app.logger.debug('token')
+        # token = request.headers['Authorization']
             # トークンを検証
             user = auth.get_account_info(token)
             user_id = user['users'][0]['localId']
@@ -77,8 +85,60 @@ def create_app():
             return jsonify({"senior_email": user_data.email, "uid": user_data.uid}), 200
         except Exception as e:
             return jsonify({"error": str(e)}), 401
+        
 
+
+#         # @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'GET':
+#         return render_template("login.html",msg="")
+
+#     email = request.form['email']
+#     password = request.form['password']
+#     try:
+#         user = auth.sign_in_with_email_and_password(email, password)
+#         session['usr'] = email
+#         return redirect(url_for('index'))
+#     except:
+#         return render_template("login.html", msg="メールアドレスまたはパスワードが間違っています。")
+
+# @app.route("/", methods=['GET'])
+# def index():
+#     usr = session.get('usr')
+#     if usr == None:
+#         return redirect(url_for('login'))
+#     return render_template("index.html", usr=usr)
+
+# @app.route('/logout')
+# def logout():
+#     del session['usr']
+#     return redirect(url_for('login'))
+        
+
+# ログアウト機能
+
+# ユーザーに紐づく情報を取得するAPI：入力するため
+    # @app.route('/senior_user', methods=['GET', 'POST'])
+    # def get_user():
+    #     token = request.headers.get('Authorization')
+    #     # token = request.headers['Authorization']
+    #     app.logger.debug(['Authorization'])
+    #     if not token:
+    #         return jsonify({"error": "Authorization token not provided"}), 401
+    #     try:
+    #         # トークンを検証
+    #         user = auth.get_account_info(token)
+    #         user_id = user['users'][0]['localId']
+
+    #         # ユーザー情報を取得
+    #         user_data = auth.get_user(user_id)
+    #         return jsonify({"senior_email": user_data.email, "uid": user_data.uid}), 200
+    #     except Exception as e:
+    #         return jsonify({"error": str(e)}), 401
 # 
+        
+# 患者様の情報登録フォーム用のAPI
+
 
 
 #必要なもの
