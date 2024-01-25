@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier-format":"prettier --config .prettierrc'src/**/*.ts'--write"
+    "prettier-format": "prettier --config .prettierrc'src/**/*.ts'--write"
   },
   "dependencies": {
-    "firebase": "^10.7.1",
+    "firebase": "^10.7.2",
     "next": "^14.0.4",
     "react": "^18",
     "react-dom": "^18"
