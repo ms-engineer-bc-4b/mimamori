@@ -1,27 +1,33 @@
 version: '3.8'
+networks:
+  my-network:
+    driver: bridge
+
 services:
   flask:
+    networks:
+      - my-network
     container_name: flask-python
     build: 
-      context: ../ # 修正した行./
+      context: ../
       dockerfile: docker/Dockerfile.api_server
     ports:
       - 5000:5000
     links:
-     - mysql
+      - mysql
     privileged: true
     volumes:
-      - ../api_server:/api_server #./
+      - ../api_server:/api_server
     tty: true
     environment:
-        TZ: Asia/Tokyo
-        FLASK_ENV: 'development'    #デバッグモードON
-        FLASK_APP: 'app.py'         #起動用アプリの設定
+      TZ: Asia/Tokyo
+      FLASK_ENV: 'development'
+      FLASK_APP: 'app.py'
     command: flask run -h 0.0.0.0
-       #  depends_on:
-       #     - db
-       
+  
   frontend:
+    networks:
+      - my-network
     build:
       context: ../
       dockerfile: docker/Dockerfile.next
@@ -33,9 +39,11 @@ services:
       - "3000:3000" 
   
   mysql:
+    networks:
+      - my-network
     container_name: mysql-db
     image: mysql:5.7
-    platform: linux/x86_64
+ #   platform: linux/x86_64
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: templete

@@ -30,7 +30,7 @@ docker network ls
 
 flask_sqlalchemy_defaultのコンテナ情報を詳しく見ていきます  
 ```bash
-docker network inspect docker_default
+docker network inspect docker_my-network
 ```
 
 Network内のコンテナ情報（サンプル）:

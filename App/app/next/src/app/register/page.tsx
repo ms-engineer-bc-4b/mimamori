@@ -57,7 +57,7 @@ function Home() {
   const handleConfirm = () => {
     // フォームから入力されたデータを取得
     const seniorData = {
-      senior_user_id: getValues('senior_user_id'),
+   //   senior_user_id: getValues('senior_user_id'),
       senior_last_name: getValues('senior_last_name'),
       senior_first_name: getValues('senior_first_name'),
       gender: getValues('gender'),
@@ -66,11 +66,11 @@ function Home() {
       senior_tel: getValues('senior_tel'),
       health_status: getValues('health_status'),
       medication: getValues('medication'),
-      medication_status: getValues('medication_status')
+      medication_frequency: getValues('medication_frequency')
     };
   
     const familyData = {
-      family_id: getValues('family_id'),
+    //  family_id: getValues('family_id'),
       family_last_name: getValues('family_last_name'),
       family_first_name: getValues('family_first_name'),
       relationship_with_senior: getValues('relationship_with_senior'),

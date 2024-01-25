@@ -2,8 +2,6 @@
 
 
 # Docker-migrate
-
-=======
 まず、ディレクトリ直下に.envを作成する
 
 ```bash
@@ -13,7 +11,6 @@ DB_PASSWORD=db_password
 DB_NAME=templete
 ```
 
-
 #### 立ち上げ
 Dockerコンテナを立ち上げる:
 
@@ -22,7 +19,7 @@ docker-compose build --no-cache
 docker-compose up 
 ```
 
-立ち上がったら、下記にてdocker_default のような名称が存在することを確認します。
+立ち上がったら、下記にてflask_sqlalchemy_default のような名称が存在することを確認します。
 
 ```bash
 docker network ls
@@ -30,20 +27,18 @@ docker network ls
 
 flask_sqlalchemy_defaultのコンテナ情報を詳しく見ていきます  
 ```bash
-docker network inspect docker_default
+docker network inspect docker_my-network
 ```
 
 Network内のコンテナ情報（サンプル）:
-```bash
-            "b96d09ffff5c5b64c2f3dbb9182679920e73e3b4973dca93ccaef6dabd31fc33": {
-                "Name": "mysql-db",
-                "EndpointID": "3e0ed528eb3c72ce60cb2f35ae7f0d0447af9797beb02ad02afd6f7ffca5eac5",
-                "MacAddress": "02:42:ac:19:00:02",
-                "IPv4Address": "172.25.0.2/16",
-                "IPv6Address": ""
- ```             
 
-mysql-dbのIPv4Address（この場合は172.25.0.2）をconfig.pyの[IPアドレス]へ添付
+mysql-db:  
+Name: mysql-db  
+IPv4Address: 172.18.0.2/16
+
+
+
+mysql-dbのIPv4Address（この場合は172.18.0.2）をconfig.pyの[IPアドレス]へ添付
 
 別のコマンドプロンプト立ち上げてコンテナへ入る  
 
@@ -52,15 +47,11 @@ docker exec -it flask-python bash
 ```
 DBの初期化、マイグレ等をする  
 ```bash
-
 root@[コンテナID]:/project#   flask db init
 root@[コンテナID]:/project#   flask db migrate
-
-#エラーになったらmigrationsフォルダを削除して、db initからやり直し
-
 root@[コンテナID]:/project#   flask db upgrade
 ```
-別ウィンドウをたちあげる  
+
 上記が終わったらMYSQL入って出来上がったテーブルを確認する  
 
 ```bash
@@ -76,7 +67,7 @@ DESCRIBE テーブル名;
 
 ```
 
-テーブルSeniorUserへサンプル値入れる  ※現状データが外部接続しているので難しい
+テーブルSeniorUserへサンプル値入れる  
 ```bash
 INSERT INTO SeniorUser (senior_last_name, senior_first_name, gender, birth_date, senior_email, senior_tel, health_status, medication, medication_frequency, senior_user_uid, family_id, senior_password, created_at, updated_at) VALUES ('Smith', 'John', 'Male', '1990-01-01', 'john.smith@example.com', '123-456-7890', 'Good', true, 'Once a day', 'uid123', 1, 'password123', NOW(), NOW());
 
@@ -121,22 +112,38 @@ VALUES ('This is a sample message.', NOW(), NOW());
 SELECT * FROM messages;
 ```
 
-project-root/
-├── api_server/
-│   ├── app.py
-│   └── ...
-├── next/
-│   ├── pages/
-│   │   ├── index.js
-│   │   └── ...
-│   ├── package.json
-│   └── ...
-└── docker/
-    ├── db/
-    │   ├── data/
-    │   └── sql/
-    ├── Dockerfile.api_server
-    ├── Dockerfile.next
-    ├── docker-compose.yml
-    └── requirements.txt
+project-root/  
+├── api_server/  
+│   ├── app.py  
+│   └── ...  
+└── docker/   
+        ├── db/  
+        │   ├── data/  
+        │   └── sql/  
+        ├── Dockerfile  
+        ├── docker-compose.yml  
+        └── requirements.txt  
 
+{
+  "senior": {
+    "senior_user_id": "98fff7654",
+    "senior_last_name": "山本",
+    "senior_first_name": "太郎",
+    "gender": "male",
+    "birth_date": "1955-03-15",
+    "senior_email": "senior@example.com",
+    "senior_tel": "999-888-7777",
+    "health_status": "fair",
+    "medication": true,
+    "medication_frequency": "twice_daily"
+  },
+  "family": {
+    "family_id": "1cc23456",
+    "family_last_name": "山本",
+    "family_first_name": "花子",
+    "relationship_with_senior": "spouse",
+    "family_email": "family@example.com",
+    "family_tel": "888-777-6666",
+    "family_password": "password123"
+  }
+}

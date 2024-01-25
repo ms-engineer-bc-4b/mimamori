@@ -1,7 +1,5 @@
-# 基本イメージとしてPythonの公式イメージを使用
-FROM python:3.8
+FROM python:3.6
 
-# 作業ディレクトリを設定
 ARG project_dir=/api_server/
 
 ADD ./requirements.txt $project_dir
@@ -10,10 +8,7 @@ WORKDIR $project_dir
 
 RUN pip install -r requirements.txt
 
+
 # PYTHONPATH の設定
 ENV PYTHONPATH=/api_server
 
-# コンテナ起動時に実行されるコマンド
-#CMD ["python", "app.py"]
-#CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000", "--app", "app:create_app()"]
