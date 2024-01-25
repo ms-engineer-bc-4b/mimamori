@@ -22,7 +22,11 @@
   | senior_tel                       | Yes  | 高齢者の電話番号                   |
   | health_status                    | Yes  | 高齢者の健康状態                   |
   | medication                       | Yes  | 高齢者処方薬の有無                 |
+<<<<<<< HEAD
   | medication_frequency               | No   | 高齢者処方薬の頻度（有の場合のみ） |
+=======
+  | medication_frequency                | No   | 高齢者処方薬の頻度（有の場合のみ） |
+>>>>>>> dev
   | family_id                          | Yes  | 申込者（家族）ID                   |
   | family_last_name                   | Yes  | 申込者（家族）の姓                 |
   | family_first_name                  | Yes  | 申込者（家族）の名                 |
