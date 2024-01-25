@@ -46,30 +46,27 @@ def create_app():
     # ログイン時の認証トークンをnext.js側で保持する必要があり。その場合は以下のようなコードで実装
 
     # ユーザーログインエンドポイント
-    @app.route('/login', methods=['POST'])
+    @app.route('/senior_login', methods=['POST'])
     
     def login():
         data = request.form
-
         try:
-            user = auth.sign_in_with_email_and_password(data['email'], data['password'])
+            user = auth.sign_in_with_email_and_password(data['senior_email'], data['senior_password'])
             # app.logger.debug(user)
             # IDトークンもレスポンスに含める
             id_token = user['idToken']
-
             return jsonify({"message": "Login successful", "userId": user['localId'], "token": id_token}), 200
         
         except Exception as e:
-                        app.logger.debug( user['idToken'])
             return jsonify({"error": str(e)}), 400
 
     # ログイン認証tokenを利用したユーザー情報取得エンドポイント
-    @app.route('/user', methods=['GET'])
+    @app.route('/senior_user', methods=['GET', 'POST'])
     def get_user():
         token = request.headers.get('Authorization')
+        # app.logger.debug(token)
         if not token:
             return jsonify({"error": "Authorization token not provided"}), 401
-
         try:
             # トークンを検証
             user = auth.get_account_info(token)
@@ -77,10 +74,11 @@ def create_app():
 
             # ユーザー情報を取得
             user_data = auth.get_user(user_id)
-            return jsonify({"email": user_data.email, "uid": user_data.uid}), 200
+            return jsonify({"senior_email": user_data.email, "uid": user_data.uid}), 200
         except Exception as e:
             return jsonify({"error": str(e)}), 401
 
+# 
 
 
 #必要なもの
