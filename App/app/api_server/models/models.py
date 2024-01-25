@@ -19,20 +19,20 @@ class SeniorUser(db.Model):
     medication_frequency = db.Column(db.String(255), nullable=False)
     senior_user_uid = db.Column(db.String(191), nullable=True, unique=True)
     #※本番はテーブル連携するので#外す
-   # family_id = db.Column(db.Integer, ForeignKey('FamilyUser.family_id'), unique=True)
+    family_id = db.Column(db.Integer, ForeignKey('FamilyUser.family_id'), unique=True)
    
     senior_password = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"), onupdate=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
    #※本番はテーブル連携するので#外す  
-  #  family = relationship('FamilyUser', back_populates='senior')
+    family = relationship('FamilyUser', back_populates='senior')
    #※本番はテーブル連携するので#外す 
-   # health_information = relationship('HealthInformation', back_populates='senior')
+    health_information = relationship('HealthInformation', back_populates='senior')
 
 class FamilyUser(db.Model):
     __tablename__ = 'FamilyUser'
-    family_id = db.Column(db.UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
+    family_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     #family_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     family_last_name = db.Column(db.String(255), nullable=False)
     family_first_name = db.Column(db.String(255), nullable=False)
@@ -45,9 +45,9 @@ class FamilyUser(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"), onupdate=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     #※本番はテーブル連携するので#外す   
-  #  senior = relationship('SeniorUser', back_populates='family')
- #   #※本番はテーブル連携するので#外す 
-  #  messages = relationship('Message', back_populates='family')
+    senior = relationship('SeniorUser', back_populates='family')
+ #  #※本番はテーブル連携するので#外す 
+    messages = relationship('Message', back_populates='family')
 
 class HealthInformation(db.Model):
     __tablename__ = 'HealthInformation'
@@ -65,17 +65,17 @@ class HealthInformation(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"), onupdate=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     #※本番はテーブル連携するので#外す  
-  #  senior = relationship('SeniorUser', back_populates='health_information')
+    senior = relationship('SeniorUser', back_populates='health_information')
 
 class Message(db.Model):
     __tablename__ = 'messages'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    #family_id = db.Column(db.Integer, ForeignKey('FamilyUser.family_id'), nullable=False)
+    family_id = db.Column(db.Integer, ForeignKey('FamilyUser.family_id'), nullable=False)
     message = db.Column(db.String(255), nullable=False)
 
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"), onupdate=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     #※本番はテーブル連携するので#外す 
-  #  family = relationship('FamilyUser', back_populates='messages')
+    family = relationship('FamilyUser', back_populates='messages')
