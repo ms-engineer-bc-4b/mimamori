@@ -67,6 +67,9 @@ def create_app():
 
     @app.route('/senior_user', methods=['GET', 'POST'])
     def get_user():
+        data = request.form
+        # user = SeniorUser.query.filter_by(senior_email=data['email']).first()
+
 
         token = request.headers.get("Authorization")   
             # トークンをとってくる
@@ -87,7 +90,25 @@ def create_app():
             return jsonify({"error": str(e)}), 401
         
 
+# without firebase
+# @app.route('/api/senior_login', methods=['POST'])
+        # def login():
+#     data = request.get_json()
+#     user = SeniorUser.query.filter_by(senior_email=data['email']).first()
 
+#     if user and bcrypt.check_password_hash(user.senior_password, data['password']):
+#         token = jwt.encode({
+#             'user_id': user.senior_user_id,
+#             'exp': datetime.utcnow() + timedelta(hours=1)
+#         }, app.config['SECRET_KEY'])
+
+#         return jsonify({
+#             "email": user.senior_email,
+#             'token': token
+#         }), 200
+#     return jsonify({'message': 'Login failed'}), 401
+
+# orig
 #         # @app.route('/login', methods=['GET', 'POST'])
 # def login():
 #     if request.method == 'GET':
@@ -142,9 +163,7 @@ def create_app():
 
 
 #必要なもの
-    #@app.route('/api/register', methods=['POST'])
-    #@app.route('/api/register/{family_id}', methods=['PUT','GET'])
-    #@app.route('/api/register/{family_id}', methods=['PUT'])
+
 
 
 
