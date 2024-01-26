@@ -61,23 +61,28 @@ def create_app():
 
     # ログイン認証tokenを利用したユーザー情報取得エンドポイント
         # get_user() 関数で Authorization ヘッダーをチェックしています。
-        # しかし、POST リクエストでは、Authorization ヘッダーが自動的に設定されません。
-        # そのため、POST リクエストで Authorization ヘッダーを指定するには、
-        # 以下のように request.headers オブジェクトに Authorization キーを追加します。
+        # POST リクエストでは、Authorization ヘッダーが自動的に設定されん。=>POST リクエストで Authorization ヘッダーを指定するには、
+        # 以下のように request.headers オブジェクトに Authorization キーを追加。
 
-    @app.route('/senior_user', methods=['GET', 'POST'])
+    @app.route('/senior_user_id', methods=['GET', 'POST'])
     def get_user():
-        data = request.form
-        # user = SeniorUser.query.filter_by(senior_email=data['email']).first()
+        #データ型が持つプロパティ（変数）または関数を確認する
+        # data = request.get_json()
+        # data = request.form
+        # app.logger.debug('request')
+        # token = get.headers(data['Authorization'])
+        token = request.headers.get("Authorization",None)
+        app.logger.debug('token')
+        # get() メソッドは、Flask の Request オブジェクトに存在しますが、get.headers() は存在しません。
+        # request.get.headers('Authorization') は、Request オブジェクトの get() メソッドと headers() メソッドを連結したものですが、これは意味がありません。
 
-
-        token = request.headers.get("Authorization")   
+        # token = request.headers.get("Authorization")   
             # トークンをとってくる
                 # キーに対してバリューが入ってない
         if not token:
             return jsonify({"error": "Authorization token not provided"}), 401
         try:
-        # app.logger.debug('token')
+       
         # token = request.headers['Authorization']
             # トークンを検証
             user = auth.get_account_info(token)
@@ -90,79 +95,40 @@ def create_app():
             return jsonify({"error": str(e)}), 401
         
 
-# without firebase
-# @app.route('/api/senior_login', methods=['POST'])
-        # def login():
-#     data = request.get_json()
-#     user = SeniorUser.query.filter_by(senior_email=data['email']).first()
 
-#     if user and bcrypt.check_password_hash(user.senior_password, data['password']):
-#         token = jwt.encode({
-#             'user_id': user.senior_user_id,
-#             'exp': datetime.utcnow() + timedelta(hours=1)
-#         }, app.config['SECRET_KEY'])
-
-#         return jsonify({
-#             "email": user.senior_email,
-#             'token': token
-#         }), 200
-#     return jsonify({'message': 'Login failed'}), 401
-
-# orig
-#         # @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     if request.method == 'GET':
-#         return render_template("login.html",msg="")
-
-#     email = request.form['email']
-#     password = request.form['password']
-#     try:
-#         user = auth.sign_in_with_email_and_password(email, password)
-#         session['usr'] = email
-#         return redirect(url_for('index'))
-#     except:
-#         return render_template("login.html", msg="メールアドレスまたはパスワードが間違っています。")
-
-# @app.route("/", methods=['GET'])
-# def index():
-#     usr = session.get('usr')
-#     if usr == None:
-#         return redirect(url_for('login'))
-#     return render_template("index.html", usr=usr)
-
-# @app.route('/logout')
-# def logout():
-#     del session['usr']
-#     return redirect(url_for('login'))
         
 
+
+        
+#必要なもの
 # ログアウト機能
+        # @app.route('/logout')
+            # def logout():
+            #     del session['usr']
+            #     return redirect(url_for('login'))
 
 # ユーザーに紐づく情報を取得するAPI：入力するため
-    # @app.route('/senior_user', methods=['GET', 'POST'])
-    # def get_user():
-    #     token = request.headers.get('Authorization')
-    #     # token = request.headers['Authorization']
-    #     app.logger.debug(['Authorization'])
-    #     if not token:
-    #         return jsonify({"error": "Authorization token not provided"}), 401
-    #     try:
-    #         # トークンを検証
-    #         user = auth.get_account_info(token)
-    #         user_id = user['users'][0]['localId']
 
-    #         # ユーザー情報を取得
-    #         user_data = auth.get_user(user_id)
-    #         return jsonify({"senior_email": user_data.email, "uid": user_data.uid}), 200
-    #     except Exception as e:
-    #         return jsonify({"error": str(e)}), 401
-# 
+
         
 # 患者様の情報登録フォーム用のAPI
+# @app.route('/api/{senior_user_id}/health', methods=['POST'])
+# パス	メソッド	説明
+# /api/{senior_user_id}/health	POST	新規登録
+# @app.route('/api/{senior_user_id}/health/{id}', methods=['GET','POST'])
+# /api/{senior_user_id}/health/{id}	PUT	既存情報の更新
+# /api/{senior_user_id}/health/{id}	GET	登録情報の取得
+
+# パラメータ名	必須	説明
+# id	Yes	健康情報ID
+# senior_user_id	Yes	高齢者（ユーザー）情報
+# condition	Yes	健康情報
+# symptom	No	体の異変
+# medicine	No	薬服用の有無
+# voice_text	No	音声メッセージ
+# registered_at	Yes	登録日
 
 
-
-#必要なもの
 
 
 
