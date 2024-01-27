@@ -47,9 +47,9 @@
         "birth_date": "1955-03-15",
         "senior_email": "senior@example.com",
         "senior_tel": "999-888-7777",
-        "health_status": "fair",
+        "health_status": "good",
         "medication": true,
-        "medication_frequency": "twice_daily",
+        "medication_frequency": "twice",
         "created_at": "2024-01-27T12:34:56Z",
         "updated_at": "2024-01-27T12:34:56Z"
     },
