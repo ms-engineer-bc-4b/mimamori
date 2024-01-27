@@ -22,11 +22,7 @@
   | senior_tel                       | Yes  | 高齢者の電話番号                   |
   | health_status                    | Yes  | 高齢者の健康状態                   |
   | medication                       | Yes  | 高齢者処方薬の有無                 |
-<<<<<<< HEAD
   | medication_frequency               | No   | 高齢者処方薬の頻度（有の場合のみ） |
-=======
-  | medication_frequency                | No   | 高齢者処方薬の頻度（有の場合のみ） |
->>>>>>> dev
   | family_id                          | Yes  | 申込者（家族）ID                   |
   | family_last_name                   | Yes  | 申込者（家族）の姓                 |
   | family_first_name                  | Yes  | 申込者（家族）の名                 |
@@ -35,12 +31,14 @@
   | family_tel                         | Yes  | 申込者（家族）の電話番号           |
   | family_password                    | Yes  | 申込者（家族）のパスワード         |
   | family_password_confirmation       | Yes  | 申込者（家族）のパスワード（確認） |
-
+  | created_at                       |      | データ作成日時                     |
+  | updated_at                       |      | データ更新日時                     |
 
 - **リクエストサンプル**:  
-  下記で"seniorUser""family"オブジェクトに分けることで、それぞれデータベースのテーブル”SeniorUser””familyUser”に入れやすくする
+  下記で"seniorUser""family"オブジェクトに分けることで、それぞれデータベースのテーブル”SeniorUser””familyUser”に入れやすくする。
+   
  ```json
- {
+{
     "senior": {
         "senior_user_id": "987654",
         "senior_last_name": "山本",
@@ -51,7 +49,9 @@
         "senior_tel": "999-888-7777",
         "health_status": "fair",
         "medication": true,
-        "medication_frequency": "twice_daily"
+        "medication_frequency": "twice_daily",
+        "created_at": "2024-01-27T12:34:56Z",
+        "updated_at": "2024-01-27T12:34:56Z"
     },
     "family": {
         "family_id": "123456",
@@ -61,9 +61,11 @@
         "family_email": "family@example.com",
         "family_tel": "111-222-3333",
         "family_password": "family123",
-        "family_password_confirmation": "family123"
+        "created_at": "2024-01-27T12:34:56Z",
+        "updated_at": "2024-01-27T12:34:56Z"
     }
 }
+
  ```
  
 - **成功時**:
@@ -84,4 +86,5 @@
             "reason": "Invalid email format"
         }
         ```
-
+- **firebase認証**:
+  別途  
