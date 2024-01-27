@@ -15,24 +15,21 @@
 
   | パラメータ名     | 必須 | 説明                 |
   |------------------|------|----------------------|
-  | id               | Yes  | 健康情報ID           |
-  | senior_user_id   | Yes  | 高齢者（ユーザー）情報 |
-  | condition        | Yes  | 健康情報             |
-  | symptom          | No   | 体の異変             |
-  | medicine         | No   | 薬服用の有無         |
-  | voice_text       | No   | 音声メッセージ        |
-  | register_dt      | Yes  | 登録日               |
+  | message_id       | Yes  | メッセージID           |
+  | id               | Yes  | HealthInformationID |
+  | message          | Yes  | メッセージ             |
+  | created_at       |  Yes    | データ作成日時         |
+  | updated_at       | Yes     | データ更新日時         |
+
+
+
 
 - **リクエストサンプル**:  
 ```json
-{
-    "id": 123,
-    "senior_user_id": "98765",
-    "condition": "Good",
-    "symptom": "Headache",
-    "medicine": true,
-    "voice_text": "I am feeling a bit dizzy today.",
-    "register_dt": "2024-01-08T12:00:00Z"
+{  "id": 123,
+   "message": "これはメッセージの内容です。",
+   "created_at": "2024-01-27T12:34:56Z",
+   "updated_at": "2024-01-27T12:34:56Z"
 }
 ```
  
@@ -41,7 +38,7 @@
     - **レスポンスサンプル**:
 ```json
 {
-    "message": "Health information registered successfully"
+    "message": "message registered successfully"
 }
  ```
 
@@ -50,7 +47,6 @@
     - **レスポンスサンプル**:
  ```json
 {
-     "error": "Registration failed",
-     "reason": "Invalid email format"
+     "error": "Registration failed"
 }
 ```
