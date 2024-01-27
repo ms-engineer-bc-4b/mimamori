@@ -7,8 +7,8 @@
   | パス                         | メソッド               | 説明               |
   |--------------------------|---------------------|-------------------|
   | `/api/{senior_user_id}/health/{HealthInformation.id}/message/`      | POST                | 新規登録           |
-  | `/api/{senior_user_id}/health/{HealthInformation.id}/message/` | PUT                 | 既存情報の更新     |
-  | `/api/{senior_user_id}/health/{HealthInformation.id}/message/` | GET                 | 登録情報の取得     |
+  | `/api/{senior_user_id}/health/{HealthInformation.id}/message/{message_id}` | PUT                 | 既存情報の更新     |
+  | `/api/{senior_user_id}/health/{HealthInformation.id}/message/{message_id}` | GET                 | 登録情報の取得     |
 
 
 - **パラメータ**:  
