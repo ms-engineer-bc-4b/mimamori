@@ -2,12 +2,14 @@ import Link from 'next/link';
 // import { getAllTodos } from "@/api";
 // import AddTask from "./components/AddTask";
 // import DailyReport from "./components/TodoList";
+import { FormEvent } from 'react'
 
 // シンプルなヘッダーコンポーネント
 const Header = () => {
   return (
     <header className="text-center h-[160px] p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
     {/* ここにヘッダーのコンテンツを追加 */}
+
 
     <div className="w-[1400px] h-[703px] relative">
       <div className="left-[96px] top-[8px] absolute text-green-950 text-[64px] font-bold font-['Zen Maru Gothic']">
@@ -31,7 +33,41 @@ const Header = () => {
 };
 
 export default function SeniorReport() {
+ {/*
+ https://nextjs.org/docs/pages/building-your-application/data-fetching/forms-and-mutations
+ https://zenn.dev/kaikusakari/articles/f86d98714bfd93
+   */}
+{/* formのsubmitをハンドルしてリクエストを送る */}
+async function onSubmit(event: FormEvent<HTMLFormElement>) {
+  event.preventDefault()
+  const formData = new FormData(event.currentTarget)
+  const response = await fetch('/api/senior_user_id/', {
+    // const response = await fetch('/api/senior_user_id/' + id, {
+    method: 'POST',
+    // headers: 'Content-Type': 'application/json',
+    body: JSON.stringify(Object.fromEntries(formData)),
+  })
+  // 公式サイトテンプレート
+// const response = await fetch('/api/submit', {
+//   method: 'POST',
+//   body: formData,
+// })
+
+// Handle response if necessary
+const data = await response.json()
+// 確認
+// console.log(data)
+// ...
+}
+
+
+
+
+
+
+
   return (
+    
     <div className="flex flex-col min-h-screen">
       {/* ヘッダーの呼び出し */}
       <Header />
@@ -61,6 +97,32 @@ export default function SeniorReport() {
                     本日●月●日の健康の記録
                   </div>
               </div>
+
+              return (
+                <form onSubmit={onSubmit}>
+                </form>
+                  <input type="text" name="name" />
+
+                {/* 
+                # form
+                <form onSubmit={onSubmit}>
+                */}
+                <input type="radio" name="item" value="1" />
+                <input type="radio" name="item" value="2" />
+                <input type="radio" name="item" value="3" />
+                {/* <button type="submit">Submit</button> */}
+                {/* </form>  */}
+
+                  <button type="submit">Submit</button>
+                {/* </form> */}
+
+
+
+
+
+
+
+
 
               {/* 1 */}
               <div className="w-[123px] h-[17px] left-[228px] top-[262px] absolute text-black text-[17px] font-normal font-['Inter']">
@@ -196,11 +258,17 @@ export default function SeniorReport() {
                 送信
                 </Link>
               </div>
+              
+          
         </div>
+        
+        {/* ) */}
+        
       </main>
 
       {/* フッターの呼び出し */}
     </div>
+    
   );
 }
 

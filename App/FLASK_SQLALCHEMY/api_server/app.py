@@ -67,12 +67,11 @@ def create_app():
     @app.route('/senior_user_id', methods=['GET', 'POST'])
     def get_user():
         #データ型が持つプロパティ（変数）または関数を確認する
-        # data = request.get_json()
-        # data = request.form
-        # app.logger.debug('request')
-        # token = get.headers(data['Authorization'])
-        token = request.headers.get("Authorization",None)
-        app.logger.debug('token')
+        request.headers['Authorization'] = token
+
+        token = request.headers.get("Authorization")
+        # token = request.headers.get("Authorization",None)
+        # app.logger.debug('token')
         # get() メソッドは、Flask の Request オブジェクトに存在しますが、get.headers() は存在しません。
         # request.get.headers('Authorization') は、Request オブジェクトの get() メソッドと headers() メソッドを連結したものですが、これは意味がありません。
 
@@ -95,19 +94,19 @@ def create_app():
             return jsonify({"error": str(e)}), 401
         
 
-
-        
-
-
-        
 #必要なもの
-# ログアウト機能
-        # @app.route('/logout')
-            # def logout():
-            #     del session['usr']
-            #     return redirect(url_for('login'))
+
+# ログアウト
+        
 
 # ユーザーに紐づく情報を取得するAPI：入力するため
+# def get_user_by_id():
+#      # ユーザー情報を取得
+#             # privateのメソッドであればsenior_IDだけをとってくる
+#             使うものはトークン？
+#             return seror_id
+#             user_data = auth.get_user(user_id)
+#             return jsonify({"senior_email": user_data.email, "uid": user_data.uid}), 200
 
 
         
