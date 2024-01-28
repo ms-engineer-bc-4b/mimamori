@@ -9,8 +9,6 @@ const Header = () => {
   return (
     <header className="text-center h-[160px] p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
     {/* ここにヘッダーのコンテンツを追加 */}
-
-
     <div className="w-[1400px] h-[703px] relative">
       <div className="left-[96px] top-[8px] absolute text-green-950 text-[64px] font-bold font-['Zen Maru Gothic']">
         みまもり
