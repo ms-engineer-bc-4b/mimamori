@@ -60,12 +60,6 @@ const data = await response.json()
 // ...
 }
 
-
-
-
-
-
-
   return (
     
     <div className="flex flex-col min-h-screen">
@@ -98,9 +92,9 @@ const data = await response.json()
                   </div>
               </div>
 
-              return (
+              {/* return ( */}
                 <form onSubmit={onSubmit}>
-                </form>
+                {/* </form> */}
                   <input type="text" name="name" />
 
                 {/* 
@@ -259,9 +253,8 @@ const data = await response.json()
                 </Link>
               </div>
               
-          
+              </form>
         </div>
-        
         {/* ) */}
         
       </main>
