@@ -8,8 +8,7 @@ import { initializeApp } from 'firebase/app';
 
 
 
-// initializeFirebaseApp()
-// シンプルなヘッダーコンポーネント
+// ヘッダーコンポーネント
 const Header = () => {
                     return (
                     <header className="text-center p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
@@ -32,7 +31,6 @@ const Header = () => {
                         ご家族用ログイン
                       </Link>
                     </div>
-
                     <div className="w-[1188px] h-[703px] left-[6px] top-0 absolute">
                     </div>
 
