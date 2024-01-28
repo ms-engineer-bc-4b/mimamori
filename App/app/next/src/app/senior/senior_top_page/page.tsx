@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import use client from 'next/client';
 
 // シンプルなヘッダーコンポーネント
 const Header = () => {
