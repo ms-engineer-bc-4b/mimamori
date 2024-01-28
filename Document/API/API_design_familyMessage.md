@@ -3,12 +3,17 @@
 ## 健康情報登録
 
 - **概要**: 高齢者が健康情報を登録した内容を確認して、家族がメッセージを送信する
-- **パスとメソッド**:  
+- **パスとメソッド**:  高齢者が登録した{HealthInformation.id}に対応するメッセージを作成したり更新する  
+※一つの{HealthInformation.id}に対して一つのメッセージしか受け付けない。既に登録されている場合はエラーとする
+
   | パス                         | メソッド               | 説明               |
   |--------------------------|---------------------|-------------------|
-  | `/api/{senior_user_id}/health/{HealthInformation.id}/message/`      | POST                | 新規登録           |
-  | `/api/{senior_user_id}/health/{HealthInformation.id}/message/{message_id}` | PUT                 | 既存情報の更新     |
-  | `/api/{senior_user_id}/health/{HealthInformation.id}/message/{message_id}` | GET                 | 登録情報の取得     |
+  | `/api/health/{HealthInformation.id}/message/{message_id}`      | GET              | 情報取得           |
+  | `/api/health/{HealthInformation.id}/message/{message_id}`      | PUT                | 既存情報の更新          |
+  | `/api/health/{HealthInformation.id}/message/` | POST                |メッセージ登録※     |
+  | `/api/health/{HealthInformation.id}/message/` | GET                 | 全取得     |
+
+
 
 
 - **パラメータ**:  
@@ -28,8 +33,6 @@
 ```json
 {  "id": 123,
    "message": "これはメッセージの内容です。",
-   "created_at": "2024-01-27T12:34:56Z",
-   "updated_at": "2024-01-27T12:34:56Z"
 }
 ```
  

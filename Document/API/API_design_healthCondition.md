@@ -20,18 +20,21 @@
   | symptom          | No   | 体の異変             |
   | medicine         | No   | 薬服用の有無         |
   | voice_text       | No   | 音声メッセージ        |
-  | registered_at      | Yes  | 登録日               |
-
+  | created_at      | Yes  | 登録日               |
+  | updated_at      | Yes  | 更新日               |
 - **リクエストサンプル**:  
 ```json
 {
-    "id": 123,
+   
     "senior_user_id": "98765",
-    "condition": "Good",
-    "symptom": "Headache",
+    "condition": "good",
+    "symptom": "head",
     "medicine": true,
+    "dinner_photo":"",
+    "degree":"full",
     "voice_text": "I am feeling a bit dizzy today.",
-    "registered_at": "2024-01-08T12:00:00Z"
+   "created_at": "2024-01-27T12:34:56Z",
+   "updated_at": "2024-01-27T12:34:56Z"
 }
 ```
  
