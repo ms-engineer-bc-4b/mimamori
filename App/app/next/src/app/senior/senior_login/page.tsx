@@ -2,11 +2,12 @@
 import Link from 'next/link';
 import { app } from "@/lib/firebase/firebase";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { FirebaseError } from 'firebase/app';
+import { FirebaseError,initializeApp } from 'firebase/app';
 import { useState } from 'react';
-import { initializeApp } from 'firebase/app';
-import {Footer} from '@/app/components/footer';
-import { FirstHeader } from '@/app/components/beforesigninheader';
+import FirstHeader from '@/app/components/beforesigninheader';
+import Footer from '@/app/components/footer';
+
+import { useRouter } from 'next/router';
 
 
 
@@ -40,6 +41,15 @@ export default function SeniorLogin() {
         const user = userCredential.user;
         alert(`ログインできたよ！${user.email}さん！`);
         console.log(user);
+        // ログイン成功時にページ遷移
+        const router = useRouter();
+        console.log(router.push('/senior_top_page'));; // '/example/mycomponent'
+
+        // Router.push('@/senior_top_page')
+        // // ('/目的のページのパス'); // Next.jsのルーターを使用
+        // https://qiita.com/Jey/items/adb902da3bca18fd0a34
+        // console.log(Router.push(('/senior_top_page')))
+        
       })
       .catch((error: FirebaseError) => {
         const errorCode = error.code;
@@ -130,8 +140,8 @@ export default function SeniorLogin() {
         </form>
       </div>
 
-    <FirstHeader />
-    <Footer />
+    {/* <FirstHeader /> */}
+    {/* <Footer /> */}
     </div>
   )
 }
