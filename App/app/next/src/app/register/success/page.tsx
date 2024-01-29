@@ -1,47 +1,62 @@
-// Home.tsx
-'use client'
+"use client";
 
+import { initFirebase } from "@/firebase";
+import { useRouter } from "next/navigation";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-
-"use client"
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-
-// シンプルなヘッダーコンポーネント
-const Header = () => {
-  return (
-    <header className="text-center py-4 bg-gray-200">
-      {/* ここにヘッダーのコンテンツを追加 */}
-      みまもり
-    </header>
-  );
-};
-
-// Home コンポーネント
 export default function Home() {
-  
+  const router = useRouter();
 
+  const app = initFirebase();
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
 
+  const signIn = async () => {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+
+    if (user) {
+      goToAccount();
+    }
+  };
+
+  const rightArrow = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+      />
+    </svg>
+  );
+
+  const goToAccount = () => {
+    router.push("/register/success/subscription/account");
+  };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* ヘッダーの呼び出し */}
-      <Header />
+    <>
+      <div className="">
 
-      {/* メインコンテンツ */}
-      <main className="flex-grow flex flex-col items-center p-24">
-        <p>新規登録完了しました</p>
-
-       
-
-        {/* 新規登録画面へのリンク */}
-        <Link href="success/subscription" passHref>
-        決済画面へ
-      
-        </Link>
-      </main>
-
-      {/* フッターの呼び出し */}
-    </div>
+      </div>
+      <div className="text-xl md:text-2xl font-light mb-8">
+        新規登録が完了しました
+      </div>
+      <button
+        onClick={signIn}
+        className="bg-blue-600 p-4 px-6 text-lg rounded-lg hover:bg-blue-700 shadow-lg"
+      >
+        <div className="flex gap-2 items-center align-middle">
+          Googleログインして決済画面へ{rightArrow}
+        </div>
+      </button>
+    </>
   );
 }

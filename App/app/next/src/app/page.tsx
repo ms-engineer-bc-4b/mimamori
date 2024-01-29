@@ -14,24 +14,16 @@ export default function Home() {
 
 
 
-  return (
-    <div className="flex-grow flex flex-col p-24 relative z-10 items-center mt-[-100px]">
+  return (   
+    <div className="form-container   ">
       {/* 背景のdiv */}
     
-  
-      {/* ヘッダーの呼び出し */}
       <Header />
+      {/* ヘッダーの呼び出し */}
+ 
   
       {/* メインコンテンツ */}
-      <main
-      className={`flex-grow flex flex-col p-24 relative z-10 items-center mt-[-100px]`}
-      style={{
-        backgroundImage: 'url(".src\app\components\styles\lee-DK7msqOZ9fI-unsplash.jpg)',
-        backgroundSize: 'cover',  // 画像を親要素に合わせてカバー
-        backgroundPosition: 'center',  // 画像を中央に配置
-      }}
- 
-    >   
+      <main className={`toppage`}>
 
         
         <div className="text-green-950 text-3xl font-normal font-['Zen Maru Gothic']">遠くにいても安心。<br /></div>

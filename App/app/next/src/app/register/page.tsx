@@ -42,7 +42,7 @@ function Home() {
   const medicationValue = watch('medication');
 
   const onSubmit: SubmitHandler<LoginForm> = (data: any) => {
-      console.log(data);
+    console.log(data);
     setFormData(data);
     setShowConfirmation(true);
   };
@@ -101,302 +101,324 @@ function Home() {
   };
   const seniorUserId = 1;
   fetch(`http://localhost:5000/api/${seniorUserId}/health/message/`, {
-  method: 'GET', // リクエストのメソッド
-  headers: {
-    'Content-Type': 'application/json', // リクエストヘッダー
-    // 他に必要なヘッダーがあればここに追加
-  },
-})
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json(); // レスポンスをJSON形式で解釈
+    method: 'GET', // リクエストのメソッド
+    headers: {
+      'Content-Type': 'application/json', // リクエストヘッダー
+      // 他に必要なヘッダーがあればここに追加
+    },
   })
-  .then(data => {
-    // 成功した場合の処理
-    console.log('Success:', data);
-    // レスポンスのデータを使ってフロントエンドで必要な処理を行う
-  })
-  .catch(error => {
-    // エラーが発生した場合の処理
-    console.error('Error:', error);
-  });
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // レスポンスをJSON形式で解釈
+    })
+    .then(data => {
+      // 成功した場合の処理
+      console.log('Success:', data);
+      // レスポンスのデータを使ってフロントエンドで必要な処理を行う
+    })
+    .catch(error => {
+      // エラーが発生した場合の処理
+      console.error('Error:', error);
+    });
   return (
-    
-    <div className='form-container   '>
- <Header />
- <div className='page-container mt-[50px] items-center justify-center h-screen'>
-<div  >
-<div className="text-black text-[25px]   font-normal font-['Inter']  text-center" >新規登録画面</div>
- <p >シニア（見守られる側）の情報</p>
-      {!showConfirmation && (
-        <form onSubmit={handleSubmit(onSubmit)} >
 
-          <table  >
-            <tbody>
-              <tr>
-       
-                <td className="border">
-                  <label htmlFor="senior_last_name">姓</label>
-                </td>
-                <td className="border">
-                  <input id="senior_last_name" type="text" {...register('senior_last_name', { required: "姓は必須です" })} />
-                  {errors.senior_last_name && <p>{errors.senior_last_name.message }</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border">
-                  <label htmlFor="senior_first_name">名</label>
-                </td>
-                <td className="border">
-                  <input id="senior_first_name" type="text" {...register('senior_first_name', { required: "名は必須です" })} />
-                  {errors.senior_first_name && <p>{errors.senior_first_name.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border">
-                  <label htmlFor="gender">性別</label>
-                </td>
-                <td className="border">
-                  <select id="gender" {...register('gender', { required: "性別は必須です" })}>
-                    <option value="male">男性</option>
-                    <option value="female">女性</option>
-                    <option value="other">その他</option>
-                  </select>
-                  {errors.gender && <p>{errors.gender.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border">
-                  <label htmlFor="birth_date">生年月日</label>
-                </td>
-                <td className="border">
-                  <input id="birth_date" type="text" {...register('birth_date', { required: "生年月日は必須です" })} />
-                  {errors.birth_date && <p>{errors.birth_date.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border">
-                  <label htmlFor="senior_email">メールアドレス</label>
-                </td>
-                <td className="border">
-                  <input id="senior_email" type="email" {...register('senior_email', { required: "メールアドレスは必須です" })} />
-                  {errors.senior_email && <p>{errors.senior_email.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border">
-                  <label htmlFor="senior_tel">電話番号</label>
-                </td>
-                <td className="border">
-                  <input id="senior_tel" type="tel" {...register('senior_tel', { required: "電話番号は必須です" })} />
-                  {errors.senior_tel && <p>{errors.senior_tel.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border">
-                  <label htmlFor="health_status">健康状態</label>
-                </td>
-                <td className="border">
-                  <select id="health_status" {...register('health_status', { required: "健康状態は必須です" })}>
-                    <option value="good">良い</option>
-                    <option value="normal">普通</option>
-                    <option value="bad">悪い</option>
-                  </select>
-                  {errors.health_status && <p>{errors.health_status.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border"> 
-                  <label htmlFor="medication">処方薬の有無</label>
-                </td>
-                <td className="border">
-                  <select id="medication" {...register('medication', { required: "処方薬の有無は必須です" })}>
-                    <option value="yes">有</option>
-                    <option value="no">無</option>
-                  </select>
-                  {errors.medication && <p>{errors.medication.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border">
-                  <label htmlFor="medication_frequency">処方薬有の場合頻度</label>
-                </td>
-                <td className="border">
-                  <select id="medication_frequency" {...register('medication_frequency', { required: "頻度は必須です" })}>
-                    <option value="once">1日1回</option>
-                    <option value="twice">1日2回</option>
-                    <option value="thrice">1日3回</option>
-                  </select>
-                  {errors.medication_frequency && <p>{errors.medication_frequency.message}</p>}
-                </td >
-              </tr>
-              <tr >
-        
+    <div className='form-container'>
+      <Header />
+      <div className='page-container mt-[50px] items-center justify-center h-screen'>
+        <div  >
+          <div className="text-black text-[25px]   font-normal font-['Inter']  text-center" >新規登録画面</div>
 
-                <td >  
-                  <label htmlFor="family_last_name">申込者の情報
-                  </label>
-                  </td>
-              
-              </tr>
-              <tr>
-                <td className="border">
-                  <label htmlFor="family_last_name">申込者氏名（姓）
-                  </label>
-                  </td>
-                <td className="border">
-                  <input id="family_last_name" type="text" {...register('family_last_name', { required: "姓は必須です" })} />
-                  {errors.family_last_name && <p>{errors.family_last_name.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border"><label htmlFor="family_first_name">申込者氏名（名）</label></td>
-                <td className="border">
-                  <input id="family_first_name" type="text" {...register('family_first_name', { required: "名は必須です" })} />
-                  {errors.family_first_name && <p>{errors.family_first_name.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border"><label htmlFor="relationship_with_senior">高齢者の関係性</label></td>
-                <td className="border">
-                  <select id="relationship_with_senior" {...register('relationship_with_senior', { required: "関係性は必須です" })}>
-                    <option value="son">息子</option>
-                    <option value="daughter">娘</option>
-                    <option value="grandchild">孫</option>
-                    <option value="other">その他</option>
-                  </select>
-                  {errors.relationship_with_senior && <p>{errors.relationship_with_senior.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border"><label htmlFor="family_email">メールアドレス</label></td>
-                <td className="border">
-                  <input id="family_email" type="email" {...register('family_email', { required: "メールアドレスは必須です" })} />
-                  {errors.family_email && <p>{errors.family_email.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border"><label htmlFor="family_tel">電話番号</label></td>
-                <td className="border">
-                  <input id="family_tel" type="tel" {...register('family_tel', { required: "電話番号は必須です" })} />
-                  {errors.family_tel && <p>{errors.family_tel.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border"><label htmlFor="family_password">パスワード</label></td>
-                <td className="border">
-                  <input id="family_password" type="password" {...register('family_password', { required: "パスワードは必須です" })} />
-                  {errors.family_password && <p>{errors.family_password.message}</p>}
-                </td>
-              </tr>
-              <tr>
-                <td className="border"><label htmlFor="confirm_family_password">パスワード（確認用）</label></td>
-                <td className="border">
-                  <input
-                    id="confirm_family_password"
-                    type="password"
-                    {...register('confirm_family_password', {
-                      required: "確認用パスワードは必須です",
-                      validate: (value: any) => value === watch('family_password') || "パスワードが一致しません",
-                    })}
-                  />
-                  {errors.confirm_family_password && <p>{errors.confirm_family_password.message}</p>}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <button type="submit" >確認</button>
-        </form>
-      )}
+          {!showConfirmation && (
+            <form onSubmit={handleSubmit(onSubmit)} >
+              <div className="parent-container">
+                <div className="table-container">
+                  <table  >
+                    <tbody>
+                      <tr>
+                        <td>シニア（見守られる側）の情報</td>
+                      </tr>
+                      <tr>
 
-      {showConfirmation && formData && (
-        <div>
-          <h2>入力内容の確認</h2>
-          <table>
-            <tbody>
-              <tr>
-                <td>姓:</td>
-                <td>{formData.senior_last_name}</td>
-              </tr>
-              <tr>
-                <td>名:</td>
-                <td>{formData.senior_first_name}</td>
-              </tr>
-              <tr>
-                <td>性別:</td>
-                <td>{formData.gender}</td>
-              </tr>
-              <tr>
-                <td>生年月日:</td>
-                <td>{formData.birth_date}</td>
-              </tr>
-              <tr>
-                <td>メールアドレス:</td>
-                <td>{formData.senior_email}</td>
-              </tr>
-              <tr>
-                <td>電話番号:</td>
-                <td>{formData.senior_tel}</td>
-              </tr>
-              <tr>
-                <td>健康状態:</td>
-                <td>{formData.health_status}</td>
-              </tr>
-              <tr>
-                <td>処方薬の有無:</td>
-                <td>{formData.medication}</td>
-              </tr>
-              {formData.medication === 'yes' && (
-                <tr>
-                  <td>処方薬有の場合頻度:</td>
-                  <td>{formData.medication_frequency}</td>
-                </tr>
-              )}
+                        <td className="border gray-label">
+                          <label htmlFor="senior_last_name">姓</label>
+                        </td>
+                        <td className="border white-background">
+                          <input id="senior_last_name" type="text" {...register('senior_last_name', { required: "姓は必須です" })} />
+                          {errors.senior_last_name && <p>{errors.senior_last_name.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+
+                        <td className="border gray-label">
+                          <label htmlFor="senior_first_name">名</label>
+                        </td>
+                        <td className="border white-background">
+                          <input id="senior_first_name" type="text" {...register('senior_first_name', { required: "名は必須です" })} />
+                          {errors.senior_first_name && <p>{errors.senior_first_name.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">
+                          <label htmlFor="gender">性別</label>
+                        </td>
+                        <td className="border white-background">
+                          <select id="gender" {...register('gender', { required: "性別は必須です" })}>
+                            <option value="male">男性</option>
+                            <option value="female">女性</option>
+                            <option value="other">その他</option>
+                          </select>
+                          {errors.gender && <p>{errors.gender.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">
+                          <label htmlFor="birth_date">生年月日</label>
+                        </td>
+                        <td className="border white-background">
+                          <input id="birth_date" type="text" {...register('birth_date', { required: "生年月日は必須です" })} />
+                          {errors.birth_date && <p>{errors.birth_date.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">
+                          <label htmlFor="senior_email">メールアドレス</label>
+                        </td>
+                        <td className="border white-background">
+                          <input id="senior_email" type="email" {...register('senior_email', { required: "メールアドレスは必須です" })} />
+                          {errors.senior_email && <p>{errors.senior_email.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">
+                          <label htmlFor="senior_tel">電話番号</label>
+                        </td>
+                        <td className="border white-background">
+                          <input id="senior_tel" type="tel" {...register('senior_tel', { required: "電話番号は必須です" })} />
+                          {errors.senior_tel && <p>{errors.senior_tel.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">
+                          <label htmlFor="health_status">健康状態</label>
+                        </td>
+                        <td className="border white-background">
+                          <select id="health_status" {...register('health_status', { required: "健康状態は必須です" })}>
+                            <option value="good">良い</option>
+                            <option value="normal">普通</option>
+                            <option value="bad">悪い</option>
+                          </select>
+                          {errors.health_status && <p>{errors.health_status.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">
+                          <label htmlFor="medication">処方薬の有無</label>
+                        </td>
+                        <td className="border white-background">
+                          <select id="medication" {...register('medication', { required: "処方薬の有無は必須です" })}>
+                            <option value="yes">有</option>
+                            <option value="no">無</option>
+                          </select>
+                          {errors.medication && <p>{errors.medication.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">
+                          <label htmlFor="medication_frequency">処方薬有の場合頻度</label>
+                        </td>
+                        <td className="border white-background">
+                          <select id="medication_frequency" {...register('medication_frequency', { required: "頻度は必須です" })}>
+                            <option value="once">1日1回</option>
+                            <option value="twice">1日2回</option>
+                            <option value="thrice">1日3回</option>
+                          </select>
+                          {errors.medication_frequency && <p>{errors.medication_frequency.message}</p>}
+                        </td >
+                      </tr>
+                      <tr >
 
 
-<p>申込者（家族）の情報</p>
-              {/* 申込者情報の確認項目 */}
-              <tr>
-                <td>申込者氏名（姓）:</td>
-                <td>{formData.family_last_name}</td>
-              </tr>
-              <tr>
-                <td>申込者氏名（名）:</td>
-                <td>{formData.family_first_name}</td>
-              </tr>
-              <tr>
-                <td>高齢者の関係性:</td>
-                <td>{formData.relationship_with_senior}</td>
-              </tr>
-              <tr>
-                <td>メールアドレス:</td>
-                <td>{formData.family_email}</td>
-              </tr>
-              <tr>
-                <td>電話番号:</td>
-                <td>{formData.family_tel}</td>
-              </tr>
-              <tr>
-                <td>パスワード:</td>
-                <td>{formData.family_password}</td>
-              </tr>
-              <tr>
-                <td>パスワード（確認用）:</td>
-                <td>{formData.confirm_family_password}</td>
-              </tr>
-            </tbody>
-          </table>
-          <Link href="/register/success"  className="text-center" passHref >
-            <button onClick={handleConfirm} >新規登録へ</button>
-          </Link>
-          {/* <button onClick={handleConfirm}>新規登録へ</button>*/}
-          <button onClick={handleBack}  className="text-center">戻る</button>
+                        <tr>
+                          <td>シニア（見守られる側）の情報</td>
+                        </tr>
+
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">
+                          <label htmlFor="family_last_name">申込者氏名（姓）
+                          </label>
+                        </td>
+                        <td className="border white-background">
+                          <input id="family_last_name" type="text" {...register('family_last_name', { required: "姓は必須です" })} />
+                          {errors.family_last_name && <p>{errors.family_last_name.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label"><label htmlFor="family_first_name">申込者氏名（名）</label></td>
+                        <td className="border white-background">
+                          <input id="family_first_name" type="text" {...register('family_first_name', { required: "名は必須です" })} />
+                          {errors.family_first_name && <p>{errors.family_first_name.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">
+                          <label htmlFor="relationship_with_senior">高齢者の関係性
+                          </label>
+                        </td>
+                        <td className="border white-background">
+                          <select id="relationship_with_senior" {...register('relationship_with_senior', { required: "関係性は必須です" })}>
+                            <option value="son">息子</option>
+                            <option value="daughter">娘</option>
+                            <option value="grandchild">孫</option>
+                            <option value="other">その他</option>
+                          </select>
+                          {errors.relationship_with_senior && <p>{errors.relationship_with_senior.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label"><label htmlFor="family_email">メールアドレス</label></td>
+                        <td className="border white-background">
+                          <input id="family_email" type="email" {...register('family_email', { required: "メールアドレスは必須です" })} />
+                          {errors.family_email && <p>{errors.family_email.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">
+                          <label htmlFor="family_tel">
+                            電話番号
+                          </label>
+                        </td>
+                        <td className="border white-background">
+                          <input id="family_tel" type="tel" {...register('family_tel', { required: "電話番号は必須です" })} />
+                          {errors.family_tel && <p>{errors.family_tel.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label"><label htmlFor="family_password">パスワード</label></td>
+                        <td className="border white-background">
+                          <input id="family_password" type="password" {...register('family_password', { required: "パスワードは必須です" })} />
+                          {errors.family_password && <p>{errors.family_password.message}</p>}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label"><label htmlFor="confirm_family_password">パスワード（確認用）</label></td>
+                        <td className="border white-background">
+                          <input
+                            id="confirm_family_password"
+                            type="password"
+                            {...register('confirm_family_password', {
+                              required: "確認用パスワードは必須です",
+                              validate: (value: any) => value === watch('family_password') || "パスワードが一致しません",
+                            })}
+                          />
+                          {errors.confirm_family_password && <p>{errors.confirm_family_password.message}</p>}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <button type="submit" >確認</button>
+            </form>
+          )}
+
+          {showConfirmation && formData && (
+            <div>
+              <h2>入力内容の確認</h2>
+              <div className="parent-container">
+                <div className="table-container">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>シニア（見守られる側）の情報</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">姓:</td>
+                        <td className="border white-background">{formData.senior_last_name}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">名:</td>
+                        <td className="border white-background">{formData.senior_first_name}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">性別:</td>
+                        <td className="border white-background">{formData.gender}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">生年月日:</td>
+                        <td className="border white-background">{formData.birth_date}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">メールアドレス:</td>
+                        <td className="border white-background">{formData.senior_email}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">電話番号:</td>
+                        <td className="border white-background">{formData.senior_tel}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label" >健康状態:</td>
+                        <td className="border white-background">{formData.health_status}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">処方薬の有無:</td>
+                        <td className="border white-background">{formData.medication}</td>
+                      </tr>
+                      {formData.medication === 'yes' && (
+                        <tr>
+                          <td className="border gray-label">処方薬有の場合頻度:</td>
+                          <td className="border white-background">{formData.medication_frequency}</td>
+                        </tr>
+                      )}
+
+
+                      <tr>
+                        <td>シニア（見守られる側）の情報</td>
+                      </tr>
+                      {/* 申込者情報の確認項目 */}
+                      <tr>
+                        <td className="border gray-label">申込者氏名（姓）:</td>
+                        <td className="border white-background">{formData.family_last_name}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">申込者氏名（名）:</td>
+                        <td className="border white-background">{formData.family_first_name}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">高齢者の関係性:</td>
+                        <td className="border white-background">{formData.relationship_with_senior}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">メールアドレス:</td>
+                        <td className="border white-background">{formData.family_email}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">電話番号:</td>
+                        <td className="border white-background">{formData.family_tel}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">パスワード:</td>
+                        <td className="border white-background">{formData.family_password}</td>
+                      </tr>
+                      <tr>
+                        <td className="border gray-label">パスワード（確認用）:</td>
+                        <td className="border white-background">{formData.confirm_family_password}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <Link href="/register/success" className="text-center" passHref >
+                <button onClick={handleConfirm} >新規登録へ</button>
+              </Link>
+              {/* <button onClick={handleConfirm}>新規登録へ</button>*/}
+              <button onClick={handleBack} className="text-center">戻る</button>
+            </div>
+          )}
         </div>
-      )}
       </div>
-    </div>
     </div>
   );
 }

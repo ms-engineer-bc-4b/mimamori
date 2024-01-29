@@ -7,19 +7,19 @@ import Link from 'next/link';
 const Header = () => {
   return (
     
-    <header className= "text-center h-[100px] p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
+    <header className= "text-center h-[80px] p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
    
-      <div className="left-[96px] top-[8px] absolute text-green-950 text-[64px] font-bold font-['Zen Maru Gothic']">
+      <div className="left-[96px] top-[8px] absolute text-green-950 text-[40px] font-bold font-['Zen Maru Gothic']">
         みまもり
       </div>
-      <div className="right-0 top-[60px] absolute flex space-x-4">
+      <div className="right-0 top-[30px] absolute flex space-x-4">
         <Link href="/register" passHref>
           <div className="text-green-950 text-lg font-normal font-['Inter']">
             新規登録
           </div>
         </Link>
         <Link href="/senior-login" passHref>
-          <div className="text-green-950 text-lg font-normal font-['Inter']">
+          <div className="text-green-950 text-lg  font-normal font-['Inter']">
             シニア用ログイン
           </div>
         </Link>

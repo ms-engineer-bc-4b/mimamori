@@ -29,7 +29,7 @@ export default function AccountPage() {
   }, [app, auth.currentUser?.uid]);
 
   const upgradeToPremium = async () => {
-    const priceId = "price_1OZuG6Gb4w8gW4xIeBqqg4IU";
+    const priceId = "price_1OcerKGb4w8gW4xIzt5q0aRI";
     const checkoutUrl = await getCheckoutUrl(app, priceId);
     router.push(checkoutUrl);
     console.log("Upgrade to Premium");
@@ -49,10 +49,10 @@ export default function AccountPage() {
   const upgradeToPremiumButton = (
     <button
       onClick={upgradeToPremium}
-      className="bg-blue-600 p-4 px-6 text-lg rounded-lg hover:bg-blue-700 shadow-lg"
+      className="bg-gray-300 p-4 px-6 text-lg rounded-lg hover:bg-gray-350 shadow-lg"
     >
       <div className="flex gap-2 items-center align-middle justify-center">
-        Upgrade To Premium
+        サブスクリプション手続きへ
       </div>
     </button>
   );
@@ -92,7 +92,9 @@ export default function AccountPage() {
   return (
     <div className="flex flex-col gap-8">
       {accountSummary}
-      {statusPanel}
+      {/*
+{statusPanel}
+*/}
       {memberButton}
       {signOutButton}
     </div>
