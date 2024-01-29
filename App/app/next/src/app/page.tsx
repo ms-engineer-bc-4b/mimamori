@@ -2,6 +2,8 @@
 "use client"
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import Calendar from '@/components/Calendar';
+import VoiceToText from '@/components/VoiceToText';
 
 // シンプルなヘッダーコンポーネント
 const Header = () => {
@@ -23,6 +25,8 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       {/* ヘッダーの呼び出し */}
       <Header />
+
+      <Calendar />
 
       {/* メインコンテンツ */}
       <main className="flex-grow flex flex-col items-center p-24">
