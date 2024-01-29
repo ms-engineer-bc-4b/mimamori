@@ -3,4 +3,5 @@ sqlalchemy
 flask-sqlalchemy
 flask-migrate
 pymysql
-pyrebase
+PyJWT
+Flask-Bcrypt
