@@ -9,12 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "firebase": "^10.7.2",
+    "firebaseui": "^6.1.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.49.3"
   },
   "devDependencies": {
+    "@types/firebase": "^3.2.1",
     "@types/node": "^20",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18",

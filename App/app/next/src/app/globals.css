@@ -2,3 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* ベーススタイル設定 */
+@layer base {
+  html,body {
+    @apply h-full;
+  }
+}
+
+/* ユーティリティをまとめたコンポーネントスタイル作成
+@layer components {
+  .btn-blue {
+    @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+  }
+} */
+
+/* 独自のユーティリティ追加
+@layer utilities {
+  .bg-custom-yellow {
+
+    background:yellow;
+  }
+}
+*/
+
+.input is-large {
+  width: 381.82px;
+  height: 52.48px;
+  left: 117.18px;
+  top: 0;
+  position: absolute;
+  border: 1px solid black;
+}
