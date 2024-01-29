@@ -1,4 +1,7 @@
+// "use client";
 import Link from 'next/link';
+import Footer from '@/app/components/footer';
+
 
 // シンプルなヘッダーコンポーネント
 const Header = () => {
@@ -65,6 +68,7 @@ export default function UserTop() {
       </main>
 
       {/* フッターの呼び出し */}
+      <Footer/>
     </div>
   );
 }
