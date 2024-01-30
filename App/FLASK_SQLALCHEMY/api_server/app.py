@@ -100,35 +100,13 @@ def create_app():
     @app.route('/api/user', methods=['GET'])
     @token_required
     def get_user(current_user):
-
-        data = request.get_json()
-        print(data)
-        # 
-        user = SeniorUser.query.filter_by(senior_email=data['email']).first()
-        print(user)
-        # 
-        if user and bcrypt.check_password_hash(user.senior_password, data['password']):
-            token = jwt.encode({
-                'user_id': user.senior_user_id,
-                'exp': datetime.utcnow() + timedelta(hours=24)
-            }, app.config['SECRET_KEY'])
-
         return jsonify({
-            {
-    "id": ,//データ番号
-    "senior_user_id": current_user.senior_user_id,
-    "condition": current_user.senior_health_condition,
-    "symptom": current_user.senior_symptom,
-    "medicine": current_user.senior_medicine,
-    "degree": current_user.senior_degree,
-    "voice_text": current_user.senior_degree,
-    "registered_at": "2024-01-08T12:00:00Z"
-}
             'id': current_user.senior_user_id,
             'email': current_user.senior_email
         }), 200
     
-    # 入力したデータ保存、送付
+    # 患者様の健康情報登録フォーム用のAPI
+    # 登録
     @app.route('/api/health', methods=['POST'])
     @token_required
     def user_update(current_user):
@@ -136,14 +114,6 @@ def create_app():
         return jsonify({
             'id': current_user.senior_user_id,
             'email': current_user.senior_email
-            # # パラメータ名	必須	説明
-# # id	Yes	健康情報ID
-# # senior_user_id	Yes	高齢者（ユーザー）情報
-# # condition	Yes	健康情報
-# # symptom	No	体の異変
-# # medicine	No	薬服用の有無
-# # voice_text	No	音声メッセージ
-# # registered_at	Yes	登録日
         }), 200
     
 
@@ -153,8 +123,8 @@ def create_app():
 # # ログアウト
         
 
+    # 必要なもの
 
-# # 患者様の情報登録フォーム用のAPI
 # # @app.route('/api/{senior_user_id}/health', methods=['POST'])
 # # パス	メソッド	説明
 # # /api/{senior_user_id}/health	POST	新規登録
@@ -170,10 +140,8 @@ def create_app():
 # # medicine	No	薬服用の有無
 # # voice_text	No	音声メッセージ
 # # registered_at	Yes	登録日
-    # 必要なもの
-    # @app.route('/api/register', methods=['POST'])
-    # @app.route('/api/register/{family_id}', methods=['PUT','GET'])
-    # @app.route('/api/register/{family_id}', methods=['PUT'])
+
+
 
     return app
 
