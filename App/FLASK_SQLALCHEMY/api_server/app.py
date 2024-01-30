@@ -6,7 +6,7 @@ import json
 from flask_bcrypt import Bcrypt
 import jwt
 from functools import wraps
-
+import datetime
 
 # JWTトークンの検証デコレータ
 def token_required(f):
@@ -64,8 +64,6 @@ def create_app():
     # TEST-seniorlogin
     # /api/senior/login
 
-    # ログイン時の認証トークンをnext.js側で保持する必要があり。その場合は以下のようなコードで実装
-
     # ユーザー登録のルート
     @app.route('/api/senior_register', methods=['POST'])
     def register():
@@ -107,7 +105,44 @@ def create_app():
     
     # 患者様の健康情報登録フォーム用のAPI
     # 登録
+    # /api/{senior_user_id}/health	POST	新規登録
     @app.route('/api/health', methods=['POST'])
+    @token_required
+    def user_health_register(current_user):
+        # 登録処理を書く
+        data = request.get_json()
+        print(data)
+        # user = SeniorUser.query.filter_by(senior_email=data['email']).first()
+        # print(user)
+        # if user and bcrypt.check_password_hash(user.senior_password, data['password']):
+        #     token = jwt.encode({
+        #         'user_id': user.senior_user_id,
+        #         'exp': datetime.utcnow() + timedelta(hours=24)
+        #     }, app.config['SECRET_KEY'])       
+
+        if
+        healthinfo = TodaysHealth(senior_email=data['email'], senior_password=hashed_password, senior_last_name="", senior_first_name="", gender="", birth_date=datetime.today(), senior_tel="", health_status="", medication=1, medication_frequency="", senior_user_uid="", )
+        db.session.add(todays_health)
+        db.session.commit()    
+        return jsonify({
+            'senior_user_id': current_user.senior_user_id,
+            'condition': current_user.senior_user_condition,
+            'symptom': current_user.senior_user_symptom,
+            'medicine': current_user.senior_user_medicine,
+            'dinner_photo':current_user.senior_user_dinner_photo,
+            'degree':current_user.senior_user_degree,
+            'voice_text': current_user.senior_user_voice_text,
+            'created_at': datetime.datetime.utcnow().isoformat()+'Z',
+                # "email": user.senior_email,
+                # 'token': token
+            }), 200
+        return jsonify({'message': 'Registration failed'}), 400
+
+    # 更新
+    # /api/{senior_user_id}/health/{id}	PUT	既存情報の更新
+    # もし更新と情報取得のコードが同じなら下記ルート
+    # @app.route('/api/{senior_user_id}/health/{id}', methods=['GET','POST'])
+    @app.route('/api/health', methods=['PUT'])
     @token_required
     def user_update(current_user):
         # 更新処理を書く
@@ -115,7 +150,8 @@ def create_app():
             'id': current_user.senior_user_id,
             'email': current_user.senior_email
         }), 200
-    
+    # 情報の取得
+    # /api/{senior_user_id}/health/{id}	GET	登録情報の取得
 
 
 
@@ -123,25 +159,54 @@ def create_app():
 # # ログアウト
         
 
-    # 必要なもの
+    # 実装必要なもの
+# 健康入力フォーム
+    # パラメータ名	必須	説明
+    # id	Yes	健康情報ID
+    # senior_user_id	Yes	高齢者（ユーザー）情報
+    # condition	Yes	健康情報
+    # symptom	No	体の異変
+    # medicine	No	薬服用の有無
+    # voice_text	No	音声メッセージ
+    # registered_at	Yes	登録日
 
-# # @app.route('/api/{senior_user_id}/health', methods=['POST'])
-# # パス	メソッド	説明
-# # /api/{senior_user_id}/health	POST	新規登録
-# # @app.route('/api/{senior_user_id}/health/{id}', methods=['GET','POST'])
-# # /api/{senior_user_id}/health/{id}	PUT	既存情報の更新
-# # /api/{senior_user_id}/health/{id}	GET	登録情報の取得
+    # id = db.Column(db.Integer, primary_key=True)
+    # #※本番はテーブル連携するので#外すsenior_user_id = db.Column(db.Integer, ForeignKey('SeniorUser.senior_user_id'), nullable=False)
+    # condition = db.Column(db.Enum('good', 'normal', 'bad'), nullable=False)
+    # symptom = db.Column(db.Enum('head', 'face', 'neck', 'shoulder', 'chest', 'rightArm', 'leftArm', 'leftHand', 'rightHand', 'abdomen', 'rightLeg', 'leftLeg', 'leftAnkle', 'rightAnkle', 'back', 'buttocks'), nullable=False)
+    # medicine = db.Column(db.Boolean, nullable=False)
+    # dinner_photo = db.Column(db.String(255), nullable=True)
+    # degree = db.Column(db.Enum('full', 'half', 'less'), nullable=True)
+    # voice_text = db.Column(db.String(255), nullable=True)
+    # created_at = db.Column(db.DateTime, nullable=False, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    # updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"), onupdate=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
-# # パラメータ名	必須	説明
-# # id	Yes	健康情報ID
-# # senior_user_id	Yes	高齢者（ユーザー）情報
-# # condition	Yes	健康情報
-# # symptom	No	体の異変
-# # medicine	No	薬服用の有無
-# # voice_text	No	音声メッセージ
-# # registered_at	Yes	登録日
-
-
+# API設計書
+    # {
+    #     "senior_user_id": "98765",
+    #     "condition": "good",
+    #     "symptom": "head",
+    #     "medicine": true,
+    #     "dinner_photo":"",
+    #     "degree":"full",
+    #     "voice_text": "I am feeling a bit dizzy today.",
+    #    "created_at": "2024-01-27T12:34:56Z",
+    #    "updated_at": "2024-01-27T12:34:56Z"
+    # }
+    # 成功時:
+    # ステータスコード: 201 Created
+    # レスポンスサンプル:
+    # {
+    #     "message": "Health information registered successfully"
+    # }
+    # 失敗時:
+    # ステータスコード: 400 Bad Request
+    # レスポンスサンプル:
+    # {
+    #     "error": "Registration failed",
+    #     "reason": "Invalid email format"
+    # }
+# 
 
     return app
 
