@@ -11,9 +11,8 @@ import { useRouter } from 'next/router';
 
 
 
-
-
 export default function SeniorLogin() {
+  // const router = useRouter(); // フックの呼び出しを関数コンポーネントのボディ内で行う
 
   // メール・パスワード
   const [senior_email, setEmail] = useState("")
@@ -42,13 +41,10 @@ export default function SeniorLogin() {
         alert(`ログインできたよ！${user.email}さん！`);
         console.log(user);
         // ログイン成功時にページ遷移
-        const router = useRouter();
-        console.log(router.push('/senior_top_page'));; // '/example/mycomponent'
-
-        // Router.push('@/senior_top_page')
-        // // ('/目的のページのパス'); // Next.jsのルーターを使用
-        // https://qiita.com/Jey/items/adb902da3bca18fd0a34
-        // console.log(Router.push(('/senior_top_page')))
+        const router = useRouter()
+        router.push("/senior_top_page")
+        // router.push('/senior_top_page'); // 取得した router オブジェクトを利用
+            
         
       })
       .catch((error: FirebaseError) => {
@@ -124,7 +120,7 @@ export default function SeniorLogin() {
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
-              onClick={() => { doLogin(senior_email, senior_password) }}
+              onClick={() => { doLogin(senior_email, senior_password) } }
             >
               Log In
             </button>
