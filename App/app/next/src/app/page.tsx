@@ -2,8 +2,11 @@
 "use client"
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+
 import './globals.css';
-import Header from './components/Header';
+import Header from '../components/Header';
+import Calendar from '@/components/Calendar';
+import VoiceToText from '@/components/VoiceToText';
 
 // シンプルなヘッダーコンポーネント
 
@@ -19,9 +22,9 @@ export default function Home() {
       {/* 背景のdiv */}
     
       <Header />
-      {/* ヘッダーの呼び出し */}
- 
-  
+      <Calendar />
+    
+
       {/* メインコンテンツ */}
       <main className={`toppage`}>
 

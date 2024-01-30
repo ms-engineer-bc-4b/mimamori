@@ -9,6 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.10",
+    "@fullcalendar/daygrid": "^6.1.10",
+    "@fullcalendar/interaction": "^6.1.10",
+    "@fullcalendar/list": "^6.1.10",
+    "@fullcalendar/react": "^6.1.10",
+    "@fullcalendar/resource": "^6.1.10",
+    "@fullcalendar/timegrid": "^6.1.10",
+    "dayjs": "^1.11.10",
     "firebase": "^10.7.2",
     "firebaseui": "^6.1.0",
     "next": "14.0.4",
@@ -22,6 +30,7 @@
     "@types/node": "^20",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18",
+    "@types/webspeechapi": "^0.0.29",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",

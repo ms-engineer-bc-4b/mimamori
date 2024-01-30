@@ -3,7 +3,7 @@ from database import init_db, db
 from models import SeniorUser,FamilyUser,Message,HealthInformation
 from datetime import datetime
 from flask_cors import CORS
-
+import pytz
 
 
 def create_app():
@@ -517,7 +517,109 @@ def create_app():
      else:
         # ユーザーが存在しない場合
         return jsonify({"message": "Senior user not found with the provided email"}), 404
-    
+     
+    #API_design_calender.md
+    @app.route('/api/calender/senior_id/<int:senior_user_id>/created_at/<string:YYYYMMDD>', methods=['GET', 'DELETE', 'PUT','POST'])
+    def get_or_delete_health_information(senior_user_id, YYYYMMDD):
+    # Convert YYYYMMDD to a full date string
+     date_str = f"{YYYYMMDD[:4]}-{YYYYMMDD[4:6]}-{YYYYMMDD[6:]}"
+
+     if request.method == 'GET':
+        # Query the database to get the most recent health information for the specified date
+        health_info = HealthInformation.query.filter(
+            HealthInformation.senior_user_id == senior_user_id,
+            HealthInformation.created_at.like(f"{date_str}%")
+        ).order_by(HealthInformation.created_at.desc()).first()
+
+        if health_info:
+            # Construct the JSON response
+            response = {
+                "id": health_info.id,
+                "condition": health_info.condition,
+                "symptom": health_info.symptom,
+                "medicine": health_info.medicine,
+                "dinner_photo": health_info.dinner_photo,
+                "degree": health_info.degree,
+                "voice_text": health_info.voice_text,
+                "created_at": health_info.created_at.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                "updated_at": health_info.updated_at.strftime('%Y-%m-%dT%H:%M:%SZ')
+            }
+            return jsonify(response)
+        else:
+            return jsonify({"message": "No health information found for the given parameters"}), 404
+
+     elif request.method == 'DELETE':
+        # Get HealthInformation ids for the specified date and user
+      ids_to_delete = [info.id for info in HealthInformation.query.filter(
+            HealthInformation.senior_user_id == senior_user_id,
+            HealthInformation.created_at.like(f"{date_str}%")
+        ).all()]
+
+      if ids_to_delete:
+            # Delete rows based on the obtained ids
+            for id_to_delete in ids_to_delete:
+                HealthInformation.query.filter_by(id=id_to_delete).delete()
+
+            # Commit changes to the database
+            db.session.commit()
+
+            return jsonify({"message": f"{len(ids_to_delete)} rows deleted successfully"})
+      else:
+            return jsonify({"message": "No matching rows to delete"}), 404
+     
+     elif request.method == 'PUT':
+        # Update health information for the specified date
+        new_health_info = request.json
+        health_info = HealthInformation.query.filter(
+            HealthInformation.senior_user_id == senior_user_id,
+            HealthInformation.created_at.like(f"{date_str}%")
+        ).first()
+
+        if health_info:
+            # Update the existing health information
+            health_info.condition = new_health_info.get("condition", health_info.condition)
+            health_info.symptom = new_health_info.get("symptom", health_info.symptom)
+            health_info.medicine = new_health_info.get("medicine", health_info.medicine)
+            health_info.dinner_photo = new_health_info.get("dinner_photo", health_info.dinner_photo)
+            health_info.degree = new_health_info.get("degree", health_info.degree)
+            health_info.voice_text = new_health_info.get("voice_text", health_info.voice_text)
+            
+            # Update the 'updated_at' timestamp
+            tokyo_timezone = pytz.timezone('Asia/Tokyo')
+            health_info.updated_at = datetime.utcnow().replace(tzinfo=pytz.utc).astimezone(tokyo_timezone)
+
+
+            # Commit changes to the database
+            db.session.commit()
+
+            return jsonify({"message": "Health information updated successfully"})
+        else:
+            return jsonify({"message": "No matching health information to update"}), 404
+
+     elif request.method == 'POST':
+        # Create new health information for the specified date
+        new_health_info_data = request.json
+
+        # Assuming HealthInformation model has a constructor that accepts the necessary parameters
+        new_health_info = HealthInformation(
+            senior_user_id=senior_user_id,
+            condition=new_health_info_data.get("condition"),
+            symptom=new_health_info_data.get("symptom"),
+            medicine=new_health_info_data.get("medicine"),
+            dinner_photo=new_health_info_data.get("dinner_photo"),
+            degree=new_health_info_data.get("degree"),
+            voice_text=new_health_info_data.get("voice_text"),
+            created_at=datetime.now(pytz.timezone('Asia/Tokyo')),
+            updated_at=datetime.now(pytz.timezone('Asia/Tokyo'))
+        )
+
+        # Add to the session and commit to the database
+        db.session.add(new_health_info)
+        db.session.commit()
+
+        return jsonify({"message": "Health information created successfully"})
+
+
     return app
 app = create_app()
 
