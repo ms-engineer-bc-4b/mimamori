@@ -1,70 +1,62 @@
-// Home.tsx
-'use client'
-import React, { useState } from 'react';
-import { useForm, SubmitHandler, useFormContext } from 'react-hook-form';
-import Router from 'next/router';
-//import { useRouter } from 'next/navigation'
+"use client";
 
+import { initFirebase } from "@/firebase";
+import { useRouter } from "next/navigation";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-//import { stringify } from 'querystring';
-interface QueryParams {
-  [key: string]: string | string[] | undefined;
-}
-interface LoginForm extends QueryParams {
-  senior_last_name: string;
-  senior_first_name: string;
-  gender: string;
-  birth_date: string;
-  senior_email: string;
-  senior_tel: string;
-  health_status: string;
-  medication: string;
-  medication_frequency: string;
+export default function Home() {
+  const router = useRouter();
 
-  family_last_name: string;
-  family_first_name: string;
-  relationship_with_senior: string;
-  family_email: string;
-  family_tel: string;
-  family_password: string;
-  confirm_family_password: string;
-}
+  const app = initFirebase();
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
 
+  const signIn = async () => {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
 
-
-
-
-function Home() {
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<LoginForm>({ mode: "onChange" });
-  const [formData, setFormData] = useState<LoginForm | null>(null);
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const medicationValue = watch('medication');
-
-  const onSubmit: SubmitHandler<LoginForm> = (data) => {
-    console.log(data);
-    setFormData(data);
-    setShowConfirmation(true);
-  };
-
-  const handleConfirm = () => {
-    if (formData) {
-      Router.push({
-        pathname: '/confirmation',
-        query: formData,
-      });
+    if (user) {
+      goToAccount();
     }
   };
 
-  const handleBack = () => {
-    setFormData(null);
-    setShowConfirmation(false);
+  const rightArrow = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+      />
+    </svg>
+  );
+
+  const goToAccount = () => {
+    router.push("/register/success/subscription/account");
   };
 
   return (
-    <div className='form-container'>
-     
-    </div>
+    <>
+      <div className="">
+
+      </div>
+      <div className="text-xl md:text-2xl font-light mb-8">
+        新規登録が完了しました
+      </div>
+      <button
+        onClick={signIn}
+        className="bg-blue-600 p-4 px-6 text-lg rounded-lg hover:bg-blue-700 shadow-lg"
+      >
+        <div className="flex gap-2 items-center align-middle">
+          Googleログインして決済画面へ{rightArrow}
+        </div>
+      </button>
+    </>
   );
 }
-
-export default Home;

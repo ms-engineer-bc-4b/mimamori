@@ -91,23 +91,19 @@ INSERT INTO FamilyUser (family_last_name, family_first_name, relationship_with_s
 SELECT * FROM FamilyUser;
 ```
 ```bash
-INSERT INTO HealthInformation (senior_user_id, `condition`, symptom, medicine, dinner_photo,degree ,voice_text, registered_at, updated_at)  VALUES (7, 'good', 'head', 1, '', 'Hello, I am feeling good.', NOW(), NOW());
+INSERT INTO HealthInformation (senior_user_id, `condition`, symptom, medicine, dinner_photo, degree, voice_text, created_at, updated_at)
+VALUES (13, 'good', 'head', 'yes', '', 'full', 'Hello, I am feeling good.', NOW(), NOW());
 
-#テスト用※外部キーなし
-INSERT INTO HealthInformation (`condition`, symptom, medicine, dinner_photo, degree, voice_text, created_at, updated_at)
-VALUES ('good', 'head', true, '/path/to/photo.jpg', 'half', 'Hello, I am feeling good.', NOW(), NOW());
 
 
 SELECT * FROM HealthInformation ;
-
 ```
 
 テーブルMessageへサンプル値入れる  
 
 ```bash
-#テスト用※外部キーなし
-INSERT INTO messages (message, created_at, updated_at)
-VALUES ('This is a sample message.', NOW(), NOW());
+
+INSERT INTO messages (id,message, created_at, updated_at) VALUES (11,'This is a sample message.', NOW(), NOW());
 
 SELECT * FROM messages;
 ```
@@ -138,7 +134,7 @@ project-root/
     "medication_frequency": "twice_daily"
   },
   "family": {
-    "family_id": "1cc23456",
+    
     "family_last_name": "山本",
     "family_first_name": "花子",
     "relationship_with_senior": "spouse",

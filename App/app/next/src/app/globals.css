@@ -2,3 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* ベーススタイル設定 */
+@layer base {
+  html,body {
+    @apply h-full;
+  }
+}
+
+/* ユーティリティをまとめたコンポーネントスタイル作成
+@layer components {
+  .btn-blue {
+    @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+  }
+} */
+
+/* 独自のユーティリティ追加
+@layer utilities {
+  .bg-custom-yellow {
+
+    background:yellow;
+  }
+}
+*/
+.toppage {
+  background-image: url('../../src/app/components/styles/lee-DK7msqOZ9fI-unsplash.jpg');
+  background-size: 100% auto;
+  background-position: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  position: relative;
+  z-index: 10;
+  align-items: center;
+  margin-top: 0px;
+
+}
+.input is-large {
+  width: 381.82px;
+  height: 52.48px;
+  left: 117.18px;
+  top: 0;
+  position: absolute;
+  border: 1px solid black;
+}
+
+body {
+  text-align: center;
+  height: 100%;
+  margin: 0;
+  padding: 2px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, #FFED8B, #FCD34D);
+}
+.gray-label {
+  background: #D9D9D9;
+  /* 他のスタイルも必要に応じて追加できます */
+}
+.white-background {
+  background-color: white;
+}
+.parent-container {
+  text-align: center;
+}
+
+.table-container {
+  display: inline-block; /* インラインブロック要素にすることで横幅がコンテンツに合わせられます */
+}
