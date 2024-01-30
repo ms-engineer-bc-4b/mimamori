@@ -11,5 +11,6 @@ class DevelopmentConfig:
     })
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
+    SECRET_KEY = "osjjn2oaojdnfjani"
 
 Config = DevelopmentConfig
