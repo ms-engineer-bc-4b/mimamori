@@ -1,16 +1,52 @@
 "use client"; // 追記
 import Link from 'next/link';
 import { useState } from 'react';
-import FirstHeader from '@/app/components/beforesigninheader';
+// import FirstHeader from '@/app/components/beforesigninheader';
 import Footer from '@/app/components/footer';
 import "axios"
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import axios from 'axios';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import React from "react";
+// import Link from "next/link";
+import { setCookie } from 'nookies';
 
+// ヘッダーコンポーネント
+const FirstHeader = () => {
+  return (
+  <header className="text-center p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
+  {/* ここにヘッダーのコンテンツを追加 */}
+  <div className="left-[96px] top-[8px] absolute text-green-950 text-[64px] font-bold font-['Zen Maru Gothic']">
+  みまもり
+  </div>
+  <div className="left-[768px] top-[69px] absolute text-green-950 text-lg font-normal font-['Inter']">
+    <Link href="/register">
+      新規登録
+    </Link>
+  </div>
+  <div className="left-[900px] top-[69px] absolute text-green-950 text-lg font-normal font-['Inter']">
+    <Link href="/senior/senior_login">
+      シニア用ログイン
+    </Link>
+  </div>
+  <div className="left-[1100px] top-[69px] absolute text-green-950 text-lg font-normal font-['Inter']">
+    <Link href="/login">
+      ご家族用ログイン
+    </Link>
+  </div>
+  <div className="w-[1188px] h-[703px] left-[6px] top-0 absolute">
+  </div>
+
+  </header>
+  );
+};
 
 
 export default function SeniorLogin() {
 // 
+  <FirstHeader/>
+  const router = useRouter(); // フックの呼び出しを関数コンポーネントのボディ内で行う
+
   // メール・パスワード
   const [senior_email, setEmail] = useState("")
   const [senior_password, setPassword] = useState("")
@@ -31,7 +67,6 @@ export default function SeniorLogin() {
    */
   const doLogin = (email: string, password: string) => {
     // const auth = getAuth(app);
-    const router = useRouter(); // フックの呼び出しを関数コンポーネントのボディ内で行う
 
 
         // flask側へメールアドレスとパスワードを送ってログインをする
@@ -52,13 +87,16 @@ export default function SeniorLogin() {
        }
      }).then((res) => {
        console.log(res.data)
-       router.push('/');
+       // ログインフラグをクッキーへ、「auth」というキーで登録
+       setCookie(null, 'auth', res.data.token, {
+        maxAge: 30 * 24 * 60 * 60, // お好きな期限を
+        path: '/',
+      });
+       router.push('/senior/senior_top_page');
 
      }).catch((err) => {
        console.log(err.response.data)
      })
-     
-
   }
 
   /**
@@ -67,7 +105,6 @@ export default function SeniorLogin() {
    * @param password 
    */
   const doSignup = (email: string, password: string) => {
-
 
     // flask側へメールアドレスとパスワードを送って新規ユーザー作成をする
     /* json形式ににしてそうしんする
@@ -152,43 +189,23 @@ export default function SeniorLogin() {
         </form>
       </div>
 
-    <FirstHeader />
-    <Footer />
+    {/* <FirstHeader /> */}
+    {/* <Footer /> */}
     </div>
 
-    /*
-        <Container>
-      <Head>
-        <title>ログイン画面例</title>
-      </Head>
-      <div className='login-container'>
-        <Image
-          src='https://placehold.jp/150x150.png'
-          roundedCircle
-          style={{ marginBottom: '20px' }}
-        />
-        <Form.Control
-          type='text'
-          placeholder='User Name'
-          name='userName'
-          value={payload.userName}
-          onChange={handleChange}></Form.Control>
-        <Form.Control
-          type='password'
-          placeholder='Password'
-          name='password'
-          value={payload.password}
-          onChange={handleChange}></Form.Control>
-        <Button variant='info' type='button' onClick={onClickLogin}>
-          Login
-        </Button>
-      </div>
-    </Container>
     
-    
-    
-    */ 
+  
   )
 }
 
-// export default Login;
+/*
+COOKIEにあるAUTHをとってくるフロント側で必要あり＝＞
+例遷移した時のAPI　誰かわからないと困るから
+JWTのTOKENをフロント側でとってきて　hppt headerにber
+       headers: {
+         "Content-Type": "application/json",
+         "Authorization": "Bearer <token>"
+       }
+にすればTOKENをとってきて導きができる。
+
+*/ 
