@@ -1,158 +1,4 @@
-// "use client"; // 追記
-// import Link from 'next/link';
-// // import { getAllTodos } from "@/api";
-// // import AddTask from "./components/AddTask";
-// // import DailyReport from "./components/TodoList";
-// import { FormEvent } from 'react'
 
-// // シンプルなヘッダーコンポーネント
-// const Header = () => {
-//   return (
-//     <header className="text-center h-[160px] p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
-//     {/* ここにヘッダーのコンテンツを追加 */}
-//     <div className="w-[1400px] h-[703px] relative">
-//       <div className="left-[96px] top-[8px] absolute text-green-950 text-[64px] font-bold font-['Zen Maru Gothic']">
-//         みまもり
-//       </div>
-//       <div className="left-[902px] top-[60px] absolute text-green-950 text-lg font-normal font-['Inter']">
-//       <Link href="/senior/senior_home">
-//         管理画面
-//       </Link>
-//       </div>
-//       <div className="left-[992px] top-[60px] absolute text-green-950 text-lg font-normal font-['Inter']">
-//       <Link href="/senior/senior_login">
-//         ログアウト
-//       </Link>
-//       </div>
-//       <div className="w-[1100px] h-px left-[44px] top-[102px] absolute bg-zinc-300 rounded-[5px]"></div>
-//     </div>
-
-//   </header>
-//   );
-// };
-
-// export default function SeniorReport() {
-//  {/*
-//  https://nextjs.org/docs/pages/building-your-application/data-fetching/forms-and-mutations
-//  https://zenn.dev/kaikusakari/articles/f86d98714bfd93
-//    */}
-// {/* formのsubmitをハンドルしてリクエストを送る */}
-// async function onSubmit(event: FormEvent<HTMLFormElement>) {
-//   event.preventDefault()
-//   const formData = new FormData(event.currentTarget)
-//   const response = await fetch('/api/senior_user_id/', {
-//     // const response = await fetch('/api/senior_user_id/' + id, {
-//     method: 'POST',
-//     // headers: 'Content-Type': 'application/json',
-//     body: JSON.stringify(Object.fromEntries(formData)),
-//   })
-//   // 公式サイトテンプレート
-// // const response = await fetch('/api/submit', {
-// //   method: 'POST',
-// //   body: formData,
-// // })
-
-// // Handle response if necessary
-// const data = await response.json()
-// // 確認
-// // console.log(data)
-// // ...
-
-// const today = new Date();
-
-
-//   return (
-//     // <Header />
-//     <div className="flex flex-col min-h-screen">
-//       {/* ヘッダーの呼び出し */}
-//       {/* メインコンテンツ */}
-//       {/* <main> */}
-//         {/* CSSあり*/}
-//         <div className="w-[1200px] h-[6000px] relative">
-//               {/* 黄色背景 */}
-//               <div className="w-[1200px] h-[6000px] p-2 left-0 top-0 absolute 
-//                 bg-gradient-to-b from-yellow-200 to-yellow-300 border border-black">
-//               </div>
-//               {/* 囲い枠 */}
-//               <div className="w-[1000px] h-[1310px] left-[100px] top-[8px] absolute">
-//                 {/* className="flex-grow flex flex-col items-center p-24" */}
-//                   <div className="w-[91px] h-[27px] left-[566px] top-[115px] 
-//                     absolute text-black text-[17px] font-normal font-['Inter']">
-//                     登録画面
-//                   </div>
-//                   <div className="w-[1000px] h-[1156px] left-0 top-[154px] 
-//                     absolute bg-white rounded-[10px] 
-//                     border border-black border-opacity-50">
-//                   </div>
-//                   <div className="w-[206px] h-[26px] left-[385px] top-[175px] 
-//                     absolute text-black 
-//                     text-[17px] font-normal font-['Inter']">
-//                       {/* 日付関数  Yet*/}
-//                     本日●月●日の健康の記録
-//                     const healthRecords = getHealthRecord(today);
-// }
-
-//                   </div>
-//               </div>
-
-//               {/* return ( */}
-//                 <form onSubmit={onSubmit}>
-//                 {/* </form> */}
-//                   <input type="text" name="name" />
-
-//                 {/* 
-//                 # form
-//                 <form onSubmit={onSubmit}>
-//                 */}
-//                 <input type="radio" name="item" value="1" />
-//                 <input type="radio" name="item" value="2" />
-//                 <input type="radio" name="item" value="3" />
-//                 {/* <button type="submit">Submit</button> */}
-//                 {/* </form>  */}
-
-//                   <button type="submit">Submit</button>
-//                 {/* </form> */}
-
-//               {/* 戻るボタンとその設定 */}
-//               <div className="w-[261px] h-[65px] left-[297px] top-[1344px] 
-//                 absolute bg-zinc-300 rounded-[10px] shadow">
-//               </div>
-//               <div className="left-[401px] top-[1362px] 
-//                 absolute text-black text-[25px] font-normal font-['Inter']">
-//                 <Link href="/senior/senior_top_page">
-//                 戻る
-//                 </Link>
-//               </div>
-
-//               {/* 送信ボタンとその設定 */}
-//               <div className="w-[261px] h-[65px] left-[674px] top-[1344px] 
-//                 absolute bg-zinc-300 rounded-[10px] shadow">
-//             <button
-//               className="bg-blue-500 hover:bg-blue-700 left-[780px] top-[1362px] 
-//               absolute text-black text-[25px] font-normal font-['Inter'] rounded focus:outline-none focus:shadow-outline"
-//               type="button"
-//               onClick={() => { doLogin(senior_email, senior_password) }}
-
-//             >
-//               <Link href="/senior/senior_daily_report_cfm">
-//                 送信
-//               </Link>
-             
-              
-//             </button>
-//             </div>
-              
-//               </form>
-//         </div>
-//         {/* ) */}
-//         {/* </div> */}
-//       {/* </main> */}
-
-//       {/* フッターの呼び出し */}
-//     </div>
-    
-//   );
-// }}
 
 "use client";
 import Link from 'next/link';
@@ -202,19 +48,14 @@ const data = await response.json()
       <main>
         {/* CSSあり*/}
         <div className="w-[1200px] h-[6000px] relative">
-              {/* 黄色背景 */}
-              <div className="w-[1200px] h-[6000px] p-2 left-0 top-0 absolute 
-                bg-gradient-to-b from-yellow-200 to-yellow-300 border border-black">
-              </div>
               {/* 囲い枠 */}
               <div className="w-[1000px] h-[1310px] left-[100px] top-[8px] absolute">
-                {/* className="flex-grow flex flex-col items-center p-24" */}
                   <div className="w-[91px] h-[27px] left-[566px] top-[115px] 
                     absolute text-black text-[17px] font-normal font-['Inter']">
                     登録画面
                   </div>
                   <div className="w-[1000px] h-[1156px] left-0 top-[154px] 
-                    absolute bg-white rounded-[10px] 
+                    absolute rounded-[10px] 
                     border border-black border-opacity-50">
                   </div>
                   <div className="w-[206px] h-[26px] left-[385px] top-[175px] 
@@ -222,6 +63,9 @@ const data = await response.json()
                     text-[17px] font-normal font-['Inter']">
                       {/* 日付関数  Yet*/}
                     本日●月●日の健康の記録
+                    {/* const getHealthRecord = (date: Date) => {
+                    // 日付を Firestore の形式に変換
+                      const formattedDate = firebase.firestore.Timestamp.fromDate(date); */}
                   </div>
               </div>
 

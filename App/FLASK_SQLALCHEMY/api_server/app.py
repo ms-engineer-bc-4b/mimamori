@@ -6,7 +6,7 @@ import json
 from flask_bcrypt import Bcrypt
 import jwt
 from functools import wraps
-import datetime
+from flask_cors import CORS
 
 # JWTトークンの検証デコレータ
 def token_required(f):
@@ -35,6 +35,7 @@ def token_required(f):
 def create_app():
     app = Flask(__name__)
     app.config.from_object('config.Config')
+    CORS(app, origins=["http://localhost:3000"])
 
     init_db(app)
     bcrypt = Bcrypt(app)
@@ -70,9 +71,13 @@ def create_app():
         data = request.get_json()
         print(data)
         hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
-        user = SeniorUser(senior_email=data['email'], senior_password=hashed_password, senior_last_name="", senior_first_name="", gender="", birth_date=datetime.today(), senior_tel="", health_status="", medication=1, medication_frequency="", senior_user_uid="", )
+        print(f'ハッシュパスワード - {hashed_password}')
+        user = SeniorUser(senior_email=data['email'], senior_password=hashed_password, senior_last_name="", senior_first_name="", gender="", birth_date=datetime.today(), senior_tel="", health_status="", medication=1, medication_frequency="", senior_user_uid=data['email'], )
+        print(user)
         db.session.add(user)
+        print('追加')
         db.session.commit()
+        print('新規作成')
         return jsonify({'message': 'Registered successfully'}), 201
 
     # ユーザーログインエンドポイント
@@ -125,7 +130,7 @@ def create_app():
         #     'dinner_photo':current_user.senior_user_dinner_photo,
         #     'degree':current_user.senior_user_degree,
         #     'voice_text': current_user.senior_user_voice_text,
-        #     'created_at': datetime.datetime.utcnow().isoformat()+'Z',
+        #     'created_at': datetime.utcnow().isoformat()+'Z',
         #         # "email": user.senior_email,
         #         # 'token': token
         #     }), 200
@@ -178,6 +183,7 @@ def create_app():
 #  ログアウト：書き方が合っているか確認したい
     @app.route("/logout", methods=["GET"])
     def logout():
+        pass
     # """ユーザーをログアウトする"""
     # logout_user()
     # return jsonify({}), 200

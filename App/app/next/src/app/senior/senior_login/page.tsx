@@ -1,19 +1,16 @@
 "use client"; // 追記
 import Link from 'next/link';
-import { app } from "@/lib/firebase/firebase";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { FirebaseError,initializeApp } from 'firebase/app';
 import { useState } from 'react';
 import FirstHeader from '@/app/components/beforesigninheader';
 import Footer from '@/app/components/footer';
-
+import "axios"
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 
 
 export default function SeniorLogin() {
-  // const router = useRouter(); // フックの呼び出しを関数コンポーネントのボディ内で行う
-
+// 
   // メール・パスワード
   const [senior_email, setEmail] = useState("")
   const [senior_password, setPassword] = useState("")
@@ -33,25 +30,35 @@ export default function SeniorLogin() {
    * @param password 
    */
   const doLogin = (email: string, password: string) => {
-    const auth = getAuth(app);
+    // const auth = getAuth(app);
+    const router = useRouter(); // フックの呼び出しを関数コンポーネントのボディ内で行う
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        alert(`ログインできたよ！${user.email}さん！`);
-        console.log(user);
-        // ログイン成功時にページ遷移
-        const router = useRouter()
-        router.push("/senior_top_page")
-        // router.push('/senior_top_page'); // 取得した router オブジェクトを利用
-            
-        
-      })
-      .catch((error: FirebaseError) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorCode + "\n" + errorMessage)
-      });
+
+        // flask側へメールアドレスとパスワードを送ってログインをする
+    /* json形式ににして送信する
+    {
+      "email": "aaa@aa.aa",
+      "password": "pass"
+    }
+    */
+   console.log('ログイン')
+
+   axios.post('http://localhost:5001/api/senior_login', 
+     {email: senior_email, password: senior_password},
+     {
+       headers: {
+         "Content-Type": "application/json",
+         "Authorization": "Bearer <token>"
+       }
+     }).then((res) => {
+       console.log(res.data)
+       router.push('/');
+
+     }).catch((err) => {
+       console.log(err.response.data)
+     })
+     
+
   }
 
   /**
@@ -60,18 +67,27 @@ export default function SeniorLogin() {
    * @param password 
    */
   const doSignup = (email: string, password: string) => {
-    const auth = getAuth(app)
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user
-        //user.sendEmailVerification()
-        alert(user.email + "さんを登録しました！")
-      })
-      .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        alert(errorCode + "\n" + errorMessage)
+
+    // flask側へメールアドレスとパスワードを送って新規ユーザー作成をする
+    /* json形式ににしてそうしんする
+    {
+      "email": "aaa@aa.aa",
+      "password": "pass"
+    }
+    */
+   console.log('新規作成')
+
+    axios.post('http://localhost:5001/api/senior_register', 
+      {email: senior_email, password: senior_password},
+      {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then((res) => {
+        console.log(res.data)
+      }).catch((err) => {
+        console.log(err.response.data)
       })
   }
 
@@ -136,8 +152,43 @@ export default function SeniorLogin() {
         </form>
       </div>
 
-    {/* <FirstHeader /> */}
-    {/* <Footer /> */}
+    <FirstHeader />
+    <Footer />
     </div>
+
+    /*
+        <Container>
+      <Head>
+        <title>ログイン画面例</title>
+      </Head>
+      <div className='login-container'>
+        <Image
+          src='https://placehold.jp/150x150.png'
+          roundedCircle
+          style={{ marginBottom: '20px' }}
+        />
+        <Form.Control
+          type='text'
+          placeholder='User Name'
+          name='userName'
+          value={payload.userName}
+          onChange={handleChange}></Form.Control>
+        <Form.Control
+          type='password'
+          placeholder='Password'
+          name='password'
+          value={payload.password}
+          onChange={handleChange}></Form.Control>
+        <Button variant='info' type='button' onClick={onClickLogin}>
+          Login
+        </Button>
+      </div>
+    </Container>
+    
+    
+    
+    */ 
   )
 }
+
+// export default Login;

@@ -5,3 +5,4 @@ flask-migrate
 pymysql
 PyJWT
 Flask-Bcrypt
+flask-cors
