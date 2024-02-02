@@ -180,23 +180,7 @@ def create_app():
 
 
 
-#  ログアウト：書き方が合っているか確認したい
-    @app.route("/logout", methods=["GET"])
-    def logout():
-        pass
-    # """ユーザーをログアウトする"""
-    # logout_user()
-    # return jsonify({}), 200
-        
-    # @app.route("/user", methods=["GET"])
-    # @login_required
-    # def show_user_data():
-    #     """現在ログインしているユーザーの情報を返す"""
-    #     user_name = current_user.user_name  # type: ignore
-    #     user_id = current_user.user_id  # type: ignore
 
-    #     res = {"userId": user_id, "userName": user_name}
-    #     return jsonify(res), 200
 
 #  実装必要なもの
     # 健康入力フォーム
