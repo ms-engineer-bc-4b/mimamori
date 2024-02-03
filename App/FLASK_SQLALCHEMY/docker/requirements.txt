@@ -6,3 +6,4 @@ pymysql
 PyJWT
 Flask-Bcrypt
 flask-cors
+flask_jwt_extended

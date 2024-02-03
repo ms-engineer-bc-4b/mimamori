@@ -7,6 +7,8 @@ from flask_bcrypt import Bcrypt
 import jwt
 from functools import wraps
 from flask_cors import CORS
+import base64
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 
 # JWTトークンの検証デコレータ
 def token_required(f):
@@ -90,7 +92,7 @@ def create_app():
         if user and bcrypt.check_password_hash(user.senior_password, data['password']):
             token = jwt.encode({
                 'user_id': user.senior_user_id,
-                'exp': datetime.utcnow() + timedelta(hours=24)
+                'exp': datetime.utcnow() + timedelta(hours=36)
             }, app.config['SECRET_KEY'])
 
             return jsonify({
@@ -116,8 +118,32 @@ def create_app():
     @token_required
     def user_health_register(current_user):
         # 登録処理を書く
+        # data = request.get_json()
+        # print(data)
+        # print('TOKENをとってくる')
         data = request.get_json()
         print(data)
+        # # トークンの有効期限を取得
+        # expires = get_jwt_identity()['exp']
+
+        # # 新しい有効期限を設定
+        # new_expires = expires + datetime.timedelta(days=1)
+
+        # # トークンを再発行
+        # token = create_access_token(identity={'user_id': 1}, expires_delta=new_expires)
+
+        user = SeniorUser.query.filter_by(senior_token=data['token']).first()
+        print(user)
+        # COOKIEにあるAUTHをとってくるフロント側で必要あり＝＞遷移した時のAPIを指定（誰かわからないと困るから）
+        # ＝＞TOKENをとってくる
+        # JWTのTOKENをフロント側でとってきて　hppt headerにber
+        #        headers: {
+        #          "Content-Type": "application/json",
+        #          "Authorization": "Bearer <token>"
+        #        }
+        # にすればTOKENをとってきて導きができる。
+
+
         # if
         # healthinfo = TodaysHealth(senior_email=data['email'], senior_password=hashed_password, senior_last_name="", senior_first_name="", gender="", birth_date=datetime.today(), senior_tel="", health_status="", medication=1, medication_frequency="", senior_user_uid="", )
         # db.session.add(todays_health)
@@ -135,14 +161,6 @@ def create_app():
         #         # 'token': token
         #     }), 200
         # return jsonify({'message': 'Registration failed'}), 400
-     # バリデーションチェック：書き方が合っているか確認したい
-        if not data['senior_user_id'].isdigit():
-            return jsonify({'error': 'Senior user ID must be an integer'}), 400
-        if data['condition'] not in ['good', 'normal', 'bad']:
-            return jsonify({'error': 'Condition must be one of "good", "normal", or "bad"'}), 400
-        if data['symptom'] not in ['head', 'face', 'neck', 'shoulder', 'chest', 'rightArm', 'leftArm', 'leftHand', 'rightHand', 'abdomen', 'rightLeg', 'leftLeg', 'leftAnkle', 'rightAnkle', 'back', 'buttocks']:
-            return jsonify({'error': 'Symptom must be one of "head", "face", "neck", "shoulder", "chest", "rightArm", "leftArm", "leftHand", "rightHand", "abdomen", "rightLeg", "leftLeg", "leftAnkle", "rightAnkle", "back", "buttocks"'}), 400
-
         # 登録処理：書き方が合っているか確認したい
         todays_health = TodaysHealth(
             senior_user_id=data['senior_user_id'],
