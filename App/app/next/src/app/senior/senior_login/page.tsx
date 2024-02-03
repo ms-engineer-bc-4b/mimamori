@@ -1,20 +1,18 @@
-"use client"; // 追記
+"use client"; 
 import Link from 'next/link';
 import { useState } from 'react';
 import FirstHeader from '@/app/components/beforesigninheader';
 import Footer from '@/app/components/footer';
 import "axios"
-// import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import React from "react";
-// import Link from "next/link";
 import { setCookie } from 'nookies';
 
 
 export default function SeniorLogin() {
 // 
-  <FirstHeader/>
+  // <FirstHeader/>
   const router = useRouter(); // フックの呼び出しを関数コンポーネントのボディ内で行う
 
   // メール・パスワード
@@ -37,9 +35,7 @@ export default function SeniorLogin() {
    */
   const doLogin = (email: string, password: string) => {
     // const auth = getAuth(app);
-
-
-        // flask側へメールアドレスとパスワードを送ってログインをする
+    // flask側へメールアドレスとパスワードを送ってログインをする
     /* json形式ににして送信する
     {
       "email": "aaa@aa.aa",

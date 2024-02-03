@@ -8,7 +8,7 @@ import jwt
 from functools import wraps
 from flask_cors import CORS
 import base64
-from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
+# from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 
 # JWTトークンの検証デコレータ
 def token_required(f):
@@ -122,29 +122,11 @@ def create_app():
         # print(data)
         # print('TOKENをとってくる')
         data = request.get_json()
+        print('フォームデータ')
         print(data)
-        # # トークンの有効期限を取得
-        # expires = get_jwt_identity()['exp']
-
-        # # 新しい有効期限を設定
-        # new_expires = expires + datetime.timedelta(days=1)
-
-        # # トークンを再発行
-        # token = create_access_token(identity={'user_id': 1}, expires_delta=new_expires)
-
         user = SeniorUser.query.filter_by(senior_token=data['token']).first()
+        print('Wuser')
         print(user)
-        # COOKIEにあるAUTHをとってくるフロント側で必要あり＝＞遷移した時のAPIを指定（誰かわからないと困るから）
-        # ＝＞TOKENをとってくる
-        # JWTのTOKENをフロント側でとってきて　hppt headerにber
-        #        headers: {
-        #          "Content-Type": "application/json",
-        #          "Authorization": "Bearer <token>"
-        #        }
-        # にすればTOKENをとってきて導きができる。
-
-
-        # if
         # healthinfo = TodaysHealth(senior_email=data['email'], senior_password=hashed_password, senior_last_name="", senior_first_name="", gender="", birth_date=datetime.today(), senior_tel="", health_status="", medication=1, medication_frequency="", senior_user_uid="", )
         # db.session.add(todays_health)
         # db.session.commit()    
