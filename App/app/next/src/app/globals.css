@@ -10,6 +10,8 @@
   }
 }
 
+
+
 /* ユーティリティをまとめたコンポーネントスタイル作成
 @layer components {
   .btn-blue {
@@ -26,7 +28,7 @@
 }
 */
 .toppage {
-  background-image: url('../../src/app/components/styles/lee-DK7msqOZ9fI-unsplash.jpg');
+ /* background-image: url('../../src/app/components/styles/lee-DK7msqOZ9fI-unsplash.jpg');*/
   background-size: 100% auto;
   background-position: center;
   flex-grow: 1;
@@ -57,7 +59,7 @@ body {
   left: 0;
   top: 0;
   width: 100%;
-  background: linear-gradient(to bottom, #FFED8B, #FCD34D);
+  //background: linear-gradient(to bottom, #FFED8B, #FCD34D);
 }
 .gray-label {
   background: #D9D9D9;
