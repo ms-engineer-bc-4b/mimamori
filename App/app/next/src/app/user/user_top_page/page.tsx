@@ -18,10 +18,7 @@ import Body from "@/app/components/Body";
 
 // export default Canvas;
 
-// ./node_modules/canvas/build/Release/canvas.node
-// Module parse failed: Unexpected character '�' (1:0)
-// You may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders
-// (Source code omitted for this binary file)
+
 
 export default function SeniorReportDone() {
   return (
