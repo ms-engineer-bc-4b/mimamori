@@ -1,5 +1,5 @@
-"use client";
-import Body from "@/app/components/Body";
+// "use client";
+// import Body from "@/app/components/Body";
 // import Konva from "konva";
 
 // import { Stage, Layer, Circle } from 'react-konva';
@@ -20,8 +20,8 @@ import Body from "@/app/components/Body";
 
 
 
-export default function SeniorReportDone() {
-  return (
-    <Body/>
-  )}
+// export default function Repo() {
+//   return (
+//     <Body/>
+//   )}
 
