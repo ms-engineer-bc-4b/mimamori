@@ -1,14 +1,13 @@
 "use client"; 
-import Link from 'next/link';
 import { useState } from 'react';
-import FirstHeader from '@/app/components/beforesigninheader';
-import Footer from '@/app/components/footer';
 import "axios"
 import axios from 'axios';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import React from "react";
 import { setCookie } from 'nookies';
-
+import FirstHeader from '@/app/components/beforesigninheader';
+import Footer from '@/app/components/footer';
+import Link from 'next/link';
 
 export default function SeniorLogin() {
 // 
