@@ -35,6 +35,7 @@ interface ImageObj {
 
 function uploadImage(obj: ImageObj) {
   const [key, setKey] = useState(0);
+  const [formData, setFormData] = useState(new FormData());
 
   useEffect(() => {
     const fileReader = new FileReader();
@@ -64,8 +65,23 @@ function uploadImage(obj: ImageObj) {
       imgPreviewField.appendChild(figure);
 
       setKey((prevKey) => prevKey + 1);
+
+      // アップロード処理
+      formData.append("image", obj.target.files[0]);
+      const options = {
+        method: "POST",
+        body: formData,
+      };
+
+      fetch("/upload", options).then((response) => {
+        if (response.ok) {
+          console.log("アップロード成功");
+        } else {
+          console.log("アップロード失敗");
+        }
+      });
     };
   }, [obj]);
-}
 
+}
 export default uploadImage;

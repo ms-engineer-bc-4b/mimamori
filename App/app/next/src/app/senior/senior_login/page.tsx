@@ -106,7 +106,8 @@ export default function SeniorLogin() {
     <div className="bg-gradient-to-b from-yellow-200 to-yellow-300 w-screen h-screen flex justify-center items-center">
       <div className="w-[220px] h-[20px] left-[640px] top-[200px] absolute text-black text-xl font-normal font-['Inter']">
       <p>助けられ上手さん<br/>
-        ログインページです</p>
+        ログインページ
+      </p>
       </div>
       <div className="w-full max-w-xs">
         <form className="bg-slate-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -117,7 +118,7 @@ export default function SeniorLogin() {
             </label>
             <input
               className="shadow bg-slate-50  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email" type="text" placeholder="12345@mimamori.com" onChange={handleChangeEmail}
+              id="senior_email" type="text" placeholder="12345@mimamori.com" onChange={handleChangeEmail}
             />
           </div>
 

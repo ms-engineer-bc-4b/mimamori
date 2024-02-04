@@ -147,28 +147,13 @@ export default function SeniorHealth() {
         {/* 4 */}
         <div className={"flex"}>
           <label>4.昨日の夕飯を登録してください</label>
-          
-          {/* <div className="">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={(e) => setFormData({ ...formData, dinner_photo: e.target.value })}
-            >
-              
-              画像をアップロードする */}
-              {/* <uploadImage/> */}
-            {/* </button> */}
-          {/* </div> */}
-            <form>
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                onchange="loadImage(this)"
-              />
-            </form>
-            <div id="imgPreviewField">
-            </div>
-          {/* </div> */}
+
+          <div>
+            <input type="file" accept="image/*" 
+            multiple onChange={(e) => setFormData
+            ({ ...formData, dinner_photo: e.target.files[0] })} />
+            <div id="imgPreviewField"></div>
+          </div>
         </div>
 
         <div className={"flex"}>

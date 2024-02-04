@@ -45,7 +45,7 @@ mysql-dbのIPv4Address（この場合は172.18.0.2）をconfig.pyの[IPアドレ
 別のコマンドプロンプト立ち上げてコンテナへ入る  
 
 ```bash
-docker exec -it flask-python bash
+docker exec -it flask-python bashes
 ```
 DBの初期化、マイグレ等をする  
 ```bash
