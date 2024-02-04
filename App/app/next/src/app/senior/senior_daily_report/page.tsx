@@ -18,7 +18,7 @@ import { setCookie } from 'nookies';
 // import {Button} from next
 import next from 'next';
 
-// 
+// 日時取得
 // 現在の日時を取得
 const now = new Date();
 // 日本語のロケールで日付のみを取得
@@ -27,20 +27,19 @@ const nowStr = now.toLocaleDateString('ja-JP', {
   month: 'numeric',
   day: 'numeric',
 });
-  // 出力: "2024年2月4日"
-  // console.log(nowStr);
-  
-const App = () => {
-  const [condition, setCondition] = useState('');
 
-  const handleChangeCondition = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCondition(e.target.value);
-  };
+// １のボタン送付
+  // const App = () => {
+  //   const [condition, setCondition] = useState('');
 
-  const handleSubmit = () => {
-    // データ送信処理
-    console.log(condition);
-  };
+  //   const handleChangeCondition = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //     setCondition(e.target.value);
+  //   };
+
+  //   const handleSubmit = () => {
+  //     // データ送信処理
+  //     console.log(condition);
+  //   };
 
 
 export default function SeniorHealth() {
@@ -182,56 +181,53 @@ export default function SeniorHealth() {
                   </div>
               </div>
              {/* 1 */}
-             <div>
-      <div className="w-[123px] h-[17px] left-[228px] top-[262px] absolute text-black text-[17px] font-normal font-['Inter']">
-        1.体調について
-      </div>
-      <div className="w-[294px] h-9 left-[575px] top-[254px] absolute">
-        {/* いい */}
-        <div className="w-[98px] h-9 left-0 top-0 absolute  bg-white border border-black">
-          <input
-            type="radio"
-            name="condition"
-            value="good"
-            checked={condition === 'good'}
-            onChange={handleChangeCondition}
-          />
-        </div>
-        <div className="left-[32px] top-[8px] 
-          absolute text-black text-[17px] font-normal font-['Inter']">
-          良い
-        </div>
-        {/* 普通 */}
-        <div className="w-[98px] h-9 left-[98px] top-0 absolute bg-white border border-black">
-          <input
-            type="radio"
-            name="condition"
-            value="normal"
-            checked={condition === 'normal'}
-            onChange={handleChangeCondition}
-          />
-        </div>
-        <div className="left-[126px] top-[8px] 
-          absolute text-black text-[17px] font-normal font-['Inter']">
-          普通
-        </div>
-        {/* 悪い */}
-        <div className="w-[98px] h-9 left-[196px] top-0 absolute bg-white border border-black">
-          <input
-            type="radio"
-            name="condition"
-            value="bad"
-            checked={condition === 'bad'}
-            onChange={handleChangeCondition}
-          />
-        </div>
-        <div className="left-[228px] top-[8px] 
-          absolute text-black text-[17px] font-normal font-['Inter']">
-          悪い
-        </div>
-      </div>
-      <button onClick={handleSubmit}>送信</button>
-    </div>
+             {/* <div>
+              <div className="w-[123px] h-[17px] left-[228px] top-[262px] absolute text-black text-[17px] font-normal font-['Inter']">
+                1.体調について
+              </div>
+              <div className="w-[294px] h-9 left-[575px] top-[254px] absolute">
+                <div className="w-[98px] h-9 left-0 top-0 absolute  bg-white border border-black">
+                  <input
+                    type="radio"
+                    name="condition"
+                    value="good"
+                    checked={condition === 'good'}
+                    onChange={handleChangeCondition}
+                  />
+                </div>
+                <div className="left-[32px] top-[8px] 
+                  absolute text-black text-[17px] font-normal font-['Inter']">
+                  良い
+                </div>
+                <div className="w-[98px] h-9 left-[98px] top-0 absolute bg-white border border-black">
+                  <input
+                    type="radio"
+                    name="condition"
+                    value="normal"
+                    checked={condition === 'normal'}
+                    onChange={handleChangeCondition}
+                  />
+                </div>
+                <div className="left-[126px] top-[8px] 
+                  absolute text-black text-[17px] font-normal font-['Inter']">
+                  普通
+                </div>
+                <div className="w-[98px] h-9 left-[196px] top-0 absolute bg-white border border-black">
+                  <input
+                    type="radio"
+                    name="condition"
+                    value="bad"
+                    checked={condition === 'bad'}
+                    onChange={handleChangeCondition}
+                  />
+                </div>
+                <div className="left-[228px] top-[8px] 
+                  absolute text-black text-[17px] font-normal font-['Inter']">
+                  悪い
+                </div>
+              </div>
+              <button onClick={handleSubmit}>送信</button>
+            </div> */}
 
              {/* </form> */}
         {/* </div> */}

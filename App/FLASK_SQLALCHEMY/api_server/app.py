@@ -111,54 +111,14 @@ def create_app():
         }), 200
     
     # 患者様の健康情報登録フォーム用のAPI
+    
 
     # 登録：書き方が合っているか確認したい
     # /api/{senior_user_id}/health	POST	新規登録
     @app.route('/api/health', methods=['POST'])
     @token_required
     def user_health_register(current_user):
-        # 登録処理を書く
-        # data = request.get_json()
-        # print(data)
-        # print('TOKENをとってくる')
-        data = request.get_json()
-        print('フォームデータ')
-        print(data)
-        user = SeniorUser.query.filter_by(senior_token=data['token']).first()
-        print('Wuser')
-        print(user)
-        # healthinfo = TodaysHealth(senior_email=data['email'], senior_password=hashed_password, senior_last_name="", senior_first_name="", gender="", birth_date=datetime.today(), senior_tel="", health_status="", medication=1, medication_frequency="", senior_user_uid="", )
-        # db.session.add(todays_health)
-        # db.session.commit()    
-        # return jsonify({
-        #     'senior_user_id': current_user.senior_user_id,
-        #     'condition': current_user.senior_user_condition,
-        #     'symptom': current_user.senior_user_symptom,
-        #     'medicine': current_user.senior_user_medicine,
-        #     'dinner_photo':current_user.senior_user_dinner_photo,
-        #     'degree':current_user.senior_user_degree,
-        #     'voice_text': current_user.senior_user_voice_text,
-        #     'created_at': datetime.utcnow().isoformat()+'Z',
-        #         # "email": user.senior_email,
-        #         # 'token': token
-        #     }), 200
-        # return jsonify({'message': 'Registration failed'}), 400
-        # 登録処理：書き方が合っているか確認したい
-        todays_health = TodaysHealth(
-            senior_user_id=data['senior_user_id'],
-            condition=data['condition'],
-            symptom=data['symptom'],
-            medicine=data['medicine'],
-            dinner_photo=data['dinner_photo'],
-            degree=data['degree'],
-            voice_text=data['voice_text'],
-        )
-        db.session.add(todays_health)
-        db.session.commit()
-
-        return jsonify({
-            'message': 'Health information registered successfully'
-        }), 201
+        pass
     
 
 

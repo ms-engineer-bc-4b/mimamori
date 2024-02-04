@@ -22,7 +22,7 @@ class SeniorUser(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"), onupdate=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
    #※本番はテーブル連携するので#外す  family = relationship('FamilyUser', back_populates='senior')
-   #※本番はテーブル連携するので#外す health_information = relationship('HealthInformation', back_populates='senior')
+    health_informations = db.relationship('HealthInformation', backref='senior_user', lazy=True)
 
 class FamilyUser(db.Model):
     __tablename__ = 'FamilyUser'
@@ -45,7 +45,7 @@ class HealthInformation(db.Model):
     __tablename__ = 'HealthInformation'
 
     id = db.Column(db.Integer, primary_key=True)
-    #※本番はテーブル連携するので#外すsenior_user_id = db.Column(db.Integer, ForeignKey('SeniorUser.senior_user_id'), nullable=False)
+    senior_user_id = db.Column(db.Integer, db.ForeignKey('SeniorUser.senior_user_id'), nullable=False)
     condition = db.Column(db.Enum('good', 'normal', 'bad'), nullable=False)
     symptom = db.Column(db.Enum('head', 'face', 'neck', 'shoulder', 'chest', 'rightArm', 'leftArm', 'leftHand', 'rightHand', 'abdomen', 'rightLeg', 'leftLeg', 'leftAnkle', 'rightAnkle', 'back', 'buttocks'), nullable=False)
     medicine = db.Column(db.Boolean, nullable=False)
