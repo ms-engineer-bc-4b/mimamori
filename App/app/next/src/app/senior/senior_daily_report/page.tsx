@@ -10,7 +10,6 @@ import axios from 'axios';
 import {useRouter, usePathname, useSearchParams} from 'next/navigation'
 import React from "react";
 import {setCookie, parseCookies} from 'nookies';
-// import {Button} from next
 import next from 'next';
 import {number} from "prop-types";
 import VoiceToText from "@/app/components/VoiceToText"
@@ -66,14 +65,23 @@ export default function SeniorHealth() {
   }, [formData]);
 
   return (
-    <div className="">
-      <div className="">
-        <Header/>
+    <div className="container">
+      <Header/>
+
+      <div className="w-[1000px] h-[1156px] left-0 top-[120px] absolute rounded-[10px] border border-black border-opacity-50">
       </div>
+      <div className="w-[91px] h-[27px] left-[400px] top-[100px] absolute text-black text-[25px] font-normal font-['Inter']">
+        健康の<br/>
+        登録
+      </div>
+      <div className="w-[206px] h-[26px] left-[385px] top-[200px] absolute text-black text-[17px] font-normal font-['Inter']">
+        本日 {nowStr} の健康の記録
+      </div>
+    
       <form>
-      <div>
+      <div >
           <div
-              className="">
+              className={"flex"}>
             1.体調についてどうですか？
           </div>
           <div className="">
@@ -180,9 +188,9 @@ export default function SeniorHealth() {
 
       </form>
       {/* ボタンコンポーネント */}
-      <div>
+      <div className=''>
           <button 
-          className="w-[261px] h-[65px] left-[674px] top-[1344px] absolute bg-zinc-300 hover:bg-zinc-600 rounded-[10px] shadow">
+          className="w-[261px] h-[65px] absolute bg-zinc-300 hover:bg-zinc-600 rounded-[10px] shadow">
             <Link href={"/senior/senior_daily_report_cfm"}>確認
             </Link>
           </button>

@@ -38,7 +38,7 @@ def token_required(f):
 def create_app():
     app = Flask(__name__)
     app.config.from_object('config.Config')
-    CORS(app, origins=["http://localhost:3004"])
+    CORS(app, origins=["http://localhost:3000"])
 
     init_db(app)
     bcrypt = Bcrypt(app)
