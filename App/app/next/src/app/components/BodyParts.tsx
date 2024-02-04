@@ -1,0 +1,16 @@
+export const bodyParts: Record<string, string> = {
+  head: '頭',
+  face: '顔',
+  neck: '首',
+  shoulder: '肩',
+  leftarm: '左腕',
+  chest: '胸',
+  rightarm: '右腕',
+  stomach: 'お腹',
+  lefthand: '左手',
+  righthand: '右手',
+  leftleg: '左足',
+  rightleg: '右足',
+  leftankle: '左足首',
+  rightankle: '右足首',
+};
