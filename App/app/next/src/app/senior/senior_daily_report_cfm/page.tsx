@@ -5,7 +5,15 @@ import Link from 'next/link';
 // import DailyReport from "./components/TodoList";
 import Footer from '@/app/components/footer';
 import Header  from '@/app/components/aftersigninheader';
-
+// 日時取得
+// 現在の日時を取得
+const now = new Date();
+// 日本語のロケールで日付のみを取得
+const nowStr = now.toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+});
 
 
 export default function SeniorReportCmf() {
@@ -35,8 +43,7 @@ export default function SeniorReportCmf() {
                   <div className="w-[206px] h-[26px] left-[385px] top-[175px] 
                     absolute text-black 
                     text-[17px] font-normal font-['Inter']">
-                      {/* 日付関数  Yet*/}
-                    本日●月●日の健康の記録
+                      本日 {nowStr} の健康の記録
                   </div>
               </div>
 

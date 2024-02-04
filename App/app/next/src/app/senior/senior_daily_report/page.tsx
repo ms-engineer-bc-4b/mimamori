@@ -176,7 +176,6 @@ export default function SeniorHealth() {
                   <div className="w-[206px] h-[26px] left-[385px] top-[175px] 
                     absolute text-black 
                     text-[17px] font-normal font-['Inter']">
-                      {/* 日付関数  Yet*/}
                       本日 {nowStr} の健康の記録
                   </div>
               </div>

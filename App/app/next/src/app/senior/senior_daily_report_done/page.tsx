@@ -31,6 +31,16 @@ const Header = () => {
 
   );
 };
+// 日時取得
+// 現在の日時を取得
+const now = new Date();
+// 日本語のロケールで日付のみを取得
+const nowStr = now.toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+});
+
 
 export default function SeniorReportDone() {
   return (
@@ -44,8 +54,8 @@ export default function SeniorReportDone() {
           {/* 日付表示 */}
           <div className="w-[206px] h-[26px] left-[493px] top-[115px] absolute
            text-black text-[17px] font-normal font-['Inter']">
-            {/* 日付取得の関数を後ほど記載 */}
-            本日●月●日の健康の記録
+            
+            本日 {nowStr} の健康の記録
           </div>
           {/* お礼文章 */}
           <div className="w-[999px] h-[116px] left-[101px] top-[176px] absolute text-center
