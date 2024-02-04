@@ -55,7 +55,7 @@ export default function SeniorReportDone() {
           <div className="w-[206px] h-[26px] left-[493px] top-[115px] absolute
            text-black text-[17px] font-normal font-['Inter']">
             
-            本日 {nowStr} の健康の記録
+            {nowStr} の健康の記録
           </div>
           {/* お礼文章 */}
           <div className="w-[999px] h-[116px] left-[101px] top-[176px] absolute text-center

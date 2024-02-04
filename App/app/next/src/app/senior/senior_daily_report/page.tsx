@@ -1,8 +1,5 @@
 "use client";
 import Link from 'next/link';
-// import { getAllTodos } from "@/api";
-// import AddTask from "./components/AddTask";
-// import DailyReport from "./components/TodoList";
 import {FormEvent, useEffect} from 'react'
 import Header from '@/app/components/aftersigninheader';
 import Image from 'next/image'
@@ -30,7 +27,7 @@ const nowStr = now.toLocaleDateString('ja-JP', {
 
 export default function SeniorHealth() {
   // 
-  // <FirstHeader/>
+  <Header/>
   const router = useRouter(); // フックの呼び出しを関数コンポーネントのボディ内で行う
   const [formData, setFormData] = useState({
     condition: "",
