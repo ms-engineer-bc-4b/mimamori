@@ -12,7 +12,7 @@ import { setCookie } from 'nookies';
 
 export default function SeniorLogin() {
 // 
-  // <FirstHeader/>
+  
   const router = useRouter(); // フックの呼び出しを関数コンポーネントのボディ内で行う
 
   // メール・パスワード
@@ -97,12 +97,16 @@ export default function SeniorLogin() {
   return (
 
 //    {/* 全体的な構成 */}
-//{/* <div className="w-[1200px] h-[2000px]"> */}
-//{/* 黄色背景 */}
-    <div className="bg-gradient-to-b from-yellow-200 to-yellow-300 w-screen h-screen flex justify-center items-center">
+// {/* <div className="w-[1200px] h-[2000px]"> */}
+<div>
+  <FirstHeader/>
 
-      <div className="w-[220px] h-[23px] left-[500px] top-[233px] absolute text-black text-xl font-normal font-['Inter']">
-      <p>シニアの方のログインページです</p>
+
+{/* 黄色背景 */}
+    <div className="bg-gradient-to-b from-yellow-200 to-yellow-300 w-screen h-screen flex justify-center items-center">
+      <div className="w-[220px] h-[20px] left-[640px] top-[200px] absolute text-black text-xl font-normal font-['Inter']">
+      <p>助けられ上手さん<br/>
+        ログインページです</p>
       </div>
       <div className="w-full max-w-xs">
         <form className="bg-slate-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -113,7 +117,7 @@ export default function SeniorLogin() {
             </label>
             <input
               className="shadow bg-slate-50  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="username" type="text" placeholder="Username" onChange={handleChangeEmail}
+              id="email" type="text" placeholder="12345@mimamori.com" onChange={handleChangeEmail}
             />
           </div>
 
@@ -127,12 +131,8 @@ export default function SeniorLogin() {
               className="shadow bg-slate-50  appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="senior_password" type="senior_password" placeholder="********" onChange={handleChangePassword}
             />
-            <p className="text-red-500 text-xs italic">Please choose a senior_password.</p>
+            <p className="text-red-500 text-xs italic">パスワード</p>
           </div>
-
-
-
-
 
           <div className="flex items-center justify-between">
             <button
@@ -154,23 +154,9 @@ export default function SeniorLogin() {
         </form>
       </div>
 
-    {/* <FirstHeader /> */}
-    {/* <Footer /> */}
     </div>
-
+</div>
     
   
   )
 }
-
-/*
-COOKIEにあるAUTHをとってくるフロント側で必要あり＝＞
-例遷移した時のAPI　誰かわからないと困るから
-JWTのTOKENをフロント側でとってきて　hppt headerにber
-       headers: {
-         "Content-Type": "application/json",
-         "Authorization": "Bearer <token>"
-       }
-にすればTOKENをとってきて導きができる。
-
-*/ 

@@ -4,10 +4,10 @@ import Link from "next/link";
 // シンプルなヘッダーコンポーネント
 const Header = () => {
   return (
-    <header className="text-center h-[160px] p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
+    <header className="text-center h-[100px] p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
     {/* ここにヘッダーのコンテンツを追加 */}
 
-    <div className="w-[1400px] h-[703px] relative">
+    <div className="w-[1400px] h-[90px] relative">
       <div className="left-[96px] top-[8px] absolute text-green-950 text-[64px] font-bold font-['Zen Maru Gothic']">
         みまもり
       </div>
@@ -21,7 +21,7 @@ const Header = () => {
         ログアウト
       </Link>
       </div>
-      <div className="w-[1100px] h-px left-[44px] top-[102px] absolute bg-zinc-300 rounded-[5px]"></div>
+      <div className="w-[1100px] h-px left-[44px] top-[90px] absolute bg-zinc-300 rounded-[5px]"></div>
     </div>
 
   </header>

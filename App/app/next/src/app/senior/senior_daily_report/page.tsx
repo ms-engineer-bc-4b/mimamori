@@ -13,6 +13,9 @@ import {setCookie, parseCookies} from 'nookies';
 // import {Button} from next
 import next from 'next';
 import {number} from "prop-types";
+import VoiceToText from "@/app/components/VoiceToText"
+import uploadImage from '@/app/components/UploadImage';
+
 
 // 日時取得
 // 現在の日時を取得
@@ -26,13 +29,16 @@ const nowStr = now.toLocaleDateString('ja-JP', {
 
 
 export default function SeniorHealth() {
+  // 音声を文章化
+  const [text, setText] = useState<string>("");
+  // フックの呼び出しを関数コンポーネントのボディ内で行う
+  const router = useRouter(); 
   // 
-  <Header/>
-  const router = useRouter(); // フックの呼び出しを関数コンポーネントのボディ内で行う
   const [formData, setFormData] = useState({
     condition: "",
     symptom: "head",
     medicine: false,
+    dinner_photo:"",
     degree: "full",
     voice_text: "",
   })
@@ -60,11 +66,15 @@ export default function SeniorHealth() {
   }, [formData]);
 
   return (
+    <div className="">
+      <div className="">
+        <Header/>
+      </div>
       <form>
-        <div>
+      <div>
           <div
               className="">
-            1.体調について
+            1.体調についてどうですか？
           </div>
           <div className="">
             <div className="">
@@ -108,8 +118,9 @@ export default function SeniorHealth() {
             </div>
           </div>
         </div>
+        {/* 2ReactKonva */}
         <div className={"flex"}>
-          <label>2.調子の悪いところ</label>
+          <label>2.調子の悪いところはどこですか？</label>
           <select onChange={(e: any) => {
             setFormData({...formData, symptom: e.target.value})
           }}>
@@ -119,7 +130,7 @@ export default function SeniorHealth() {
           </select>
         </div>
         <div className={"flex"}>
-          <label>3.薬は飲みましたか</label>
+          <label>3.薬は飲みましたか？</label>
           <input
               type="checkbox"
               name="condition"
@@ -133,8 +144,35 @@ export default function SeniorHealth() {
               }}
           />
         </div>
+        {/* 4 */}
         <div className={"flex"}>
-          <label>4.食欲</label>
+          <label>4.昨日の夕飯を登録してください</label>
+          
+          {/* <div className="">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={(e) => setFormData({ ...formData, dinner_photo: e.target.value })}
+            >
+              
+              画像をアップロードする */}
+              {/* <uploadImage/> */}
+            {/* </button> */}
+          {/* </div> */}
+            <form>
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                onchange="loadImage(this)"
+              />
+            </form>
+            <div id="imgPreviewField">
+            </div>
+          {/* </div> */}
+        </div>
+
+        <div className={"flex"}>
+          <label>5.昨日の食欲はどうでしたか？</label>
           <select onChange={(e: any) => {
             setFormData({...formData, degree: e.target.value})
           }}>
@@ -143,9 +181,29 @@ export default function SeniorHealth() {
             <option value={'less'}>半分以下</option>
           </select>
         </div>
-        <Link href={"/senior/senior_daily_report_cfm"}>確認</Link>
-      </form>
+        {/* <div className={"flex"}>
+          <label>6.音声で体調を登録してください</label>
+          <div className="">
+          <VoiceToText setText={setText}/>
+          <textarea id="voicetotext" name="voicetotext" cols="45" rows="8" 
+          aria-label="音声をテキストフィールド value={text} 
+          onChange={(e) => setFormData({...formData, voice_to_text:[setText(e.target.value)]}>
+          </textarea>
+          </div>
+        </div> */}
 
+
+      </form>
+      {/* ボタンコンポーネント */}
+      <div>
+          <button 
+          className="w-[261px] h-[65px] left-[674px] top-[1344px] absolute bg-zinc-300 hover:bg-zinc-600 rounded-[10px] shadow">
+            <Link href={"/senior/senior_daily_report_cfm"}>確認
+            </Link>
+          </button>
+      </div>
+
+    </div>
 
   );
 }

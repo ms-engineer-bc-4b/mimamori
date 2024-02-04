@@ -2,35 +2,9 @@ import Link from 'next/link';
 // import { getAllTodos } from "@/api";
 // import AddTask from "./components/AddTask";
 // import DailyReport from "./components/TodoList";
-
-// シンプルなヘッダーコンポーネント
-const Header = () => {
-  return (
-    <header className="text-center p-2 left-0 top-0 bg-gradient-to-b from-yellow-200 to-yellow-300">
-    {/* ここにヘッダーのコンテンツを追加 */}
-
-    <div className="w-[1188px] h-[703px] relative">
-    <div className="left-[96px] top-[8px] absolute text-green-950 text-[64px] font-bold font-['Zen Maru Gothic']">
-      みまもり
-    </div>
-    <div className="left-[902px] top-[60px] absolute text-green-950 text-lg font-normal font-['Inter']">
-    <Link href="/senior/senior_home">
-      管理画面
-    </Link>
-    </div>
-    <div className="left-[992px] top-[60px] absolute text-green-950 text-lg font-normal font-['Inter']">
-    <Link href="/senior/senior_login">
-      ログアウト
-    </Link>
-    </div>
-    <div className="w-[1100px] h-px left-[44px] top-[102px] absolute bg-zinc-300 rounded-[5px]"></div>
-    </div>
-
-  </header>
+import Header from '@/app/components/aftersigninheader';
 
 
-  );
-};
 // 日時取得
 // 現在の日時を取得
 const now = new Date();
@@ -51,16 +25,11 @@ export default function SeniorReportDone() {
       {/* メインコンテンツ */}
       <main className="flex-grow flex flex-col items-center p-24">
         {/* CSS */}
-          {/* 日付表示 */}
-          <div className="w-[206px] h-[26px] left-[493px] top-[115px] absolute
-           text-black text-[17px] font-normal font-['Inter']">
-            
-            {nowStr} の健康の記録
-          </div>
+
           {/* お礼文章 */}
           <div className="w-[999px] h-[116px] left-[101px] top-[176px] absolute text-center
            text-black text-[17px] font-normal font-['Inter']">
-            登録ありがとうございました。<br/>
+            {nowStr} の健康登録ありがとうございました。<br/>
             登録内容を家族へ送信しました。<br/>
             月次の管理画面を確認したい場合は管理画面ボタンを押下してください
           </div>

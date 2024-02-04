@@ -19,8 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "canvas": ["./node_modules/canvas"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
