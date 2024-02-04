@@ -8,10 +8,10 @@
 
   | パス                         | メソッド               | 説明               |
   |--------------------------|---------------------|-------------------|
-  | `/api/calender/{senior_user_id}/{healthInformation_created_atをYYYYMMDD表示したもの}`      | GET              | カレンダー情報取得           |
-  | `/api/calender/{senior_user_id}/{healthInformation_created_atをYYYYMMDD表示したもの}`      | PUT              | カレンダー情報更新           |
-  | `/api/calender/{senior_user_id}/{healthInformation_created_atをYYYYMMDD表示したもの}`      | DELETE             | カレンダー情報削除           |
-  | `/api/calender/{senior_user_id}/{healthInformation_created_atをYYYYMMDD表示したもの}`      | POST             | カレンダー情報投稿           |
+  | `/api/calender/senior_id/<int:senior_user_id>/created_at/{healthInformation_created_atをYYYYMMDD表示したもの}`      | GET              | カレンダー情報取得           |
+  | `/api/calender/senior_id/<int:senior_user_id>/created_at/{healthInformation_created_atをYYYYMMDD表示したもの}`      | PUT              | カレンダー情報更新           |
+  | `/api/calender/senior_id/<int:senior_user_id>/created_at/{healthInformation_created_atをYYYYMMDD表示したもの}`      | DELETE             | カレンダー情報削除           |
+  | `/api/calender/senior_id/<int:senior_user_id>/created_at/{healthInformation_created_atをYYYYMMDD表示したもの}`      | POST             | カレンダー情報投稿           |
 
 - **パラメータ**:  
 
