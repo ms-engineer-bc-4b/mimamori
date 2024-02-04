@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for, session
+
 from database import init_db, db
-from models import SeniorUser
+from models import SeniorUser, HealthInformation
 from datetime import datetime, timedelta
 import json
 from flask_bcrypt import Bcrypt
@@ -37,7 +38,7 @@ def token_required(f):
 def create_app():
     app = Flask(__name__)
     app.config.from_object('config.Config')
-    CORS(app, origins=["http://localhost:3000"])
+    CORS(app, origins=["http://localhost:3004"])
 
     init_db(app)
     bcrypt = Bcrypt(app)
@@ -118,7 +119,22 @@ def create_app():
     @app.route('/api/health', methods=['POST'])
     @token_required
     def user_health_register(current_user):
-        pass
+        data = request.get_json()
+        condition = data.get('condition')
+        symptom = data.get('symptom')
+        medicine = data.get('medicine')
+        degree = data.get('degree')
+        voice_text = data.get('voice_text')
+
+        # バリデーション入れるならここにコードを追加する
+
+        # 新規登録
+        health_information = HealthInformation(condition=condition, symptom=symptom, medicine=medicine,degree=degree, voice_text=voice_text, senior_user_id=current_user.senior_user_id)
+        db.session.add(health_information)
+        print('追加')
+        db.session.commit()
+        print('新規作成')
+        return jsonify({'message': 'Registered successfully'}), 201
     
 
 
