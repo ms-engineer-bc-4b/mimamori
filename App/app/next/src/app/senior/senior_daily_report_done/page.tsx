@@ -34,9 +34,9 @@ export default function SeniorReportDone() {
             月次の管理画面を確認したい場合は管理画面ボタンを押下してください
           </div>
           {/* 管理画面ボタン */}
-          <div className="w-[261px] h-[65px] left-[335px] top-[292px] absolute bg-zinc-300 rounded-[10px] shadow">
+          <div className="w-[261px] h-[65px] left-[480px] top-[292px] absolute bg-zinc-300 rounded-[10px] shadow">
           </div>
-          <div className="left-[416px] top-[309px] absolute text-black text-[25px] font-normal font-['Inter']">
+          <div className="left-[550px] top-[305px] absolute text-black text-[25px] font-normal font-['Inter']">
             <Link href="/senior/senior_home">
               管理画面
             </Link>
