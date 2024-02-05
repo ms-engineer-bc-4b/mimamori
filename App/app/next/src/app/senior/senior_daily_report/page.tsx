@@ -163,14 +163,14 @@ export default function SeniorHealth() {
               }}
           />
         </div>
-        {/* 4 */}
+        {/* 4 X*/}
         <div className={"flex"}>
           <label>4.昨日の夕飯を登録してください</label>
 
           <div>
             <input type="file" accept="image/*" 
             multiple onChange={(e) => setFormData
-            ({ ...formData, dinner_photo: e.target.files[0] })} />
+            ({ ...formData, dinner_photo: e.target.value })} />
             <div id="imgPreviewField"></div>
           </div>
         </div>
@@ -192,7 +192,7 @@ export default function SeniorHealth() {
           <VoiceToText setText={setText}/>
           <textarea id="voicetotext" name="voicetotext" cols="45" rows="8" 
           aria-label="音声をテキストフィールド value={text} 
-          onChange={(e) => setFormData({...formData, voice_to_text:[setText(e.target.value)]}>
+          // onChange={(e) => setFormData({...formData, voice_to_text:[setText(e.target.value)]}>
           </textarea>
           </div>
         </div> */}

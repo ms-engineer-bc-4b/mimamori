@@ -124,6 +124,7 @@ def create_app():
         symptom = data.get('symptom')
         medicine = data.get('medicine')
         degree = data.get('degree')
+        dinner =data.get('dinner_photo')
         voice_text = data.get('voice_text')
 
         # バリデーション入れるならここにコードを追加する
@@ -153,58 +154,6 @@ def create_app():
     # 情報の取得
     # /api/{senior_user_id}/health/{id}	GET	登録情報の取得
 
-
-
-
-
-
-#  実装必要なもの
-    # 健康入力フォーム
-        # パラメータ名	必須	説明
-        # id	Yes	健康情報ID
-        # senior_user_id	Yes	高齢者（ユーザー）情報
-        # condition	Yes	健康情報
-        # symptom	No	体の異変
-        # medicine	No	薬服用の有無
-        # voice_text	No	音声メッセージ
-        # registered_at	Yes	登録日
-    # modelsより
-        # id = db.Column(db.Integer, primary_key=True)
-        # #※本番はテーブル連携するので#外すsenior_user_id = db.Column(db.Integer, ForeignKey('SeniorUser.senior_user_id'), nullable=False)
-        # condition = db.Column(db.Enum('good', 'normal', 'bad'), nullable=False)
-        # symptom = db.Column(db.Enum('head', 'face', 'neck', 'shoulder', 'chest', 'rightArm', 'leftArm', 'leftHand', 'rightHand', 'abdomen', 'rightLeg', 'leftLeg', 'leftAnkle', 'rightAnkle', 'back', 'buttocks'), nullable=False)
-        # medicine = db.Column(db.Boolean, nullable=False)
-        # dinner_photo = db.Column(db.String(255), nullable=True)
-        # degree = db.Column(db.Enum('full', 'half', 'less'), nullable=True)
-        # voice_text = db.Column(db.String(255), nullable=True)
-        # created_at = db.Column(db.DateTime, nullable=False, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-        # updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"), onupdate=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    # API設計書
-        # {
-        #     "senior_user_id": "98765",
-        #     "condition": "good",
-        #     "symptom": "head",
-        #     "medicine": true,
-        #     "dinner_photo":"",
-        #     "degree":"full",
-        #     "voice_text": "I am feeling a bit dizzy today.",
-        #    "created_at": "2024-01-27T12:34:56Z",
-        #    "updated_at": "2024-01-27T12:34:56Z"
-        # }
-        # 成功時:
-        # ステータスコード: 201 Created
-        # レスポンスサンプル:
-        # {
-        #     "message": "Health information registered successfully"
-        # }
-        # 失敗時:
-        # ステータスコード: 400 Bad Request
-        # レスポンスサンプル:
-        # {
-        #     "error": "Registration failed",
-        #     "reason": "Invalid email format"
-        # }
-# 
 
     return app
 

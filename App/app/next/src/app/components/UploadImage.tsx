@@ -18,6 +18,9 @@ function uploadImage(obj: ImageObj) {
 
     fileReader.onload = (e) => {
       const imgPreviewField = document.getElementById("imgPreviewField") as HTMLDivElement;
+      // const base64Text = e.currentTarget.result
+      // console.log(base64Text);
+      
 
       const figure = document.createElement("figure");
       const rmBtn = document.createElement("input");
