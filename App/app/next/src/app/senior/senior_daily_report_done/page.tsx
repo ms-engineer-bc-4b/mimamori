@@ -41,13 +41,7 @@ export default function SeniorReportDone() {
               管理画面
             </Link>
           </div>
-          {/* 閉じる画面ボタン */}
-          <div className="w-[261px] h-[65px] left-[638px] top-[292px] absolute bg-zinc-300 rounded-[10px] shadow">
-          </div>
-          {/* 閉じるときのコードは？ */}
-          <div className="left-[731px] top-[309px] absolute text-black text-[25px] font-normal font-['Inter']">
-            閉じる
-          </div>
+
 
 
       </main>

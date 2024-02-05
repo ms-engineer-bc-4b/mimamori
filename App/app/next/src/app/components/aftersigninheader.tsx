@@ -16,11 +16,7 @@ const Header = () => {
         管理画面
       </Link>
       </div>
-      <div className="left-[992px] top-[60px] absolute text-green-950 text-lg font-normal font-['Inter']">
-      <Link href="/senior/senior_login">
-        ログアウト
-      </Link>
-      </div>
+
       <div className="w-[1100px] h-px left-[44px] top-[90px] absolute bg-zinc-300 rounded-[5px]"></div>
     </div>
 
