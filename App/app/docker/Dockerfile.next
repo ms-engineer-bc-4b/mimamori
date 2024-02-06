@@ -5,13 +5,14 @@ WORKDIR /app/
 # package.jsonとpackage-lock.jsonをコピーして依存関係をインストール
 COPY ./next/package*.json /app/
 
-RUN npm install
+
 
 # 追加のパッケージをインストール
 RUN npm install react-hook-form@7.49.3 react-router-dom@6.21.2
 #RUN npm install -g firebase-tools \
  #   && npm install react-hook-form@7.49.3 react-router-dom@6.21.2
 
+RUN npm install
 
 # 残りのファイルをコピー
 COPY ./next /app/

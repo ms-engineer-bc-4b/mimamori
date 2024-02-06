@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler, useFormContext } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import Header from '../components/Header';
+import Header from '@/components/Header';
 import Link from 'next/link';
 import { useEffect } from 'react';
 //import { stringify } from 'querystring';
@@ -137,11 +137,11 @@ function Home() {
                   <table  >
                     <tbody>
                       <tr>
-                        <td>シニア（見守られる側）の情報</td>
+                        <td>助けれ上手の情報</td>
                       </tr>
                       <tr>
 
-                        <td className="border gray-label">
+                        <td className="border bg-orange-100">
                           <label htmlFor="senior_last_name">姓</label>
                         </td>
                         <td className="border white-background">
@@ -151,7 +151,7 @@ function Home() {
                       </tr>
                       <tr>
 
-                        <td className="border gray-label">
+                        <td className="border bg-orange-100">
                           <label htmlFor="senior_first_name">名</label>
                         </td>
                         <td className="border white-background">
@@ -160,7 +160,7 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td className="border bg-orange-100">
                           <label htmlFor="gender">性別</label>
                         </td>
                         <td className="border white-background">
@@ -173,7 +173,7 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td className="border bg-orange-100">
                           <label htmlFor="birth_date">生年月日</label>
                         </td>
                         <td className="border white-background">
@@ -182,7 +182,7 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td className="border bg-orange-100">
                           <label htmlFor="senior_email">メールアドレス</label>
                         </td>
                         <td className="border white-background">
@@ -191,7 +191,7 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td className="border bg-orange-100">
                           <label htmlFor="senior_tel">電話番号</label>
                         </td>
                         <td className="border white-background">
@@ -200,7 +200,7 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td className="border bg-orange-100">
                           <label htmlFor="health_status">健康状態</label>
                         </td>
                         <td className="border white-background">
@@ -213,7 +213,7 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td className="border bg-orange-100">
                           <label htmlFor="medication">処方薬の有無</label>
                         </td>
                         <td className="border white-background">
@@ -225,7 +225,7 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td className="border bg-orange-100">
                           <label htmlFor="medication_frequency">処方薬有の場合頻度</label>
                         </td>
                         <td className="border white-background">
@@ -240,13 +240,14 @@ function Home() {
                       <tr >
 
 
-                        <tr>
-                          <td>シニア（見守られる側）の情報</td>
-                        </tr>
 
+                        <td>世話焼きさんの情報</td>
+                        <td></td>
                       </tr>
+
+
                       <tr>
-                        <td className="border gray-label">
+                        <td className="border bg-blue-100">
                           <label htmlFor="family_last_name">申込者氏名（姓）
                           </label>
                         </td>
@@ -256,14 +257,14 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label"><label htmlFor="family_first_name">申込者氏名（名）</label></td>
+                        <td className="border bg-blue-100"><label htmlFor="family_first_name">申込者氏名（名）</label></td>
                         <td className="border white-background">
                           <input id="family_first_name" type="text" {...register('family_first_name', { required: "名は必須です" })} />
                           {errors.family_first_name && <p>{errors.family_first_name.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td className="border bg-blue-100">
                           <label htmlFor="relationship_with_senior">高齢者の関係性
                           </label>
                         </td>
@@ -278,14 +279,14 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label"><label htmlFor="family_email">メールアドレス</label></td>
+                        <td className="border bg-blue-100"><label htmlFor="family_email">メールアドレス</label></td>
                         <td className="border white-background">
                           <input id="family_email" type="email" {...register('family_email', { required: "メールアドレスは必須です" })} />
                           {errors.family_email && <p>{errors.family_email.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td className="border bg-blue-100">
                           <label htmlFor="family_tel">
                             電話番号
                           </label>
@@ -296,14 +297,14 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label"><label htmlFor="family_password">パスワード</label></td>
+                        <td className="border bg-blue-100"><label htmlFor="family_password">パスワード</label></td>
                         <td className="border white-background">
                           <input id="family_password" type="password" {...register('family_password', { required: "パスワードは必須です" })} />
                           {errors.family_password && <p>{errors.family_password.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label"><label htmlFor="confirm_family_password">パスワード（確認用）</label></td>
+                        <td className="border bg-blue-100"><label htmlFor="confirm_family_password">パスワード（確認用）</label></td>
                         <td className="border white-background">
                           <input
                             id="confirm_family_password"
@@ -320,7 +321,19 @@ function Home() {
                   </table>
                 </div>
               </div>
-              <button type="submit" >確認</button>
+        
+              <div className="flex justify-center">
+              <button type="submit" className="flex items-center bg-gray-100 border text-black py-1 px-4 rounded-md">
+                  <Link href="/register/success" passHref>
+                    <div className="flex items-center">
+                      <div className="text-3xl" />
+                      <div className="text-lg font-normal font-['Inter'] ml-2">
+                      確認
+                      </div>
+                    </div>
+                  </Link>
+                </button>
+                </div>
             </form>
           )}
 
@@ -332,89 +345,109 @@ function Home() {
                   <table>
                     <tbody>
                       <tr>
-                        <td>シニア（見守られる側）の情報</td>
+                        <td>助けられ上手の情報</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">姓:</td>
+                        <td className="border bg-orange-100">姓:</td>
                         <td className="border white-background">{formData.senior_last_name}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">名:</td>
+                        <td className="border bg-orange-100">名:</td>
                         <td className="border white-background">{formData.senior_first_name}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">性別:</td>
+                        <td className="border bg-orange-100">性別:</td>
                         <td className="border white-background">{formData.gender}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">生年月日:</td>
+                        <td className="border bg-orange-100">生年月日:</td>
                         <td className="border white-background">{formData.birth_date}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">メールアドレス:</td>
+                        <td className="border bg-orange-100">メールアドレス:</td>
                         <td className="border white-background">{formData.senior_email}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">電話番号:</td>
+                        <td className="border bg-orange-100">電話番号:</td>
                         <td className="border white-background">{formData.senior_tel}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label" >健康状態:</td>
+                        <td className="border bg-orange-100">健康状態:</td>
                         <td className="border white-background">{formData.health_status}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">処方薬の有無:</td>
+                        <td className="border bg-orange-100">処方薬の有無:</td>
                         <td className="border white-background">{formData.medication}</td>
                       </tr>
                       {formData.medication === 'yes' && (
                         <tr>
-                          <td className="border gray-label">処方薬有の場合頻度:</td>
+                          <td className="border bg-orange-100">処方薬有の場合頻度:</td>
                           <td className="border white-background">{formData.medication_frequency}</td>
                         </tr>
                       )}
 
 
                       <tr>
-                        <td>シニア（見守られる側）の情報</td>
+                        <td>世話焼きさんの情報</td>
                       </tr>
                       {/* 申込者情報の確認項目 */}
                       <tr>
-                        <td className="border gray-label">申込者氏名（姓）:</td>
+                        <td className="border bg-blue-100">申込者氏名（姓）:</td>
                         <td className="border white-background">{formData.family_last_name}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">申込者氏名（名）:</td>
+                        <td className="border bg-blue-100">申込者氏名（名）:</td>
                         <td className="border white-background">{formData.family_first_name}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">高齢者の関係性:</td>
+                        <td className="border bg-blue-100">高齢者の関係性:</td>
                         <td className="border white-background">{formData.relationship_with_senior}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">メールアドレス:</td>
+                        <td className="border bg-blue-100">メールアドレス:</td>
                         <td className="border white-background">{formData.family_email}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">電話番号:</td>
+                        <td className="border bg-blue-100">電話番号:</td>
                         <td className="border white-background">{formData.family_tel}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">パスワード:</td>
+                        <td className="border bg-blue-100">パスワード:</td>
                         <td className="border white-background">{formData.family_password}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">パスワード（確認用）:</td>
+                        <td className="border bg-blue-100">パスワード（確認用）:</td>
                         <td className="border white-background">{formData.confirm_family_password}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
-              <Link href="/register/success" className="text-center" passHref >
-                <button onClick={handleConfirm} >新規登録へ</button>
-              </Link>
-              {/* <button onClick={handleConfirm}>新規登録へ</button>*/}
-              <button onClick={handleBack} className="text-center">戻る</button>
+              <div className="flex justify-center space-x-4">
+                <button onClick={handleConfirm} className="flex items-center  bg-gray-100  border text-black py-1 px-4 rounded-md">
+                  <Link href="/register/success" passHref>
+                    <div className="flex items-center">
+                      <div className="text-3xl" />
+                      <div className="text-lg font-normal font-['Inter'] ml-2">
+                        申込み
+                      </div>
+                    </div>
+                  </Link>
+                </button>
+
+                <button onClick={handleBack} className="flex items-center bg-gray-100 border text-black py-1 px-4 rounded-md">
+                  <Link href="/register/success" passHref>
+                    <div className="flex items-center">
+                      <div className="text-3xl" />
+                      <div className="text-lg font-normal font-['Inter'] ml-2">
+                        戻る
+                      </div>
+                    </div>
+                  </Link>
+                </button>
+              </div>
+
+
             </div>
           )}
         </div>

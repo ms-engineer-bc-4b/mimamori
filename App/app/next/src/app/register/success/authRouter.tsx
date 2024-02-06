@@ -11,7 +11,7 @@ const ACCOUNT_ROUTE = "/register/success/account";//"/register/success/subscript
 const AuthRouter = (props: any) => {
   const app = initFirebase();
   const auth = getAuth(app);
-  const [user, loading] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);//global
   const router = useRouter();
   const pathName = usePathname();
 

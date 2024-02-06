@@ -69,7 +69,7 @@ DESCRIBE テーブル名;
 
 テーブルSeniorUserへサンプル値入れる  
 ```bash
-INSERT INTO SeniorUser (senior_last_name, senior_first_name, gender, birth_date, senior_email, senior_tel, health_status, medication, medication_frequency, senior_user_uid, family_id, senior_password, created_at, updated_at) VALUES ('Smith', 'John', 'Male', '1990-01-01', 'john.smith@example.com', '123-456-7890', 'Good', true, 'Once a day', 'uid123', 1, 'password123', NOW(), NOW());
+INSERT INTO SeniorUser (senior_last_name, senior_first_name, gender, birth_date, senior_email, senior_tel, health_status, medication, medication_frequency, senior_user_uid, family_id, senior_password, created_at, updated_at) VALUES ('Smith', 'John', 'Male', '1990-01-01', 'john.smith@example.com', '123-456-7890', 'Good', true, 'Once a day', 'uid123', 6, 'password123', NOW(), NOW());
 
 #テスト用※外部キーなし
 INSERT INTO SeniorUser (senior_last_name, senior_first_name, gender, birth_date, senior_email, senior_tel, health_status, medication, medication_frequency, senior_user_uid, senior_password, created_at, updated_at) VALUES ('Smith', 'John', 'Male', '1990-01-01', 'john.smith@example.com', '123-456-7890', 'Good', true, 'Once a day', 'uid123', 'password123', NOW(), NOW());
@@ -92,7 +92,7 @@ SELECT * FROM FamilyUser;
 ```
 ```bash
 INSERT INTO HealthInformation (senior_user_id, `condition`, symptom, medicine, dinner_photo, degree, voice_text, created_at, updated_at)
-VALUES (13, 'good', 'head', 'yes', '', 'full', 'Hello, I am feeling good.', NOW(), NOW());
+VALUES (9, 'good', 'head', 'yes', '', 'full', 'Hello, I am feeling good.', NOW(), NOW());
 
 
 

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/zen-maru-gothic": "^5.0.17",
     "@fullcalendar/core": "^6.1.10",
     "@fullcalendar/daygrid": "^6.1.10",
     "@fullcalendar/interaction": "^6.1.10",
@@ -16,14 +17,17 @@
     "@fullcalendar/react": "^6.1.10",
     "@fullcalendar/resource": "^6.1.10",
     "@fullcalendar/timegrid": "^6.1.10",
+    "date-fns": "^3.3.1",
     "dayjs": "^1.11.10",
     "firebase": "^10.7.2",
     "firebaseui": "^6.1.0",
-    "next": "14.0.4",
+    "next": "^14.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-firebase-hooks": "^5.1.1",
-    "react-hook-form": "^7.49.3"
+    "react-hook-form": "^7.49.3",
+    "react-icons": "^5.0.1",
+    "react-router-dom": "^6.22.0"
   },
   "devDependencies": {
     "@types/firebase": "^3.2.1",

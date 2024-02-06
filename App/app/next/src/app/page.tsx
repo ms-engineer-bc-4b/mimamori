@@ -2,14 +2,14 @@
 "use client"
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-
+import { FaUserCircle, FaUserPlus } from "react-icons/fa";
 import './globals.css';
-import Header from '../components/Header';
-import Calendar from '@/components/Calendar';
-import VoiceToText from '@/components/VoiceToText';
+import Header from '@/components/Header';
+import { createContext } from 'vm';
+//import Calendar from '@/components/Calendar';
+//import VoiceToText from '@/components/VoiceToText';
 
 // シンプルなヘッダーコンポーネント
-
 
 // Home コンポーネント
 export default function Home() {
@@ -17,12 +17,14 @@ export default function Home() {
 
 
 
-  return (   
+  return (
+
     <div className="form-container   ">
+
       {/* 背景のdiv */}
     
       <Header />
-      <Calendar />
+          {/*  <Calendar />*/}
     
 
       {/* メインコンテンツ */}
@@ -36,16 +38,22 @@ export default function Home() {
   
         {/* 新規登録画面へのリンク */}
      
-        <Link href="/register" passHref>
-          <div className="w-[304px] h-[90px] bg-gradient-to-b from-teal-500 via-lime-600 to-green-400 rounded-[10px] flex items-center justify-center" >
-            <div className="w-[183px] h-[45px] text-black text-[40px] font-normal font-['Inter'] items-center">
-              新規登録
-            </div>
-          </div>
-        </Link>
+        <button className="flex items-center bg-gray-500 border text-white p-3 rounded-full">
+    <Link href="/register" passHref>
+      <div className="flex items-center">
+        <FaUserPlus className="text-3xl" />
+        
+        <div className="text-lg font-normal font-['Inter'] ml-2">
+          新規登録
+        </div>
+      </div>
+    </Link>
+  </button>
         </div>
       </main>
   
       {/* フッターの呼び出し */}
+   
     </div>
+  
   );}
