@@ -17,21 +17,13 @@ function getTodayDateType() {
 // TODO: Props にする
 const eventExample = [
   {
-      title: "アプリお披露目会",
-      start: new Date(),
-      end: new Date(),
-      description: "現時点でできている部分のアプリを報告",
+      title: "記録を見る",
+      start: new Date("2024-02-03"),
+      description: "記録を見る",
       backgroundColor: "red",
-      borderColor: "red"
+      borderColor: "red",
+      url: "/health-monitoring/2-3"
   },
-  {
-      title: "発表準備",
-      start: new Date().setDate(new Date().getDate() + 3),
-      end: new Date().setDate(new Date().getDate() + 9),
-      description: "2年最後の期末テスト",
-      backgroundColor: "blue",
-      borderColor: "blue"
-  }
 ];
 
 const Calendar = () => {
