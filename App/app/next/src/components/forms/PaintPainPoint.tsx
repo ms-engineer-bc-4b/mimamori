@@ -66,11 +66,11 @@ const PaintPainPoint: React.FC<PaintCanvasProps> = ({ imageUrl }) => {
     <>
       <div className="mt-16 mb-4 text-2xl font-medium">２．痛みや不快感のある場所を教えてください。</div>
         <div className="text-sm text-gray-700">※画像をタップすると痛みを記録できます</div>
-      <div className="w-1/2 mx-auto text-center h-600px">
+      <div className="w-1/2 mx-auto text-center h-400px">
         <canvas
           ref={canvasRef}
-          width={200}
-          height={600}
+          width={120}
+          height={400}
           onMouseDown={startPaint}
           onMouseUp={endPaint}
           onMouseLeave={endPaint}
