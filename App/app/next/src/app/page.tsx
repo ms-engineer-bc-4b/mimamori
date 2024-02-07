@@ -5,8 +5,6 @@ import { useState, useEffect } from 'react';
 
 import './globals.css';
 import Header from '../components/Header';
-import Calendar from '@/components/Calendar';
-import VoiceToText from '@/components/VoiceToText';
 
 // シンプルなヘッダーコンポーネント
 
@@ -22,8 +20,6 @@ export default function Home() {
       {/* 背景のdiv */}
     
       <Header />
-      <Calendar />
-    
 
       {/* メインコンテンツ */}
       <main className={`toppage`}>
