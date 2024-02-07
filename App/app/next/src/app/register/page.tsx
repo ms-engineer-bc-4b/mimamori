@@ -3,10 +3,12 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler, useFormContext } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import Header from '../components/Header';
+import Header from '@/components/Header';
 import Link from 'next/link';
 import { useEffect } from 'react';
 //import { stringify } from 'querystring';
+import apiServerUrl from '../../../config';
+console.log(apiServerUrl)
 interface QueryParams {
   [key: string]: string | string[] | undefined;
 }
@@ -85,7 +87,7 @@ function Home() {
     };
 
     // fetchリクエスト
-    fetch('http://localhost:5000/api/register', {
+    fetch(`${apiServerUrl}/api/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -99,29 +101,29 @@ function Home() {
       })
       .catch((error) => console.error('Error fetching data:', error));
   };
-  const seniorUserId = 1;
-  fetch(`http://localhost:5000/api/${seniorUserId}/health/message/`, {
-    method: 'GET', // リクエストのメソッド
-    headers: {
-      'Content-Type': 'application/json', // リクエストヘッダー
-      // 他に必要なヘッダーがあればここに追加
-    },
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json(); // レスポンスをJSON形式で解釈
+  /*  const seniorUserId = 1;
+    fetch(`${apiServerUrl}/api/${seniorUserId}/health/message/`, {
+      method: 'GET', // リクエストのメソッド
+      headers: {
+        'Content-Type': 'application/json', // リクエストヘッダー
+        // 他に必要なヘッダーがあればここに追加
+      },
     })
-    .then(data => {
-      // 成功した場合の処理
-      console.log('Success:', data);
-      // レスポンスのデータを使ってフロントエンドで必要な処理を行う
-    })
-    .catch(error => {
-      // エラーが発生した場合の処理
-      console.error('Error:', error);
-    });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json(); // レスポンスをJSON形式で解釈
+      })
+      .then(data => {
+        // 成功した場合の処理
+        console.log('Success:', data);
+        // レスポンスのデータを使ってフロントエンドで必要な処理を行う
+      })
+      .catch(error => {
+        // エラーが発生した場合の処理
+        console.error('Error:', error);
+      });*/
   return (
 
     <div className='form-container'>
@@ -137,33 +139,33 @@ function Home() {
                   <table  >
                     <tbody>
                       <tr>
-                        <td>シニア（見守られる側）の情報</td>
+                        <td style={{ fontSize: '25px' }}>助けられ上手の情報</td>
                       </tr>
                       <tr>
 
-                        <td className="border gray-label">
-                          <label htmlFor="senior_last_name">姓</label>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background"  >
+                          <label htmlFor="senior_last_name" style={{ fontSize: '20px' }}>姓</label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background " style={{ fontSize: '20px' }}>
                           <input id="senior_last_name" type="text" {...register('senior_last_name', { required: "姓は必須です" })} />
                           {errors.senior_last_name && <p>{errors.senior_last_name.message}</p>}
                         </td>
                       </tr>
                       <tr>
 
-                        <td className="border gray-label">
-                          <label htmlFor="senior_first_name">名</label>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >
+                          <label htmlFor="senior_first_name" style={{ fontSize: '20px' }}>名</label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <input id="senior_first_name" type="text" {...register('senior_first_name', { required: "名は必須です" })} />
                           {errors.senior_first_name && <p>{errors.senior_first_name.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
-                          <label htmlFor="gender">性別</label>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >
+                          <label htmlFor="gender" style={{ fontSize: '20px' }}>性別</label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <select id="gender" {...register('gender', { required: "性別は必須です" })}>
                             <option value="male">男性</option>
                             <option value="female">女性</option>
@@ -173,37 +175,37 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
-                          <label htmlFor="birth_date">生年月日</label>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >
+                          <label htmlFor="birth_date" style={{ fontSize: '20px' }}>生年月日（YYYY-MM－DD）</label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <input id="birth_date" type="text" {...register('birth_date', { required: "生年月日は必須です" })} />
                           {errors.birth_date && <p>{errors.birth_date.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >
                           <label htmlFor="senior_email">メールアドレス</label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <input id="senior_email" type="email" {...register('senior_email', { required: "メールアドレスは必須です" })} />
                           {errors.senior_email && <p>{errors.senior_email.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >
                           <label htmlFor="senior_tel">電話番号</label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <input id="senior_tel" type="tel" {...register('senior_tel', { required: "電話番号は必須です" })} />
                           {errors.senior_tel && <p>{errors.senior_tel.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
-                          <label htmlFor="health_status">健康状態</label>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >
+                          <label htmlFor="health_status" >健康状態</label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <select id="health_status" {...register('health_status', { required: "健康状態は必須です" })}>
                             <option value="good">良い</option>
                             <option value="normal">普通</option>
@@ -213,10 +215,10 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >
                           <label htmlFor="medication">処方薬の有無</label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <select id="medication" {...register('medication', { required: "処方薬の有無は必須です" })}>
                             <option value="yes">有</option>
                             <option value="no">無</option>
@@ -225,49 +227,47 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >
                           <label htmlFor="medication_frequency">処方薬有の場合頻度</label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <select id="medication_frequency" {...register('medication_frequency', { required: "頻度は必須です" })}>
-                            <option value="once">1日1回</option>
-                            <option value="twice">1日2回</option>
-                            <option value="thrice">1日3回</option>
+                            <option value="once">１日１回</option>
+                            <option value="twice">１日２回</option>
+                            <option value="thrice">１日３回</option>
                           </select>
                           {errors.medication_frequency && <p>{errors.medication_frequency.message}</p>}
-                        </td >
+                        </td>
                       </tr>
                       <tr >
-
-
-                        <tr>
-                          <td>シニア（見守られる側）の情報</td>
-                        </tr>
-
+                        <td style={{ fontSize: '25px' }}>世話焼きさんの情報</td>
+                        <td></td>
                       </tr>
+
+
                       <tr>
-                        <td className="border gray-label">
-                          <label htmlFor="family_last_name">申込者氏名（姓）
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" >
+                          <label htmlFor="family_last_name" style={{ fontSize: '20px' }}>申込者氏名（姓）
                           </label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <input id="family_last_name" type="text" {...register('family_last_name', { required: "姓は必須です" })} />
                           {errors.family_last_name && <p>{errors.family_last_name.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label"><label htmlFor="family_first_name">申込者氏名（名）</label></td>
-                        <td className="border white-background">
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" ><label htmlFor="family_first_name" >申込者氏名（名）</label></td>
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <input id="family_first_name" type="text" {...register('family_first_name', { required: "名は必須です" })} />
                           {errors.family_first_name && <p>{errors.family_first_name.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
-                          <label htmlFor="relationship_with_senior">高齢者の関係性
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" >
+                          <label htmlFor="relationship_with_senior" >高齢者の関係性
                           </label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <select id="relationship_with_senior" {...register('relationship_with_senior', { required: "関係性は必須です" })}>
                             <option value="son">息子</option>
                             <option value="daughter">娘</option>
@@ -278,33 +278,33 @@ function Home() {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label"><label htmlFor="family_email">メールアドレス</label></td>
-                        <td className="border white-background">
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" ><label htmlFor="family_email">メールアドレス</label></td>
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <input id="family_email" type="email" {...register('family_email', { required: "メールアドレスは必須です" })} />
                           {errors.family_email && <p>{errors.family_email.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" >
                           <label htmlFor="family_tel">
                             電話番号
                           </label>
                         </td>
-                        <td className="border white-background">
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <input id="family_tel" type="tel" {...register('family_tel', { required: "電話番号は必須です" })} />
                           {errors.family_tel && <p>{errors.family_tel.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label"><label htmlFor="family_password">パスワード</label></td>
-                        <td className="border white-background">
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" ><label htmlFor="family_password">パスワード</label></td>
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <input id="family_password" type="password" {...register('family_password', { required: "パスワードは必須です" })} />
                           {errors.family_password && <p>{errors.family_password.message}</p>}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label"><label htmlFor="confirm_family_password">パスワード（確認用）</label></td>
-                        <td className="border white-background">
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" ><label htmlFor="confirm_family_password">パスワード（確認用）</label></td>
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
                           <input
                             id="confirm_family_password"
                             type="password"
@@ -320,101 +320,124 @@ function Home() {
                   </table>
                 </div>
               </div>
-              <button type="submit" >確認</button>
+              <button type="submit" style={{ backgroundColor: 'gray', color: 'white', fontSize: '25px', width: '200px', borderRadius: '10px' }}>確認</button>
             </form>
           )}
 
           {showConfirmation && formData && (
-            <div>
-              <h2>入力内容の確認</h2>
+            <div style={{ fontSize: '20px' }}>
+
               <div className="parent-container">
                 <div className="table-container">
                   <table>
                     <tbody>
                       <tr>
-                        <td>シニア（見守られる側）の情報</td>
+                        <td style={{ fontSize: '25px' }}>助けられ上手さんの情報</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">姓:</td>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >姓</td>
                         <td className="border white-background">{formData.senior_last_name}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">名:</td>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >名</td>
                         <td className="border white-background">{formData.senior_first_name}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">性別:</td>
-                        <td className="border white-background">{formData.gender}</td>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >性別</td>
+                        <td className="border white-background">
+                          {formData.gender === 'male' && '男性'}
+                          {formData.gender === 'female' && '女性'}
+                          {formData.gender === 'other' && 'その他'}
+                        </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">生年月日:</td>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >生年月日（YYYY-MM－DD）</td>
                         <td className="border white-background">{formData.birth_date}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">メールアドレス:</td>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >メールアドレス</td>
                         <td className="border white-background">{formData.senior_email}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">電話番号:</td>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >電話番号</td>
                         <td className="border white-background">{formData.senior_tel}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label" >健康状態:</td>
-                        <td className="border white-background">{formData.health_status}</td>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >健康状態</td>
+                        <td className="border white-background">
+                          {formData.health_status === 'good' && '良好'}
+                          {formData.health_status === 'normal' && '普通'}
+                          {formData.health_status === 'bad' && '悪い'}
+                        </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">処方薬の有無:</td>
-                        <td className="border white-background">{formData.medication}</td>
+                        <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >処方薬の有無</td>
+                        <td className="border white-background">
+                          {formData.medication === 'yes' ? '有' : '無'}
+                        </td>
                       </tr>
                       {formData.medication === 'yes' && (
                         <tr>
-                          <td className="border gray-label">処方薬有の場合頻度:</td>
-                          <td className="border white-background">{formData.medication_frequency}</td>
+                          <td style={{ backgroundColor: 'rgba(255, 165, 0, 0.2)', fontSize: '20px' }} className="border white-background" >処方薬有の場合頻度</td>
+                          <td className="border white-background" style={{ fontSize: '20px' }}>
+                            {formData.medication_frequency === 'once' && '１日１回'}
+                            {formData.medication_frequency === 'twice' && '１日２回'}
+                            {formData.medication_frequency === 'third' && '１日３回'}
+                          </td>
                         </tr>
                       )}
 
 
                       <tr>
-                        <td>シニア（見守られる側）の情報</td>
+                        <td style={{ fontSize: '25px' }}>世話焼きさんの情報</td>
                       </tr>
                       {/* 申込者情報の確認項目 */}
                       <tr>
-                        <td className="border gray-label">申込者氏名（姓）:</td>
-                        <td className="border white-background">{formData.family_last_name}</td>
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" >申込者氏名（姓）</td>
+                        <td className="border white-background" style={{ fontSize: '20px' }}>{formData.family_last_name}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">申込者氏名（名）:</td>
-                        <td className="border white-background">{formData.family_first_name}</td>
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" >申込者氏名（名）</td>
+                        <td className="border white-background" style={{ fontSize: '20px' }}>{formData.family_first_name}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">高齢者の関係性:</td>
-                        <td className="border white-background">{formData.relationship_with_senior}</td>
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" >高齢者の関係性</td>
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
+                          {formData.relationship_with_senior === 'son' && '息子'}
+                          {formData.relationship_with_senior === 'daughter' && '娘'}
+                          {formData.relationship_with_senior === 'grandchild' && '孫'}
+                          {formData.relationship_with_senior === 'other' && 'その他'}
+                        </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">メールアドレス:</td>
-                        <td className="border white-background">{formData.family_email}</td>
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" >メールアドレス</td>
+                        <td className="border white-background" style={{ fontSize: '20px' }}>{formData.family_email}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">電話番号:</td>
-                        <td className="border white-background">{formData.family_tel}</td>
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background" >電話番号</td>
+                        <td className="border white-background" style={{ fontSize: '20px' }}>{formData.family_tel}</td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">パスワード:</td>
-                        <td className="border white-background">{formData.family_password}</td>
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background">パスワード</td>
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
+                          {formData.family_password.replace(/./g, '●')}
+                        </td>
                       </tr>
                       <tr>
-                        <td className="border gray-label">パスワード（確認用）:</td>
-                        <td className="border white-background">{formData.confirm_family_password}</td>
+                        <td style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)', fontSize: '20px' }} className="border white-background">パスワード（確認用）</td>
+                        <td className="border white-background" style={{ fontSize: '20px' }}>
+                          {formData.confirm_family_password.replace(/./g, '●')}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
-              <Link href="/register/success" className="text-center" passHref >
-                <button onClick={handleConfirm} >新規登録へ</button>
+              <Link href="/register/success" className="text-center" passHref>
+                <button style={{ backgroundColor: 'gray', color: 'white', fontSize: '25px', width: '200px', borderRadius: '10px', marginRight: '20px' }} onClick={handleConfirm}>新規登録へ</button>
               </Link>
-              {/* <button onClick={handleConfirm}>新規登録へ</button>*/}
-              <button onClick={handleBack} className="text-center">戻る</button>
+
+              <button style={{ backgroundColor: 'gray', color: 'white', fontSize: '25px', width: '200px', borderRadius: '10px' }} onClick={handleBack} className="text-center">戻る</button>
             </div>
           )}
         </div>

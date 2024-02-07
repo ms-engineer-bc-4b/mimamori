@@ -43,7 +43,7 @@ export default function AccountPage() {
 
   const signOut = () => {
     auth.signOut();
-    router.push("/");
+    router.push("/");//"/"
   };
 
   const upgradeToPremiumButton = (

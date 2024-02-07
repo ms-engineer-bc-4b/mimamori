@@ -4,7 +4,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction";
 
-import { getTodayDateType } from '@/lib/dateUtil';
+//import { getTodayDateType } from '@/lib/dateUtil';
 import { get } from 'http';
 
 const INITIAL_VIEW = "dayGridMonth";
@@ -14,7 +14,7 @@ const LOCALE = "ja";
 const eventExample = [
   {
       title: "アプリお披露目会",
-      start: getTodayDateType(),
+   //  start: getTodayDateType(),
       end: new Date(),
       description: "現時点でできている部分のアプリを報告",
       backgroundColor: "red",
@@ -22,8 +22,8 @@ const eventExample = [
   },
   {
       title: "発表準備",
-      start: new Date().setDate(new Date().getDate() + 3),
-      end: new Date().setDate(new Date().getDate() + 9),
+  //    start: new Date().setDate(new Date().getDate() + 3),
+    //  end: new Date().setDate(new Date().getDate() + 9),
       description: "2年最後の期末テスト",
       backgroundColor: "blue",
       borderColor: "blue"
