@@ -517,7 +517,9 @@ def create_app():
      else:
         # ユーザーが存在しない場合
         return jsonify({"message": "Senior user not found with the provided email"}), 404
-     
+    #familysign up
+    
+
     #API_design_calender.md
     @app.route('/api/calender/senior_id/<int:senior_user_id>/created_at/<string:YYYYMMDD>', methods=['GET', 'DELETE', 'PUT','POST'])
     def get_or_delete_health_information(senior_user_id, YYYYMMDD):
@@ -618,7 +620,7 @@ def create_app():
         db.session.commit()
 
         return jsonify({"message": "Health information created successfully"})
-
+    
 
     return app
 app = create_app()

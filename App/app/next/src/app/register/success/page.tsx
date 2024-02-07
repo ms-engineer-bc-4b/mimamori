@@ -38,7 +38,7 @@ export default function Home() {
   );
 
   const goToAccount = () => {
-    router.push("/register/success/subscription/account");
+    router.push("/register/success/account");
   };
 
   return (

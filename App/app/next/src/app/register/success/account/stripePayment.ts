@@ -27,7 +27,7 @@ export const getCheckoutUrl = async (
 
   const docRef = await addDoc(checkoutSessionRef, {
     price: priceId,
-    success_url: window.location.origin,
+    success_url: window.location.origin,//変える
     cancel_url: window.location.origin,
   });
 
@@ -56,7 +56,7 @@ export const getPortalUrl = async (app: FirebaseApp): Promise<string> => {
 
   let dataWithUrl: any;
   try {
-    const functions = getFunctions(app, "us-central1");
+    const functions = getFunctions(app, "asia-northeast1");//"us-central1"
     const functionRef = httpsCallable(
       functions,
       "ext-firestore-stripe-payments-createPortalLink"
