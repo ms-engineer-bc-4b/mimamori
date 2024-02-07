@@ -48,13 +48,16 @@ const VoiceToText = (props: Props) => {
 
   return (
     <>
-      <div className="m-4">録音ステータス: {isRecording ? "録音中" : "停止中"}</div>
-      <div>
-        <button className="rounded-xl border-2 border-solid border-green-500 p-2 m-2" onClick={startRecording}>録音開始</button>
-      </div>
-      <div>
-        <button className="rounded-xl border-2 border-solid border-green-500 p-2 m-2" onClick={stopRecording}>録音停止</button>
-      </div>
+      {!isRecording && (
+        <div>
+          <button className="rounded-xl border-2 border-solid border-green-500 p-2 m-2" onClick={startRecording}>録音開始</button>
+        </div>
+      )}
+      {isRecording && (
+        <div>
+          <button className="rounded-xl border-2 border-solid border-green-500 p-2 m-2" onClick={stopRecording}>録音停止</button>
+        </div>
+      )}
     </>
   )
 }

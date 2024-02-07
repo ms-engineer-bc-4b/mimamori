@@ -4,12 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FaUserCircle, FaUserPlus } from "react-icons/fa";
 import './globals.css';
-import Header from '@/components/Header';
-import { createContext } from 'vm';
-import Image from 'next/image'
-
-//import Calendar from '@/components/Calendar';
-//import VoiceToText from '@/components/VoiceToText';
+import Header from '../components/Header';
 
 // シンプルなヘッダーコンポーネント
 
@@ -28,8 +23,6 @@ export default function Home() {
       {/* 背景のdiv */}
 
       <Header />
-      {/*  <Calendar />*/}
-
 
       {/* メインコンテンツ */}
       <main className={`toppage`}>
